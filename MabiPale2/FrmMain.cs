@@ -80,15 +80,18 @@ namespace MabiPale2
 		}
 
 		/// <summary>
-		/// Called when selecting a packet in the visible list,
+		/// Called when selecting a packet in the list,
 		/// shows the packet in the textbox.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void LstPackets_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (LstPackets.SelectedItems.Count != 1)
+			if (LstPackets.SelectedItems.Count == 0)
+			{
+				TxtPacket.Text = "";
 				return;
+			}
 
 			lock (LstPackets)
 				TxtPacket.Text = ((PalePacket)LstPackets.SelectedItems[0].Tag).ToString();
@@ -216,7 +219,7 @@ namespace MabiPale2
 		}
 
 		/// <summary>
-		/// Adds packet to visible list, scrolls down if scroll is true.
+		/// Adds packet to list, scrolls down if scroll is true.
 		/// </summary>
 		/// <param name="palePacket"></param>
 		/// <param name="scroll"></param>
@@ -251,7 +254,7 @@ namespace MabiPale2
 		}
 
 		/// <summary>
-		/// Clear button, clears both lists.
+		/// Clear button, clears packet list.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -261,16 +264,16 @@ namespace MabiPale2
 		}
 
 		/// <summary>
-		/// Clears both lists.
+		/// Clears packet list.
 		/// </summary>
 		private void ClearList()
 		{
+			LstPackets.BeginUpdate();
 			lock (LstPackets)
-			{
-				LstPackets.BeginUpdate();
 				LstPackets.Items.Clear();
-				LstPackets.EndUpdate();
-			}
+			LstPackets.EndUpdate();
+
+			TxtPacket.Text = "";
 
 			UpdateCount();
 		}
