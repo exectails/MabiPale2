@@ -191,7 +191,7 @@ namespace MabiPale2
 			lock (LstPackets)
 			{
 				foreach (var packet in newPackets)
-					AddPacketToFormList(packet, true);
+					AddPacketToFormList(packet, false);
 			}
 			LstPackets.EndUpdate();
 

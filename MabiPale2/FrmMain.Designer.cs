@@ -53,6 +53,7 @@
 			this.MenuFile = new System.Windows.Forms.MenuItem();
 			this.BtnMenuOpen = new System.Windows.Forms.MenuItem();
 			this.BtnMenuSaveAs = new System.Windows.Forms.MenuItem();
+			this.MenuFileExitSpacer = new System.Windows.Forms.MenuItem();
 			this.BtnMenuExit = new System.Windows.Forms.MenuItem();
 			this.MenuEdit = new System.Windows.Forms.MenuItem();
 			this.BtnMenuEditFilter = new System.Windows.Forms.MenuItem();
@@ -68,7 +69,6 @@
 			this.BtnMenuPacketsCopyAuraWrite = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsCopyAuraRead = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsFilter = new System.Windows.Forms.MenuItem();
-			this.menuItem1 = new System.Windows.Forms.MenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.SplitContainerPackets)).BeginInit();
 			this.SplitContainerPackets.Panel1.SuspendLayout();
 			this.SplitContainerPackets.Panel2.SuspendLayout();
@@ -279,7 +279,7 @@
 			this.MenuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.BtnMenuOpen,
             this.BtnMenuSaveAs,
-            this.menuItem1,
+            this.MenuFileExitSpacer,
             this.BtnMenuExit});
 			this.MenuFile.Text = "&File";
 			// 
@@ -294,6 +294,11 @@
 			this.BtnMenuSaveAs.Index = 1;
 			this.BtnMenuSaveAs.Text = "&Save as...";
 			this.BtnMenuSaveAs.Click += new System.EventHandler(this.BtnSave_Click);
+			// 
+			// MenuFileExitSpacer
+			// 
+			this.MenuFileExitSpacer.Index = 2;
+			this.MenuFileExitSpacer.Text = "-";
 			// 
 			// BtnMenuExit
 			// 
@@ -389,11 +394,6 @@
 			this.BtnMenuPacketsFilter.Text = "Add to filter";
 			this.BtnMenuPacketsFilter.Click += new System.EventHandler(this.BtnMenuPacketsFilter_Click);
 			// 
-			// menuItem1
-			// 
-			this.menuItem1.Index = 2;
-			this.menuItem1.Text = "-";
-			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
@@ -467,7 +467,7 @@
 		private System.Windows.Forms.MenuItem BtnMenuPacketsCopyAuraRead;
 		private System.Windows.Forms.MenuItem MenuEdit;
 		private System.Windows.Forms.MenuItem BtnMenuEditFilter;
-		private System.Windows.Forms.MenuItem menuItem1;
+		private System.Windows.Forms.MenuItem MenuFileExitSpacer;
 	}
 }
 
