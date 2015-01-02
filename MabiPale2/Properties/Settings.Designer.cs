@@ -117,7 +117,7 @@ namespace MabiPale2.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Configuration.SettingsProviderAttribute(typeof(PortableSettingsProvider))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0FD13021\r\n0F44BBA3\r\n")]
         public string FilterRecv {
             get {
                 return ((string)(this["FilterRecv"]));
@@ -130,7 +130,7 @@ namespace MabiPale2.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Configuration.SettingsProviderAttribute(typeof(PortableSettingsProvider))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0F213303\r\n0FF23431\r\n")]
         public string FilterSend {
             get {
                 return ((string)(this["FilterSend"]));

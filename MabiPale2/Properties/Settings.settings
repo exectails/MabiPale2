@@ -24,10 +24,14 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="FilterRecv" Provider="PortableSettingsProvider" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0FD13021
+0F44BBA3
+</Value>
     </Setting>
     <Setting Name="FilterSend" Provider="PortableSettingsProvider" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0F213303
+0FF23431
+</Value>
     </Setting>
   </Settings>
 </SettingsFile>
