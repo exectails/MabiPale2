@@ -819,6 +819,8 @@ namespace MabiPale2
 					LstPackets.Items.RemoveAt(idxs[i]);
 			}
 			LstPackets.EndUpdate();
+
+			UpdateCount();
 		}
 
 		/// <summary>
