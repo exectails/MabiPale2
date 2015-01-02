@@ -1,0 +1,491 @@
+﻿ClientIdent = 0x0FD1020A
+ClientIdentOld = 0x1E
+ClientIdentR = 0x1F
+Login = 0x0FD12002
+LoginOld = 0x22
+LoginR = 0x23
+ChannelStatus = 0x26
+CharacterInfoRequest = 0x29
+CharacterInfoRequestR = 0x2A
+CreateCharacter = 0x2B
+CreateCharacterR = 0x2C
+DeleteCharacterRequest = 0x2D
+DeleteCharacterRequestR = 0x2E
+ChannelInfoRequest = 0x2F
+ChannelInfoRequestR = 0x30
+DeleteCharacter = 0x35
+DeleteCharacterR = 0x36
+RecoverCharacter = 0x37
+RecoverCharacterR = 0x38
+NameCheck = 0x39
+NameCheckR = 0x3A
+PetInfoRequest = 0x3B
+PetInfoRequestR = 0x3C
+CreatePet = 0x3D
+CreatePetR = 0x3E
+DeletePetRequest = 0x3F
+DeletePetRequestR = 0x40
+DeletePet = 0x41
+DeletePetR = 0x42
+RecoverPet = 0x43
+RecoverPetR = 0x44
+CreatePartner = 0x45
+CreatePartnerR = 0x46
+AccountInfoRequest = 0x47
+AccountInfoRequestR = 0x48
+AcceptGift = 0x49
+AcceptGiftR = 0x4A
+RefuseGift = 0x4B
+RefuseGiftR = 0x4C
+DisconnectInform = 0x4D
+PetCreationOptionsRequest = 0x50
+PetCreationOptionsRequestR = 0x51
+PartnerCreationOptionsRequest = 0x55
+PartnerCreationOptionsRequestR = 0x56
+LoginUnk = 0x5A  
+LoginUnkR = 0x5B 
+TradeCard = 0x5C
+TradeCardR = 0x5D
+
+
+
+ChannelLogin = 0x4E22
+ChannelLoginR = 0x4E23
+DisconnectRequest = 0x4E24
+DisconnectRequestR = 0x4E25
+RequestClientDisconnect = 0x4E26
+Disappear = 0x4E2A
+SwitchChannel = 0x4E32
+SwitchChannelR = 0x4E33
+GetChannelList = 0x4E34
+GetChannelListR = 0x4E35
+WarpUnk1 = 0x4E39
+RequestRebirth = 0x4E84
+RequestRebirthR = 0x4E85
+PonsUpdate = 0x4E8F 
+
+ChannelCharacterInfoRequest = 0x5208
+ChannelCharacterInfoRequestR = 0x5209
+EntityAppears = 0x520C
+EntityDisappears = 0x520D
+CreatureBodyUpdate = 0x520E
+ItemAppears = 0x5211
+ItemDisappears = 0x5212
+AssignSittingProp = 0x5215
+Chat = 0x526C
+Notice = 0x526D
+WarpUnk2 = 0x526E
+MsgBox = 0x526F
+AcquireInfo = 0x5271
+WhisperChat = 0x5273
+BeginnerChat = 0x5275
+AcquireInfo2 = 0x5278 
+VisualChat = 0x527A
+PropAppears = 0x52D0
+PropDisappears = 0x52D1
+PropUpdate = 0x52D2 
+EntitiesAppear = 0x5334
+EntitiesDisappear = 0x5335
+RemoveDeathScreen = 0x53FD
+IsNowDead = 0x53FC
+Revive = 0x53FE
+Revived = 0x53FF
+DeadMenu = 0x5401
+DeadMenuR = 0x5402
+DeadFeather = 0x5403
+UseGesture = 0x540E
+UseGestureR = 0x540F
+NpcTalkStart = 0x55F0
+NpcTalkStartR = 0x55F1
+NpcTalkEnd = 0x55F2
+NpcTalkEndR = 0x55F3
+NpcTalkPartner = 0x55F8
+NpcTalkPartnerR = 0x55F9
+ItemMove = 0x59D8
+ItemMoveR = 0x59D9
+ItemPickUp = 0x59DA
+ItemPickUpR = 0x59DB
+ItemDrop = 0x59DC
+ItemDropR = 0x59DD
+ItemMoveInfo = 0x59DE
+ItemSwitchInfo = 0x59DF
+ItemNew = 0x59E0
+ItemRemove = 0x59E1
+ItemDestroy = 0x59E2
+ItemDestroyR = 0x59E4
+EquipmentChanged = 0x59E6
+EquipmentMoved = 0x59E7
+ItemSplit = 0x59E8
+ItemSplitR = 0x59E9
+ItemAmount = 0x59EA
+UseItem = 0x59EB
+UseItemR = 0x59EC
+GiftItem = 0x59EF
+GiftItemR = 0x59F0
+UnequipBag = 0x59F4
+UnequipBagR = 0x59F5
+
+
+
+
+
+
+
+NpcTalkSelectEnd = 0x59FB
+
+SwitchSet = 0x5BCD
+SwitchSetR = 0x5BCE
+UpdateWeaponSet = 0x5BCF
+ItemStateChange = 0x5BD0
+ItemStateChangeR = 0x5BD1
+ItemUpdate = 0x5BD4
+ItemDurabilityUpdate = 0x5BD5
+ItemStateChanged = 0x5BD9
+ItemExpUpdate = 0x5BDA
+ViewEquipment = 0x5BDF
+ViewEquipmentR = 0x5BE0
+OptionSet = 0x5BE7
+OptionSetR = 0x5BE8
+AddKeyword = 0x5DC1
+RemoveKeyword = 0x5DC3
+NpcTalkKeyword = 0x5DC4
+NpcTalkKeywordR = 0x5DC5
+
+AddObserverRequest = 0x61A8
+SetLocation = 0x6594
+TurnTo = 0x6596
+EnterRegion = 0x6597
+EnterRegionRequest = 0x6598
+WarpRegion = 0x6599 
+ForceRunTo = 0x659A
+ForceWalkTo = 0x659B
+EnterRegionRequestR = 0x659C 
+UrlUpdateChronicle = 0x65A2
+UrlUpdateAdvertise = 0x65A3
+UrlUpdateGuestbook = 0x65A4
+UrlUpdatePvp = 0x65A5
+UrlUpdateDungeonBoard = 0x65A6
+TakeOff = 0x65A8
+TakingOff = 0x65A9
+TakeOffR = 0x65AA
+FlyTo = 0x65AE
+FlyingTo = 0x65AF
+Land = 0x65AB
+Landing = 0x65AC
+CanLand = 0x65AD
+SkillInfo = 0x6979
+SkillTrainingUp = 0x697C
+SkillAdvance = 0x697E
+SkillRankUp = 0x697F 
+SkillPrepare = 0x6982
+SkillReady = 0x6983
+SkillUse = 0x6986
+SkillComplete = 0x6987
+SkillCancel = 0x6989
+SkillStart = 0x698A
+SkillStop = 0x698B
+SkillPrepareSilentCancel = 0x698C
+SkillUseSilentCancel = 0x698D
+
+SkillStartSilentCancel = 0x698F
+SkillStopSilentCancel = 0x6990
+SkillStackSet = 0x6991
+SkillStackUpdate = 0x6992
+UseMotion = 0x6D62
+PlayAnimation = 0x6D63 
+CancelMotion = 0x6D65
+MotionCancel2 = 0x6D66 
+LevelUp = 0x6D69
+RankUp = 0x6D6A
+SitDown = 0x6D6C
+StandUp = 0x6D6D
+ArenaHideOn = 0x6D6F
+ArenaHideOff = 0x6D70
+ChangeStanceRequest = 0x6E28
+ChangeStanceRequestR = 0x6E29
+ChangeStance = 0x6E2A
+
+RiseFromTheDead = 0x701D
+CharacterLock = 0x701E
+CharacterUnlock = 0x701F
+PlayDead = 0x7021
+OpenUmbrella = 0x7025
+CloseUmbrella = 0x7026
+SpreadWingsOn = 0x702E
+SpreadWingsOff = 0x702F
+NpcShopBuyItem = 0x7150
+NpcShopBuyItemR = 0x7151
+NpcShopSellItem = 0x7152
+NpcShopSellItemR = 0x7153
+ClearNpcShop = 0x7158 
+AddToNpcShop = 0x7159 
+OpenNpcShop = 0x715E
+RequestBankTabs = 0x7211
+OpenBank = 0x7212
+CloseBank = 0x7215
+CloseBankR = 0x7216
+BankWithdrawItem = 0x7217
+BankWithdrawItemR = 0x7218
+BankDepositItem = 0x7219
+BankDepositItemR = 0x721A
+BankDepositGold = 0x721B
+BankDepositGoldR = 0x721C
+BankWithdrawGold = 0x721D
+BankWithdrawGoldR = 0x721E
+BankUpdateGold = 0x721F
+BankAddItem = 0x7220
+BankRemoveItem = 0x7221
+OpenMail = 0x7242
+CloseMail = 0x7243
+ConfirmMailRecipent = 0x7244
+ConfirmMailRecipentR = 0x7245
+SendMail = 0x7246
+SendMailR = 0x7247
+GetMails = 0x7248
+GetMailsR = 0x7249
+MarkMailRead = 0x724A
+MarkMailReadR = 0x724B
+RecieveMailItem = 0x724C
+ReceiveMailItemR = 0x724D
+ReturnMail = 0x724E
+ReturnMailR = 0x724F
+DeleteMail = 0x7250
+DeleteMailR = 0x7251
+RecallMail = 0x7252
+RecallMailR = 0x7253
+UnreadMailCount = 0x7255
+StatUpdatePrivate = 0x7530
+StatUpdatePublic = 0x7532
+CombatTargetUpdate = 0x791A 
+CombatSetAim = 0x791D
+CombatSetAimR = 0x791E
+SetCombatTarget = 0x7920
+SetFinisher = 0x7921
+SetFinisher2 = 0x7922
+CombatAction = 0x7924
+CombatActionEnd = 0x7925
+CombatActionPack = 0x7926
+CombatUsedSkill = 0x7927
+CombatAttackR = 0x7D01
+
+EventInform = 0x88B8
+NewQuest = 0x8CA0
+QuestClear = 0x8CA1
+QuestUpdate = 0x8CA2
+CompleteQuest = 0x8CA3
+CompleteQuestR = 0x8CA4
+GiveUpQuest = 0x8CA5
+GiveUpQuestR = 0x8CA6
+QuestStartPTJ = 0x8D68 
+QuestEndPTJ = 0x8D69 
+QuestUpdatePTJ = 0x8D6A
+PartyCreate = 0x8E94
+PartyCreateR = 0x8E95
+PartyCreateUpdate = 0x8E96
+PartyJoin = 0x8E97
+PartyJoinR = 0x8E98
+PartyJoinUpdate = 0x8E99
+PartyLeave = 0x8E9A
+PartyLeaveR = 0x8E9B
+PartyLeaveUpdate = 0x8E9C
+PartyRemove = 0x8E9D
+PartyRemoveR = 0x8E9E
+PartyRemoved = 0x8E9F
+PartyChangeSetting = 0x8EA0
+PartyChangeSettingR = 0x8EA1
+PartySettingUpdate = 0x8EA2
+PartyChangePassword = 0x8EA3
+PartyChangePasswordR = 0x8EA4
+PartyChangeLeader = 0x8EA5
+PartyChangeLeaderR = 0x8EA6
+PartyChangeLeaderUpdate = 0x8EA7
+PartyWantedShow = 0x8EA9
+PartyWantedShowR = 0x8EAA
+PartyWantedOpened = 0x8EAB
+PartyWantedHide = 0x8EAC
+PartyWantedHideR = 0x8EAD
+PartyWantedClosed = 0x8EAE
+PartyChangeFinish = 0x8EB5
+PartyChangeFinishR = 0x8EB6
+PartyFinishUpdate = 0x8EB7
+PartyChangeExp = 0x8EB8
+PartyChangeExpR = 0x8EB9
+PartyExpUpdate = 0x8EBA
+GuildInfoNoGuild = 0x8EFB
+OpenGuildPanel = 0x8EFC
+GuildInfo = 0x8EFD
+GuildApply = 0x8EFF
+GuildApplyR = 0x8F00
+GuildMembershipChanged = 0x8F01
+GuildstoneLocation = 0x8F02
+ConvertGp = 0x8F03
+ConvertGpR = 0x8F04
+ConvertGpConfirm = 0x8F05
+ConvertGpConfirmR = 0x8F06
+GuildDonate = 0x8F07
+GuildDonateR = 0x8F08
+GuildMessage = 0x8F0F
+AddTitleKnowledge = 0x8FC0
+AddTitle = 0x8FC1
+ChangeTitle = 0x8FC4
+TitleUpdate = 0x8FC5
+ChangeTitleR = 0x8FC6
+
+PetRegister = 0x9024
+PetUnregister = 0x9025
+SummonPet = 0x902C
+SummonPetR = 0x902D
+UnsummonPet = 0x9031
+UnsummonPetR = 0x9032
+TelePet = 0x9033
+TelePetR = 0x9034
+PutItemIntoPetInv = 0x9035
+PutItemIntoPetInvR = 0x9036
+TakeItemFromPetInv = 0x9037
+TakeItemFromPetInvR = 0x9038
+HitProp = 0x9088
+HitPropR = 0x9089
+HittingProp = 0x908A
+TouchProp = 0x908B
+TouchPropR = 0x908C
+PropInteraction = 0x908D 
+PlaySound = 0x908F
+
+
+
+
+
+Effect = 0x9091
+EffectDelayed = 0x9092
+QuestOwlComplete = 0x9094
+QuestOwlNew = 0x9095
+PartyWantedUpdate = 0x9096
+PvPInformation = 0x9097
+NaoRevivalExit = 0x9099
+NaoRevivalEntrance = 0x909D
+
+
+
+DungeonInfo = 0x9470
+ArenaRoundInfo = 0x9667
+ArenaRoundInfoCancel = 0x9668
+AgeUpEffect = 0x9858
+
+ConditionUpdate = 0xA028
+DyePaletteReq = 0xA418
+DyePaletteReqR = 0xA419
+DyePickColor = 0xA41A
+DyePickColorR = 0xA41B
+Transformation = 0xA41C
+PetAction = 0xA41D
+SharpMind = 0xA41E
+MoonGateInfoRequest = 0xA428
+MoonGateInfoRequestR = 0xA429
+MoonGateMap = 0xA42D
+MoonGateUse = 0xA42E
+MoonGateUseR = 0xA42F
+ItemShopInfo = 0xA436
+PartyWindowUpdate = 0xA43C
+ContinentWarpCoolDown = 0xA43D
+ContinentWarpCoolDownR = 0xA43E
+PartyTypeUpdate = 0xA44B
+OpenItemShop = 0xA44D
+
+
+
+MailsRequest = 0xA897
+MailsRequestR = 0xA898
+SetPetAi = 0xA8A1
+GetPetAi = 0xA8A2
+GetPetAiR = 0xA8A3
+WarpUnk3 = 0xA8AF
+UmbrellaJump = 0xA8E0
+UmbrellaJumpR = 0xA8E1
+UmbrellaLand = 0xA8E2
+SetBgm = 0xA910
+UnsetBgm = 0xA911
+EnableRoyalAlchemist = 0xA9A3
+SosButtonRequest = 0xA9A9
+SosButtonRequestR = 0xA9AA
+SkillTeleport = 0xA9F0
+
+
+
+
+SubsribeStunMeter = 0xAA21
+StunMeterTotal = 0xAA22
+StunMeterUpdate = 0xAA23
+
+HomesteadInfoRequest = 0xAA58
+HomesteadInfoRequestR = 0xAA59
+
+
+
+ChannelLoginUnk = 0xAA87
+ChannelLoginUnkR = 0xAA88
+
+CollectionRequest = 0xAA8B
+CollectionRequestR = 0xAA8C
+
+UnkEsc = 0xAAF3
+GoBeautyShop = 0xAAF8
+GoBeautyShopR = 0xAAF9
+LeaveBeautyShop = 0xAAFA
+LeaveBeautyShopR = 0xAAFB
+OpenBeautyShop = 0xAAFC
+
+
+CancelBeautyShop = 0xAAFF
+CancelBeautyShopR = 0xAB00
+
+TalentInfoUpdate = 0xAB17
+TalentTitleChange = 0xAB18
+TalentTitleUpdate = 0xAB19
+
+ShamalaTransformationUpdate = 0xAB1B
+ShamalaTransformationUse = 0xAB1C
+ShamalaTransformation = 0xAB1D
+ShamalaTransformationEnd = 0xAB1E
+ShamalaTransformationEndR = 0xAB1F
+
+NpcTalk = 0x13882
+NpcTalkSelect = 0x13883
+
+SpecialLogin = 0x15F90 
+EnterSoulStream = 0x15F91
+
+LeaveSoulStream = 0x15F93
+LeaveSoulStreamR = 0x15F94
+
+FinishedCutscene = 0x186A0
+PlayCutscene = 0x186A6
+CutsceneEnd = 0x186A7
+CutsceneUnk = 0x186A8
+
+Weather = 0x1ADB0
+
+GmcpOpen = 0x1D589
+GmcpClose = 0x1D58A
+GmcpSummon = 0x1D58B
+GmcpMoveToChar = 0x1D58C
+GmcpWarp = 0x1D58D
+GmcpRevive = 0x1D58E
+GmcpInvisibility = 0x1D58F
+GmcpInvisibilityR = 0x1D590
+GmcpSearch = 0x1D595
+GmcpExpel = 0x1D596
+GmcpBan = 0x1D597
+GmcpNpcList = 0x1D59F
+GmcpNpcListR = 0x1D5A0
+
+PetMount = 0x1FBD0
+PetMountR = 0x1FBD1
+PetUnmount = 0x1FBD2
+PetUnmountR = 0x1FBD3
+VehicleInfo = 0x1FBD4
+
+Run = 0x0F213303
+Running = 0x0F44BBA3
+CombatAttack = 0x0FCC3231
+Walking = 0x0FD13021
+Walk = 0x0FF23431
