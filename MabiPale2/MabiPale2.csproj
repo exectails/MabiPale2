@@ -65,8 +65,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icon2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MabiLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -147,6 +146,7 @@
     <None Include="Resources\brick.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon2.ico" />
     <Content Include="ops.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
