@@ -184,26 +184,26 @@ namespace MabiPale2
 					var packetStr = line.Substring(spaceIdx + 1, line.Length - spaceIdx - 1);
 					var packetArr = HexTool.ToByteArray(packetStr);
 					var packet = new Packet(packetArr, 0);
-					var formPacket = new PalePacket(packet, date, recv);
+					var palePacket = new PalePacket(packet, date, recv);
 
-					newPackets.Insert(0, formPacket);
+					newPackets.Insert(0, palePacket);
 				}
 			}
 
 			LstPackets.BeginUpdate();
 			lock (LstPackets)
 			{
-				foreach (var packet in newPackets)
-					AddPacketToFormList(packet, false);
+				foreach (var palePacket in newPackets)
+					AddPacketToFormList(palePacket, false);
 			}
 			LstPackets.EndUpdate();
 
-			foreach (var packet in newPackets)
+			foreach (var palePacket in newPackets)
 			{
-				if (packet.Received)
-					pluginManager.OnRecv(packet);
+				if (palePacket.Received)
+					pluginManager.OnRecv(palePacket);
 				else
-					pluginManager.OnSend(packet);
+					pluginManager.OnSend(palePacket);
 			}
 		}
 
@@ -299,11 +299,11 @@ namespace MabiPale2
 					{
 						for (int i = LstPackets.Items.Count - 1; i >= 0; --i)
 						{
-							var packet = (LstPackets.Items[i].Tag as PalePacket);
+							var palePacket = (PalePacket)LstPackets.Items[i].Tag;
 
-							var method = packet.Received ? "Recv" : "Send";
-							var time = packet.Time.ToString("hh:mm:ss.fff");
-							var packetStr = HexTool.ToString(packet.Packet.GetBuffer());
+							var method = palePacket.Received ? "Recv" : "Send";
+							var time = palePacket.Time.ToString("hh:mm:ss.fff");
+							var packetStr = HexTool.ToString(palePacket.Packet.GetBuffer());
 
 							sw.WriteLine(method + "@" + time + " " + packetStr);
 						}
@@ -575,22 +575,23 @@ namespace MabiPale2
 				newPackets.Add(palePacket);
 			}
 
-			foreach (var packet in newPackets)
+			foreach (var palePacket in newPackets)
 			{
 				lock (recvFilter)
-					if (Settings.Default.FilterRecvEnabled && recvFilter.Contains(packet.Op))
+					if (Settings.Default.FilterRecvEnabled && recvFilter.Contains(palePacket.Op))
 						continue;
 
 				lock (sendFilter)
-					if (Settings.Default.FilterSendEnabled && sendFilter.Contains(packet.Op))
+					if (Settings.Default.FilterSendEnabled && sendFilter.Contains(palePacket.Op))
 						continue;
 
-				AddPacketToFormList(packet, true);
+				lock (LstPackets)
+					AddPacketToFormList(palePacket, true);
 
-				if (packet.Received)
-					pluginManager.OnRecv(packet);
+				if (palePacket.Received)
+					pluginManager.OnRecv(palePacket);
 				else
-					pluginManager.OnSend(packet);
+					pluginManager.OnSend(palePacket);
 			}
 
 			queueTimer.Enabled = true;
@@ -797,8 +798,8 @@ namespace MabiPale2
 			{
 				for (int i = 0; i < LstPackets.Items.Count; ++i)
 				{
-					var packet = (PalePacket)LstPackets.Items[i].Tag;
-					if (packet.Op == op && (!received || (received && packet.Received)))
+					var palePacket = (PalePacket)LstPackets.Items[i].Tag;
+					if (palePacket.Op == op && (!received || (received && palePacket.Received)))
 						toRemove.Add(i);
 				}
 			}
@@ -836,20 +837,20 @@ namespace MabiPale2
 			{
 				for (int i = 0; i < LstPackets.Items.Count; ++i)
 				{
-					var packet = (PalePacket)LstPackets.Items[i].Tag;
-					if (packet.Received && Settings.Default.FilterRecvEnabled)
+					var palePacket = (PalePacket)LstPackets.Items[i].Tag;
+					if (palePacket.Received && Settings.Default.FilterRecvEnabled)
 					{
 						lock (recvFilter)
 						{
-							if (recvFilter.Contains(packet.Op))
+							if (recvFilter.Contains(palePacket.Op))
 								toRemove.Add(i);
 						}
 					}
-					else if (!packet.Received && Settings.Default.FilterSendEnabled)
+					else if (!palePacket.Received && Settings.Default.FilterSendEnabled)
 					{
 						lock (sendFilter)
 						{
-							if (sendFilter.Contains(packet.Op))
+							if (sendFilter.Contains(palePacket.Op))
 								toRemove.Add(i);
 						}
 					}
