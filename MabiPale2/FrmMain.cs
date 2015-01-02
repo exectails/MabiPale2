@@ -868,9 +868,8 @@ namespace MabiPale2
 				return;
 
 			var toRemove = new List<int>();
-
-			foreach (ListViewItem item in LstPackets.SelectedItems)
-				toRemove.Add(item.Index);
+			lock (LstPackets)
+				toRemove.AddRange(LstPackets.SelectedIndices.Cast<int>());
 
 			RemoveFromList(toRemove);
 		}
