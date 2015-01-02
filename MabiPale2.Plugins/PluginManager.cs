@@ -74,6 +74,6 @@ namespace MabiPale2.Plugins
 		/// Returns a thread-safe list of all current packets.
 		/// </summary>
 		/// <returns></returns>
-		PalePacket[] GetPacketList();
+		IList<PalePacket> GetPacketList();
 	}
 }

@@ -93,8 +93,7 @@ namespace MabiPale2
 				return;
 			}
 
-			lock (LstPackets)
-				TxtPacket.Text = ((PalePacket)LstPackets.SelectedItems[0].Tag).ToString();
+			TxtPacket.Text = ((PalePacket)LstPackets.SelectedItems[0].Tag).ToString();
 		}
 
 		/// <summary>
@@ -191,11 +190,10 @@ namespace MabiPale2
 			}
 
 			LstPackets.BeginUpdate();
-			lock (LstPackets)
-			{
-				foreach (var palePacket in newPackets)
-					AddPacketToFormList(palePacket, false);
-			}
+
+			foreach (var palePacket in newPackets)
+				AddPacketToFormList(palePacket, false);
+
 			LstPackets.EndUpdate();
 
 			foreach (var palePacket in newPackets)
@@ -269,8 +267,7 @@ namespace MabiPale2
 		private void ClearList()
 		{
 			LstPackets.BeginUpdate();
-			lock (LstPackets)
-				LstPackets.Items.Clear();
+			LstPackets.Items.Clear();
 			LstPackets.EndUpdate();
 
 			TxtPacket.Text = "";
@@ -295,18 +292,15 @@ namespace MabiPale2
 				using (var stream = SaveLogDialog.OpenFile())
 				using (var sw = new StreamWriter(stream))
 				{
-					lock (LstPackets)
+					for (int i = LstPackets.Items.Count - 1; i >= 0; --i)
 					{
-						for (int i = LstPackets.Items.Count - 1; i >= 0; --i)
-						{
-							var palePacket = (PalePacket)LstPackets.Items[i].Tag;
+						var palePacket = (PalePacket)LstPackets.Items[i].Tag;
 
-							var method = palePacket.Received ? "Recv" : "Send";
-							var time = palePacket.Time.ToString("hh:mm:ss.fff");
-							var packetStr = HexTool.ToString(palePacket.Packet.GetBuffer());
+						var method = palePacket.Received ? "Recv" : "Send";
+						var time = palePacket.Time.ToString("hh:mm:ss.fff");
+						var packetStr = HexTool.ToString(palePacket.Packet.GetBuffer());
 
-							sw.WriteLine(method + "@" + time + " " + packetStr);
-						}
+						sw.WriteLine(method + "@" + time + " " + packetStr);
 					}
 
 					LblCurrentFileName.Text = Path.GetFileName(SaveLogDialog.FileName);
@@ -541,10 +535,16 @@ namespace MabiPale2
 		/// Returns a thread-safe list of all current packets.
 		/// </summary>
 		/// <returns></returns>
-		public PalePacket[] GetPacketList()
+		public IList<PalePacket> GetPacketList()
 		{
-			lock (LstPackets)
-				return LstPackets.Items.Cast<ListViewItem>().Select(a => (PalePacket)a.Tag).ToArray();
+			IList<PalePacket> result = null;
+
+			LstPackets.InvokeIfRequired((MethodInvoker)delegate
+			{
+				result = LstPackets.Items.Cast<ListViewItem>().Select(a => (PalePacket)a.Tag).ToArray();
+			});
+
+			return result;
 		}
 
 		/// <summary>
@@ -585,8 +585,7 @@ namespace MabiPale2
 					if (Settings.Default.FilterSendEnabled && sendFilter.Contains(palePacket.Op))
 						continue;
 
-				lock (LstPackets)
-					AddPacketToFormList(palePacket, true);
+				AddPacketToFormList(palePacket, true);
 
 				if (palePacket.Received)
 					pluginManager.OnRecv(palePacket);
@@ -631,8 +630,7 @@ namespace MabiPale2
 			if (LstPackets.SelectedItems.Count == 0)
 				return null;
 
-			lock (LstPackets)
-				return (PalePacket)LstPackets.SelectedItems[0].Tag;
+			return (PalePacket)LstPackets.SelectedItems[0].Tag;
 		}
 
 		/// <summary>
@@ -794,14 +792,11 @@ namespace MabiPale2
 		{
 			var toRemove = new List<int>();
 
-			lock (LstPackets)
+			for (int i = 0; i < LstPackets.Items.Count; ++i)
 			{
-				for (int i = 0; i < LstPackets.Items.Count; ++i)
-				{
-					var palePacket = (PalePacket)LstPackets.Items[i].Tag;
-					if (palePacket.Op == op && (!received || (received && palePacket.Received)))
-						toRemove.Add(i);
-				}
+				var palePacket = (PalePacket)LstPackets.Items[i].Tag;
+				if (palePacket.Op == op && (!received || (received && palePacket.Received)))
+					toRemove.Add(i);
 			}
 
 			RemoveFromList(toRemove);
@@ -814,11 +809,10 @@ namespace MabiPale2
 		private void RemoveFromList(IList<int> idxs)
 		{
 			LstPackets.BeginUpdate();
-			lock (LstPackets)
-			{
-				for (int i = idxs.Count - 1; i >= 0; --i)
-					LstPackets.Items.RemoveAt(idxs[i]);
-			}
+
+			for (int i = idxs.Count - 1; i >= 0; --i)
+				LstPackets.Items.RemoveAt(idxs[i]);
+
 			LstPackets.EndUpdate();
 
 			UpdateCount();
@@ -833,26 +827,23 @@ namespace MabiPale2
 		{
 			var toRemove = new List<int>();
 
-			lock (LstPackets)
+			for (int i = 0; i < LstPackets.Items.Count; ++i)
 			{
-				for (int i = 0; i < LstPackets.Items.Count; ++i)
+				var palePacket = (PalePacket)LstPackets.Items[i].Tag;
+				if (palePacket.Received && Settings.Default.FilterRecvEnabled)
 				{
-					var palePacket = (PalePacket)LstPackets.Items[i].Tag;
-					if (palePacket.Received && Settings.Default.FilterRecvEnabled)
+					lock (recvFilter)
 					{
-						lock (recvFilter)
-						{
-							if (recvFilter.Contains(palePacket.Op))
-								toRemove.Add(i);
-						}
+						if (recvFilter.Contains(palePacket.Op))
+							toRemove.Add(i);
 					}
-					else if (!palePacket.Received && Settings.Default.FilterSendEnabled)
+				}
+				else if (!palePacket.Received && Settings.Default.FilterSendEnabled)
+				{
+					lock (sendFilter)
 					{
-						lock (sendFilter)
-						{
-							if (sendFilter.Contains(palePacket.Op))
-								toRemove.Add(i);
-						}
+						if (sendFilter.Contains(palePacket.Op))
+							toRemove.Add(i);
 					}
 				}
 			}
@@ -871,8 +862,7 @@ namespace MabiPale2
 				return;
 
 			var toRemove = new List<int>();
-			lock (LstPackets)
-				toRemove.AddRange(LstPackets.SelectedIndices.Cast<int>());
+			toRemove.AddRange(LstPackets.SelectedIndices.Cast<int>());
 
 			RemoveFromList(toRemove);
 		}
