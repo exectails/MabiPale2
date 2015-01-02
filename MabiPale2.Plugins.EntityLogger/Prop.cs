@@ -87,7 +87,7 @@ namespace MabiPale2.Plugins.EntityLogger
 				sb.AppendLine("var prop = SpawnProp({0}, {1}, {2}, {3}, {4:0.########f}, {5:0.########f});", Id, Info.Region, Info.X, Info.Y, Info.Direction, Info.Scale);
 
 				if (!string.IsNullOrWhiteSpace(State)) sb.AppendLine("prop.State = \"{0}\"", State);
-				if (!string.IsNullOrWhiteSpace(Xml)) sb.AppendLine("prop.Xml = XElement.Parse(\"{0}\");", Xml);
+				if (!string.IsNullOrWhiteSpace(Xml)) sb.AppendLine("prop.Xml = XElement.Parse(\"{0}\");", Xml.Replace("\"", "\\\""));
 				if (!string.IsNullOrWhiteSpace(Name)) sb.AppendLine("prop.Name = \"{0}\";", Name);
 				if (!string.IsNullOrWhiteSpace(Title)) sb.AppendLine("prop.Title = \"{0}\";", Title);
 
