@@ -87,13 +87,20 @@ namespace MabiPale2
 		/// <param name="e"></param>
 		private void LstPackets_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			PalePacket palePacket = null;
+
 			if (LstPackets.SelectedItems.Count == 0)
 			{
 				TxtPacket.Text = "";
-				return;
+			}
+			else
+			{
+				palePacket = (PalePacket)LstPackets.SelectedItems[0].Tag;
+
+				TxtPacket.Text = palePacket.ToString();
 			}
 
-			TxtPacket.Text = ((PalePacket)LstPackets.SelectedItems[0].Tag).ToString();
+			pluginManager.OnSelected(palePacket);
 		}
 
 		/// <summary>

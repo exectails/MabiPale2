@@ -33,6 +33,12 @@ namespace MabiPale2.Plugins
 		event Action End;
 
 		/// <summary>
+		/// Fired when a packet is selected in the logger.
+		/// Packet is null if selection was cleared or before changing.
+		/// </summary>
+		event Action<PalePacket> Selected;
+
+		/// <summary>
 		/// Adds button to toolbar.
 		/// </summary>
 		/// <param name="icon">Icon for the button</param>

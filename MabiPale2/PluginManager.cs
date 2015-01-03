@@ -36,6 +36,12 @@ namespace MabiPale2.Plugins
 		public event Action End;
 
 		/// <summary>
+		/// Fired when a packet is selected in the logger.
+		/// Packet is null if selection was cleared or before changing.
+		/// </summary>
+		public event Action<PalePacket> Selected;
+
+		/// <summary>
 		/// Creates new plugin manager.
 		/// </summary>
 		/// <param name="frmMain">Main window</param>
@@ -191,6 +197,16 @@ namespace MabiPale2.Plugins
 			var ev = End;
 			if (ev != null)
 				ev();
+		}
+
+		/// <summary>
+		/// Fires End event.
+		/// </summary>
+		internal void OnSelected(PalePacket packet)
+		{
+			var ev = Selected;
+			if (ev != null)
+				ev(packet);
 		}
 	}
 }
