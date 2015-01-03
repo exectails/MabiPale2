@@ -160,23 +160,37 @@ namespace MabiPale2.Plugins
 		/// <summary>
 		/// Fires Recv event.
 		/// </summary>
-		/// <param name="packet"></param>
-		internal void OnRecv(PalePacket packet)
+		/// <param name="palePacket"></param>
+		internal void OnRecv(PalePacket palePacket)
 		{
 			var ev = Recv;
-			if (ev != null)
-				ev(packet);
+			if (ev == null)
+				return;
+
+			var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
+			foreach (var e in evs)
+			{
+				e(palePacket);
+				palePacket.Packet.Rewind();
+			}
 		}
 
 		/// <summary>
 		/// Fires Send event.
 		/// </summary>
-		/// <param name="packet"></param>
-		internal void OnSend(PalePacket packet)
+		/// <param name="palePacket"></param>
+		internal void OnSend(PalePacket palePacket)
 		{
 			var ev = Send;
-			if (ev != null)
-				ev(packet);
+			if (ev == null)
+				return;
+
+			var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
+			foreach (var e in evs)
+			{
+				e(palePacket);
+				palePacket.Packet.Rewind();
+			}
 		}
 
 		/// <summary>
@@ -202,11 +216,19 @@ namespace MabiPale2.Plugins
 		/// <summary>
 		/// Fires End event.
 		/// </summary>
-		internal void OnSelected(PalePacket packet)
+		internal void OnSelected(PalePacket palePacket)
 		{
 			var ev = Selected;
-			if (ev != null)
-				ev(packet);
+			if (ev == null)
+				return;
+
+			var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
+			foreach (var e in evs)
+			{
+				e(palePacket);
+				if (palePacket != null)
+					palePacket.Packet.Rewind();
+			}
 		}
 	}
 }
