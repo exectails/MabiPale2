@@ -15,4 +15,4 @@ in this repository.
 
 Links
 ------------------------------
-* GitHub: https://github.com/exec/MabiPale2
+* GitHub: https://github.com/exectails/MabiPale2
