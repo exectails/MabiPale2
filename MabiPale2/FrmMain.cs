@@ -450,10 +450,31 @@ namespace MabiPale2
 		/// </summary>
 		private void BtnConnect_Click(object sender, EventArgs e)
 		{
-			alissaHWnd = WinApi.FindWindow("TFormAlissa", "mod_Alissa");
 			if (alissaHWnd == IntPtr.Zero)
 			{
-				MessageBox.Show("Failed to connect, Alissa window not found.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				var alissaWindows = WinApi.FindAllWindows("mod_Alissa");
+				if (alissaWindows.Count == 0)
+				{
+					MessageBox.Show("Failed to connect, no packet provider found.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+				else if (alissaWindows.Count == 1)
+				{
+					alissaHWnd = alissaWindows[0].HWnd;
+				}
+				else
+				{
+					var form = new FrmAlissaSelection(alissaWindows);
+					if (form.ShowDialog() == DialogResult.Cancel)
+						return;
+
+					alissaHWnd = FrmAlissaSelection.Selection.HWnd;
+				}
+			}
+
+			if (!WinApi.IsWindow(alissaHWnd))
+			{
+				MessageBox.Show("Failed to connect, invalid window handle.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
