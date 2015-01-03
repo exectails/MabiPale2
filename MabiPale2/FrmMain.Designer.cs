@@ -49,6 +49,7 @@
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.LblPacketCount = new System.Windows.Forms.ToolStripStatusLabel();
 			this.LblCurrentFileName = new System.Windows.Forms.ToolStripStatusLabel();
+			this.LblPacketProvider = new System.Windows.Forms.ToolStripStatusLabel();
 			this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
 			this.MenuFile = new System.Windows.Forms.MenuItem();
 			this.BtnMenuOpen = new System.Windows.Forms.MenuItem();
@@ -92,7 +93,7 @@
 			// SplitContainerPackets.Panel2
 			// 
 			this.SplitContainerPackets.Panel2.Controls.Add(this.TxtPacket);
-			this.SplitContainerPackets.Size = new System.Drawing.Size(984, 450);
+			this.SplitContainerPackets.Size = new System.Drawing.Size(984, 492);
 			this.SplitContainerPackets.SplitterDistance = 468;
 			this.SplitContainerPackets.TabIndex = 0;
 			// 
@@ -111,7 +112,7 @@
 			this.LstPackets.HideSelection = false;
 			this.LstPackets.Location = new System.Drawing.Point(0, 0);
 			this.LstPackets.Name = "LstPackets";
-			this.LstPackets.Size = new System.Drawing.Size(468, 450);
+			this.LstPackets.Size = new System.Drawing.Size(468, 492);
 			this.LstPackets.TabIndex = 1;
 			this.LstPackets.UseCompatibleStateImageBehavior = false;
 			this.LstPackets.View = System.Windows.Forms.View.Details;
@@ -146,7 +147,7 @@
 			this.TxtPacket.Multiline = true;
 			this.TxtPacket.Name = "TxtPacket";
 			this.TxtPacket.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.TxtPacket.Size = new System.Drawing.Size(512, 450);
+			this.TxtPacket.Size = new System.Drawing.Size(512, 492);
 			this.TxtPacket.TabIndex = 0;
 			this.TxtPacket.WordWrap = false;
 			// 
@@ -244,10 +245,11 @@
 			// 
 			this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LblPacketCount,
-            this.LblCurrentFileName});
-			this.StatusStrip.Location = new System.Drawing.Point(0, 475);
+            this.LblCurrentFileName,
+            this.LblPacketProvider});
+			this.StatusStrip.Location = new System.Drawing.Point(0, 517);
 			this.StatusStrip.Name = "StatusStrip";
-			this.StatusStrip.Size = new System.Drawing.Size(984, 22);
+			this.StatusStrip.Size = new System.Drawing.Size(984, 24);
 			this.StatusStrip.TabIndex = 2;
 			this.StatusStrip.Text = "statusStrip1";
 			// 
@@ -256,15 +258,24 @@
 			this.LblPacketCount.AutoSize = false;
 			this.LblPacketCount.Name = "LblPacketCount";
 			this.LblPacketCount.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
-			this.LblPacketCount.Size = new System.Drawing.Size(79, 17);
+			this.LblPacketCount.Size = new System.Drawing.Size(79, 19);
 			this.LblPacketCount.Text = "Packets: 0";
 			this.LblPacketCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// LblCurrentFileName
 			// 
-			this.LblCurrentFileName.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+			this.LblCurrentFileName.AutoSize = false;
+			this.LblCurrentFileName.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
 			this.LblCurrentFileName.Name = "LblCurrentFileName";
-			this.LblCurrentFileName.Size = new System.Drawing.Size(4, 17);
+			this.LblCurrentFileName.Size = new System.Drawing.Size(400, 19);
+			this.LblCurrentFileName.Text = "Current File";
+			this.LblCurrentFileName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// LblPacketProvider
+			// 
+			this.LblPacketProvider.Name = "LblPacketProvider";
+			this.LblPacketProvider.Size = new System.Drawing.Size(89, 19);
+			this.LblPacketProvider.Text = "Packet Provider";
 			// 
 			// MainMenu
 			// 
@@ -400,7 +411,7 @@
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(984, 497);
+			this.ClientSize = new System.Drawing.Size(984, 541);
 			this.Controls.Add(this.SplitContainerPackets);
 			this.Controls.Add(this.ToolBar);
 			this.Controls.Add(this.StatusStrip);
@@ -469,6 +480,7 @@
 		private System.Windows.Forms.MenuItem MenuEdit;
 		private System.Windows.Forms.MenuItem BtnMenuEditFilter;
 		private System.Windows.Forms.MenuItem MenuFileExitSpacer;
+		private System.Windows.Forms.ToolStripStatusLabel LblPacketProvider;
 	}
 }
 

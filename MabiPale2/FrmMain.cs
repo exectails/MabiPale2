@@ -42,6 +42,9 @@ namespace MabiPale2
 			recvFilter = new HashSet<int>();
 			sendFilter = new HashSet<int>();
 			opNames = new Dictionary<int, string>();
+
+			LblCurrentFileName.Text = "";
+			LblPacketProvider.Text = "";
 		}
 
 		private void FrmMain_Load(object sender, EventArgs e)
@@ -453,6 +456,8 @@ namespace MabiPale2
 			if (alissaHWnd == IntPtr.Zero)
 			{
 				var alissaWindows = WinApi.FindAllWindows("mod_Alissa");
+				FoundWindow window = null;
+
 				if (alissaWindows.Count == 0)
 				{
 					MessageBox.Show("Failed to connect, no packet provider found.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -460,7 +465,7 @@ namespace MabiPale2
 				}
 				else if (alissaWindows.Count == 1)
 				{
-					alissaHWnd = alissaWindows[0].HWnd;
+					window = alissaWindows[0];
 				}
 				else
 				{
@@ -468,8 +473,11 @@ namespace MabiPale2
 					if (form.ShowDialog() == DialogResult.Cancel)
 						return;
 
-					alissaHWnd = FrmAlissaSelection.Selection.HWnd;
+					window = FrmAlissaSelection.Selection;
 				}
+
+				alissaHWnd = window.HWnd;
+				LblPacketProvider.Text = window.ClassName;
 			}
 
 			if (!WinApi.IsWindow(alissaHWnd))
