@@ -114,6 +114,7 @@
             this.ColName});
 			this.LstEntities.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.LstEntities.FullRowSelect = true;
+			this.LstEntities.HideSelection = false;
 			this.LstEntities.Location = new System.Drawing.Point(12, 12);
 			this.LstEntities.Name = "LstEntities";
 			this.LstEntities.Size = new System.Drawing.Size(398, 560);

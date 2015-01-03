@@ -108,6 +108,7 @@
 			this.LstPackets.FullRowSelect = true;
 			this.LstPackets.GridLines = true;
 			this.LstPackets.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.LstPackets.HideSelection = false;
 			this.LstPackets.Location = new System.Drawing.Point(0, 0);
 			this.LstPackets.Name = "LstPackets";
 			this.LstPackets.Size = new System.Drawing.Size(468, 450);
