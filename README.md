@@ -5,7 +5,7 @@ MabiPale is a packet logger for the online-game Mabinogi.
 
 Unlike its first version, Pale now requires a packet provider that is
 compatible to mod_Alissa. Valid canditates would be "Morrighan", a kind of
-Mabinogi proxy that can be found on the Aura forum, or mod_Alissa itself.
+Mabinogi proxy that can be found [on the Aura forum](http://aura-project.org/forum/index.php/topic/1082-morrighan-client-proxy-v100a/), or mod_Alissa itself.
 
 Plugins
 ------------------------------
