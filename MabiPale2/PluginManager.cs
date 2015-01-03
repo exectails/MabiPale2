@@ -158,6 +158,15 @@ namespace MabiPale2.Plugins
 		}
 
 		/// <summary>
+		/// Returns currently selected packet or null.
+		/// </summary>
+		/// <returns></returns>
+		public PalePacket GetSelectedPacket()
+		{
+			return frmMain.GetSelectedPacket();
+		}
+
+		/// <summary>
 		/// Fires Recv event.
 		/// </summary>
 		/// <param name="palePacket"></param>

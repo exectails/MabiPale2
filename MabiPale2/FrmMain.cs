@@ -632,12 +632,21 @@ namespace MabiPale2
 		/// Returns (first) currently selected packet or null.
 		/// </summary>
 		/// <returns></returns>
-		private PalePacket GetSelectedPacket()
+		public PalePacket GetSelectedPacket()
 		{
 			if (LstPackets.SelectedItems.Count == 0)
 				return null;
 
-			return (PalePacket)LstPackets.SelectedItems[0].Tag;
+			if (!LstPackets.InvokeRequired)
+				return (PalePacket)LstPackets.SelectedItems[0].Tag;
+
+			PalePacket result = null;
+			LstPackets.Invoke((MethodInvoker)delegate
+			{
+				result = (PalePacket)LstPackets.SelectedItems[0].Tag;
+			});
+
+			return result;
 		}
 
 		/// <summary>

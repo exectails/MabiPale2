@@ -81,5 +81,11 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		/// <returns></returns>
 		IList<PalePacket> GetPacketList();
+
+		/// <summary>
+		/// Returns currently selected packet or null.
+		/// </summary>
+		/// <returns></returns>
+		PalePacket GetSelectedPacket();
 	}
 }
