@@ -118,6 +118,10 @@ namespace MabiPale2.Plugins.EntityLogger
 			sb.AppendLine("Mouth type: {0}", MouthType);
 			sb.AppendLine();
 
+			sb.AppendLine("Title: {0}", Title);
+			sb.AppendLine("Option title: {0}", OptionTitle);
+			sb.AppendLine();
+
 			sb.AppendLine("Height: {0}", height);
 			sb.AppendLine("Weight: {0}", weight);
 			sb.AppendLine("Upper:  {0}", upper);
