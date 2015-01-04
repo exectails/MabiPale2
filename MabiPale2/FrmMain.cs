@@ -206,6 +206,8 @@ namespace MabiPale2
 
 			LstPackets.EndUpdate();
 
+			UpdateCount();
+
 			foreach (var palePacket in newPackets)
 			{
 				if (palePacket.Received)
@@ -257,8 +259,6 @@ namespace MabiPale2
 				if (scroll)
 					LstPackets.Items[LstPackets.Items.Count - 1].EnsureVisible();
 			});
-
-			UpdateCount();
 		}
 
 		/// <summary>
@@ -648,23 +648,30 @@ namespace MabiPale2
 				newPackets.Add(palePacket);
 			}
 
-			foreach (var palePacket in newPackets)
+			LstPackets.InvokeIfRequired((MethodInvoker)delegate
 			{
-				lock (recvFilter)
-					if (Settings.Default.FilterRecvEnabled && recvFilter.Contains(palePacket.Op))
-						continue;
+				LstPackets.BeginUpdate();
+				foreach (var palePacket in newPackets)
+				{
+					lock (recvFilter)
+						if (Settings.Default.FilterRecvEnabled && recvFilter.Contains(palePacket.Op))
+							continue;
 
-				lock (sendFilter)
-					if (Settings.Default.FilterSendEnabled && sendFilter.Contains(palePacket.Op))
-						continue;
+					lock (sendFilter)
+						if (Settings.Default.FilterSendEnabled && sendFilter.Contains(palePacket.Op))
+							continue;
 
-				AddPacketToFormList(palePacket, true);
+					AddPacketToFormList(palePacket, true);
 
-				if (palePacket.Received)
-					pluginManager.OnRecv(palePacket);
-				else
-					pluginManager.OnSend(palePacket);
-			}
+					if (palePacket.Received)
+						pluginManager.OnRecv(palePacket);
+					else
+						pluginManager.OnSend(palePacket);
+				}
+				LstPackets.EndUpdate();
+			});
+
+			UpdateCount();
 
 			queueTimer.Enabled = true;
 		}
