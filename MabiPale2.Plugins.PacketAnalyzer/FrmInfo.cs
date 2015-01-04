@@ -248,10 +248,10 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 			var sb = new StringBuilder();
 			sb.AppendLine("A: {0}", (ConditionsA)conditionsA);
-			sb.AppendLine("B: {0}", (ConditionsA)conditionsB);
-			sb.AppendLine("C: {0}", (ConditionsA)conditionsC);
-			sb.AppendLine("D: {0}", (ConditionsA)conditionsD);
-			sb.AppendLine("E: {0}", (ConditionsA)conditionsE);
+			sb.AppendLine("B: {0}", (ConditionsB)conditionsB);
+			sb.AppendLine("C: {0}", (ConditionsC)conditionsC);
+			sb.AppendLine("D: {0}", (ConditionsD)conditionsD);
+			sb.AppendLine("E: {0}", (ConditionsE)conditionsE);
 
 			TxtInfo.Text = sb.ToString();
 		}
