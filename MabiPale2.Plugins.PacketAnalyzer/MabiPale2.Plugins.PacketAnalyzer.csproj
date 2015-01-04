@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MabiPale2.Plugins.PacketAnalyzer</RootNamespace>
-    <AssemblyName>MabiPale2.Plugins.PacketAnalyzer</AssemblyName>
+    <AssemblyName>PacketAnalyzer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
