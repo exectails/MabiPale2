@@ -243,13 +243,15 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			var conditionsA = palePacket.Packet.GetLong();
 			var conditionsB = palePacket.Packet.GetLong();
 			var conditionsC = palePacket.Packet.GetLong();
-			var conditionsD = palePacket.Packet.GetLong();
+			var conditionsD = palePacket.Packet.Peek() == Shared.PacketElementType.Long ? palePacket.Packet.GetLong() : 0;
+			var conditionsE = palePacket.Packet.Peek() == Shared.PacketElementType.Long ? palePacket.Packet.GetLong() : 0;
 
 			var sb = new StringBuilder();
 			sb.AppendLine("A: {0}", (ConditionsA)conditionsA);
 			sb.AppendLine("B: {0}", (ConditionsA)conditionsB);
 			sb.AppendLine("C: {0}", (ConditionsA)conditionsC);
 			sb.AppendLine("D: {0}", (ConditionsA)conditionsD);
+			sb.AppendLine("E: {0}", (ConditionsA)conditionsE);
 
 			TxtInfo.Text = sb.ToString();
 		}
