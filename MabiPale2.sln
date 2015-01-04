@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Shared", "MabiPal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.EntityLogger", "MabiPale2.Plugins.EntityLogger\MabiPale2.Plugins.EntityLogger.csproj", "{D1C5D49E-1B9B-4343-A48D-B70D1E6542F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.PacketAnalyzer", "MabiPale2.Plugins.PacketAnalyzer\MabiPale2.Plugins.PacketAnalyzer.csproj", "{93D36669-B285-4B0F-A76D-DA5C0742D700}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D1C5D49E-1B9B-4343-A48D-B70D1E6542F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1C5D49E-1B9B-4343-A48D-B70D1E6542F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1C5D49E-1B9B-4343-A48D-B70D1E6542F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93D36669-B285-4B0F-A76D-DA5C0742D700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93D36669-B285-4B0F-A76D-DA5C0742D700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93D36669-B285-4B0F-A76D-DA5C0742D700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93D36669-B285-4B0F-A76D-DA5C0742D700}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
