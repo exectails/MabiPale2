@@ -253,6 +253,31 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			sb.AppendLine("D: {0}", (ConditionsD)conditionsD);
 			sb.AppendLine("E: {0}", (ConditionsE)conditionsE);
 
+			var extraCount = palePacket.Packet.GetInt();
+			if (extraCount != 0)
+				sb.AppendLine();
+
+			for (int i = 0; i < extraCount; ++i)
+			{
+				var id = palePacket.Packet.GetInt();
+				var str = palePacket.Packet.GetString();
+				var div = id / 64;
+				var mod = id % 64;
+
+				switch (div)
+				{
+					case 0: sb.AppendLine("{0} - {1}", (ConditionsA)((ulong)1 << mod), str); break;
+					case 1: sb.AppendLine("{0} - {1}", (ConditionsB)((ulong)1 << mod), str); break;
+					case 2: sb.AppendLine("{0} - {1}", (ConditionsC)((ulong)1 << mod), str); break;
+					case 3: sb.AppendLine("{0} - {1}", (ConditionsD)((ulong)1 << mod), str); break;
+					case 4: sb.AppendLine("{0} - {1}", (ConditionsE)((ulong)1 << mod), str); break;
+					default:
+						var ident = (char)('A' + div) + ":0x" + ((ulong)1 << mod).ToString("X16");
+						sb.AppendLine("{0} - {1}", ident, str);
+						break;
+				}
+			}
+
 			TxtInfo.Text = sb.ToString();
 		}
 
