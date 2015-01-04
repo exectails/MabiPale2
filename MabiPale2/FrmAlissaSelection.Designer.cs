@@ -43,10 +43,12 @@
 			this.CboWindows.Name = "CboWindows";
 			this.CboWindows.Size = new System.Drawing.Size(215, 21);
 			this.CboWindows.TabIndex = 0;
+			this.CboWindows.SelectedIndexChanged += new System.EventHandler(this.CboWindows_SelectedIndexChanged);
 			// 
 			// BtnConnect
 			// 
 			this.BtnConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.BtnConnect.Enabled = false;
 			this.BtnConnect.Location = new System.Drawing.Point(74, 73);
 			this.BtnConnect.Name = "BtnConnect";
 			this.BtnConnect.Size = new System.Drawing.Size(75, 23);

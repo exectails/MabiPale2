@@ -455,43 +455,79 @@ namespace MabiPale2
 		{
 			if (alissaHWnd == IntPtr.Zero)
 			{
-				var alissaWindows = WinApi.FindAllWindows("mod_Alissa");
-				FoundWindow window = null;
-
-				if (alissaWindows.Count == 0)
-				{
-					MessageBox.Show("Failed to connect, no packet provider found.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (!SelectPacketProvider(true))
 					return;
-				}
-				else if (alissaWindows.Count == 1)
-				{
-					window = alissaWindows[0];
-				}
-				else
-				{
-					var form = new FrmAlissaSelection(alissaWindows);
-					if (form.ShowDialog() == DialogResult.Cancel)
-						return;
-
-					window = FrmAlissaSelection.Selection;
-				}
-
-				alissaHWnd = window.HWnd;
-				LblPacketProvider.Text = window.ClassName;
 			}
 
+			Connect();
+		}
+
+		/// <summary>
+		/// Opens packet provider selection.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void BtnConnectTo_Click(object sender, EventArgs e)
+		{
+			if (!SelectPacketProvider(false))
+				return;
+
+			Connect();
+		}
+
+		/// <summary>
+		/// Connects to the Alissa window.
+		/// </summary>
+		private void Connect()
+		{
 			if (!WinApi.IsWindow(alissaHWnd))
 			{
-				MessageBox.Show("Failed to connect, invalid window handle.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Failed to connect, please make sure the selected packet provider is still running.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
 			SendAlissa(alissaHWnd, Sign.Connect);
 
 			BtnConnect.Enabled = false;
+			BtnConnectTo.Enabled = false;
 			BtnDisconnect.Enabled = true;
 
 			queueTimer.Enabled = true;
+		}
+
+		/// <summary>
+		/// Tries to find a valid packet provider, asks the user to select one
+		/// if there are multiple windows.
+		/// </summary>
+		/// <param name="selectSingle">If true a single valid candidate will be selected without prompt.</param>
+		/// <returns></returns>
+		private bool SelectPacketProvider(bool selectSingle)
+		{
+			var alissaWindows = WinApi.FindAllWindows("mod_Alissa");
+			FoundWindow window = null;
+
+			if (alissaWindows.Count == 0)
+			{
+				MessageBox.Show("No packet provider found.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			else if (selectSingle && alissaWindows.Count == 1)
+			{
+				window = alissaWindows[0];
+			}
+			else
+			{
+				var form = new FrmAlissaSelection(alissaWindows, LblPacketProvider.Text);
+				if (form.ShowDialog() == DialogResult.Cancel)
+					return false;
+
+				window = FrmAlissaSelection.Selection;
+			}
+
+			alissaHWnd = window.HWnd;
+			LblPacketProvider.Text = window.ClassName;
+
+			return true;
 		}
 
 		/// <summary>
@@ -513,6 +549,7 @@ namespace MabiPale2
 			this.InvokeIfRequired((MethodInvoker)delegate
 			{
 				BtnConnect.Enabled = true;
+				BtnConnectTo.Enabled = true;
 				BtnDisconnect.Enabled = false;
 			});
 

@@ -13,12 +13,24 @@ namespace MabiPale2
 	{
 		public static FoundWindow Selection;
 
-		public FrmAlissaSelection(IList<FoundWindow> windows)
+		public FrmAlissaSelection(IList<FoundWindow> windows, string current)
 		{
 			InitializeComponent();
 
 			foreach (var window in windows.OrderBy(a => a.ClassName))
 				CboWindows.Items.Add(window);
+
+			if (!string.IsNullOrWhiteSpace(current))
+			{
+				foreach (FoundWindow window in CboWindows.Items)
+				{
+					if (window.ClassName == current)
+					{
+						CboWindows.SelectedItem = window;
+						break;
+					}
+				}
+			}
 		}
 
 		private void BtnCancel_Click(object sender, EventArgs e)
@@ -38,6 +50,11 @@ namespace MabiPale2
 			DialogResult = DialogResult.OK;
 
 			Close();
+		}
+
+		private void CboWindows_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			BtnConnect.Enabled = true;
 		}
 	}
 }

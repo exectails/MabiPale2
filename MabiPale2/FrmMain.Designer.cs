@@ -44,6 +44,7 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.BtnConnect = new System.Windows.Forms.ToolStripButton();
 			this.BtnDisconnect = new System.Windows.Forms.ToolStripButton();
+			this.BtnConnectTo = new System.Windows.Forms.ToolStripButton();
 			this.BtnSettings = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
@@ -161,6 +162,7 @@
             this.toolStripSeparator1,
             this.BtnConnect,
             this.BtnDisconnect,
+            this.BtnConnectTo,
             this.BtnSettings,
             this.toolStripSeparator2});
 			this.ToolBar.Location = new System.Drawing.Point(0, 0);
@@ -226,6 +228,16 @@
 			this.BtnDisconnect.Text = "Disconnect";
 			this.BtnDisconnect.Click += new System.EventHandler(this.BtnDisconnect_Click);
 			// 
+			// BtnConnectTo
+			// 
+			this.BtnConnectTo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.BtnConnectTo.Image = ((System.Drawing.Image)(resources.GetObject("BtnConnectTo.Image")));
+			this.BtnConnectTo.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.BtnConnectTo.Name = "BtnConnectTo";
+			this.BtnConnectTo.Size = new System.Drawing.Size(23, 22);
+			this.BtnConnectTo.Text = "Connect to...";
+			this.BtnConnectTo.Click += new System.EventHandler(this.BtnConnectTo_Click);
+			// 
 			// BtnSettings
 			// 
 			this.BtnSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -267,7 +279,7 @@
 			this.LblCurrentFileName.AutoSize = false;
 			this.LblCurrentFileName.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
 			this.LblCurrentFileName.Name = "LblCurrentFileName";
-			this.LblCurrentFileName.Size = new System.Drawing.Size(400, 19);
+			this.LblCurrentFileName.Size = new System.Drawing.Size(390, 19);
 			this.LblCurrentFileName.Text = "Current File";
 			this.LblCurrentFileName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -481,6 +493,7 @@
 		private System.Windows.Forms.MenuItem BtnMenuEditFilter;
 		private System.Windows.Forms.MenuItem MenuFileExitSpacer;
 		private System.Windows.Forms.ToolStripStatusLabel LblPacketProvider;
+		private System.Windows.Forms.ToolStripButton BtnConnectTo;
 	}
 }
 
