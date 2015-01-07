@@ -13,7 +13,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 		public override string Name
 		{
-			get { return "Packet PacketAnalyzer"; }
+			get { return "Packet Analyzer"; }
 		}
 
 		public Main(IPluginManager pluginManager)
