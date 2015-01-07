@@ -171,6 +171,8 @@ namespace MabiPale2.Plugins.EntityLogger
 			{
 				var itemOId = packet.GetLong();
 				var itemInfo = packet.GetObj<ItemInfo>();
+				if (packet.NextIs(PacketElementType.String))
+					packet.GetString(); // Extra Item Info
 				creature.Items.Add(itemOId, itemInfo);
 			}
 
