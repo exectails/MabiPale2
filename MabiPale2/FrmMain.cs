@@ -363,6 +363,7 @@ namespace MabiPale2
 				return;
 
 			UpdateFilters();
+			UpdateOpNames();
 		}
 
 		/// <summary>
