@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -28,9 +29,13 @@ namespace MabiPale2
 		private HashSet<int> recvFilter, sendFilter;
 		private Dictionary<int, string> opNames;
 
+		private StringWriter log;
+
 		public FrmMain()
 		{
 			InitializeComponent();
+
+			Trace.Listeners.Add(new TextWriterTraceListener(log = new StringWriter()));
 
 			pluginManager = new PluginManager(this);
 			packetQueue = new Queue<PalePacket>();
@@ -356,7 +361,7 @@ namespace MabiPale2
 		/// <param name="e"></param>
 		private void BtnSettings_Click(object sender, EventArgs e)
 		{
-			var form = new FrmSettings();
+			var form = new FrmSettings(log.ToString());
 			var result = form.ShowDialog();
 
 			if (result == DialogResult.Cancel)

@@ -14,9 +14,11 @@ namespace MabiPale2
 {
 	public partial class FrmSettings : Form
 	{
-		public FrmSettings()
+		public FrmSettings(string log)
 		{
 			InitializeComponent();
+
+			TxtErrorLog.Text = log;
 		}
 
 		private void BtnCancel_Click(object sender, EventArgs e)

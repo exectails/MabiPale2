@@ -42,11 +42,14 @@
 			this.TxtOpNames = new System.Windows.Forms.TextBox();
 			this.BtnSave = new System.Windows.Forms.Button();
 			this.BtnCancel = new System.Windows.Forms.Button();
+			this.TabErrorLog = new System.Windows.Forms.TabPage();
+			this.TxtErrorLog = new System.Windows.Forms.TextBox();
 			this.TabsSettings.SuspendLayout();
 			this.TabFilters.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.TabOpNames.SuspendLayout();
+			this.TabErrorLog.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TabsSettings
@@ -56,6 +59,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TabsSettings.Controls.Add(this.TabFilters);
 			this.TabsSettings.Controls.Add(this.TabOpNames);
+			this.TabsSettings.Controls.Add(this.TabErrorLog);
 			this.TabsSettings.Location = new System.Drawing.Point(12, 12);
 			this.TabsSettings.Name = "TabsSettings";
 			this.TabsSettings.SelectedIndex = 0;
@@ -207,6 +211,29 @@
 			this.BtnCancel.UseVisualStyleBackColor = true;
 			this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
 			// 
+			// TabErrorLog
+			// 
+			this.TabErrorLog.Controls.Add(this.TxtErrorLog);
+			this.TabErrorLog.Location = new System.Drawing.Point(4, 22);
+			this.TabErrorLog.Name = "TabErrorLog";
+			this.TabErrorLog.Padding = new System.Windows.Forms.Padding(3);
+			this.TabErrorLog.Size = new System.Drawing.Size(399, 249);
+			this.TabErrorLog.TabIndex = 2;
+			this.TabErrorLog.Text = "Error log";
+			this.TabErrorLog.UseVisualStyleBackColor = true;
+			// 
+			// TxtErrorLog
+			// 
+			this.TxtErrorLog.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TxtErrorLog.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.TxtErrorLog.Location = new System.Drawing.Point(3, 3);
+			this.TxtErrorLog.Multiline = true;
+			this.TxtErrorLog.Name = "TxtErrorLog";
+			this.TxtErrorLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.TxtErrorLog.Size = new System.Drawing.Size(393, 243);
+			this.TxtErrorLog.TabIndex = 1;
+			this.TxtErrorLog.WordWrap = false;
+			// 
 			// FrmSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,6 +262,8 @@
 			this.groupBox1.PerformLayout();
 			this.TabOpNames.ResumeLayout(false);
 			this.TabOpNames.PerformLayout();
+			this.TabErrorLog.ResumeLayout(false);
+			this.TabErrorLog.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -254,5 +283,7 @@
 		private System.Windows.Forms.CheckBox ChkFilterSendEnabled;
 		private System.Windows.Forms.CheckBox ChkFilterRecvEnabled;
 		private System.Windows.Forms.TextBox TxtOpNames;
+		private System.Windows.Forms.TabPage TabErrorLog;
+		private System.Windows.Forms.TextBox TxtErrorLog;
 	}
 }

@@ -2,6 +2,7 @@
 using MabiPale2.Shared;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -75,6 +76,7 @@ namespace MabiPale2.Plugins
 				catch (Exception ex)
 				{
 					MessageBox.Show("Failed to load plugin '" + file + "' (" + ex.Message + ").", frmMain.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Trace.TraceError(ex.ToString());
 				}
 			}
 		}
@@ -176,11 +178,18 @@ namespace MabiPale2.Plugins
 			if (ev == null)
 				return;
 
-			var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
-			foreach (var e in evs)
+			try
 			{
-				e(palePacket);
-				palePacket.Packet.Rewind();
+				var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
+				foreach (var e in evs)
+				{
+					e(palePacket);
+					palePacket.Packet.Rewind();
+				}
+			}
+			catch (Exception ex)
+			{
+				Trace.TraceError(ex.ToString());
 			}
 		}
 
@@ -194,11 +203,18 @@ namespace MabiPale2.Plugins
 			if (ev == null)
 				return;
 
-			var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
-			foreach (var e in evs)
+			try
 			{
-				e(palePacket);
-				palePacket.Packet.Rewind();
+				var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
+				foreach (var e in evs)
+				{
+					e(palePacket);
+					palePacket.Packet.Rewind();
+				}
+			}
+			catch (Exception ex)
+			{
+				Trace.TraceError(ex.ToString());
 			}
 		}
 
@@ -208,8 +224,17 @@ namespace MabiPale2.Plugins
 		internal void OnReady()
 		{
 			var ev = Ready;
-			if (ev != null)
+			if (ev == null)
+				return;
+
+			try
+			{
 				ev();
+			}
+			catch (Exception ex)
+			{
+				Trace.TraceError(ex.ToString());
+			}
 		}
 
 		/// <summary>
@@ -218,8 +243,17 @@ namespace MabiPale2.Plugins
 		internal void OnEnd()
 		{
 			var ev = End;
-			if (ev != null)
+			if (ev == null)
+				return;
+
+			try
+			{
 				ev();
+			}
+			catch (Exception ex)
+			{
+				Trace.TraceError(ex.ToString());
+			}
 		}
 
 		/// <summary>
@@ -231,12 +265,19 @@ namespace MabiPale2.Plugins
 			if (ev == null)
 				return;
 
-			var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
-			foreach (var e in evs)
+			try
 			{
-				e(palePacket);
-				if (palePacket != null)
-					palePacket.Packet.Rewind();
+				var evs = ev.GetInvocationList().Cast<Action<PalePacket>>();
+				foreach (var e in evs)
+				{
+					e(palePacket);
+					if (palePacket != null)
+						palePacket.Packet.Rewind();
+				}
+			}
+			catch (Exception ex)
+			{
+				Trace.TraceError(ex.ToString());
 			}
 		}
 	}
