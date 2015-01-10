@@ -69,7 +69,7 @@
 			this.LblVersion.Name = "LblVersion";
 			this.LblVersion.Size = new System.Drawing.Size(43, 13);
 			this.LblVersion.TabIndex = 3;
-			this.LblVersion.Text = "v2.3.2a";
+			this.LblVersion.Text = "v2.4.6a";
 			// 
 			// GrpGpl
 			// 
