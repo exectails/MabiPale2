@@ -609,12 +609,12 @@ namespace MabiPale2.Shared
 				}
 				else if (type == PacketElementType.Short)
 				{
-					var data = this.GetShort();
+					var data = this.GetUShort();
 					result.AppendFormat("{0:000} [{1}] Short  : {2}", i, data.ToString("X4").PadLeft(16, '.'), data);
 				}
 				else if (type == PacketElementType.Int)
 				{
-					var data = this.GetInt();
+					var data = this.GetUInt();
 					result.AppendFormat("{0:000} [{1}] Int    : {2}", i, data.ToString("X8").PadLeft(16, '.'), data);
 				}
 				else if (type == PacketElementType.Long)
