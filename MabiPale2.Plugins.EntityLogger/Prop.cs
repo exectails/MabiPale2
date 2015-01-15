@@ -117,5 +117,21 @@ namespace MabiPale2.Plugins.EntityLogger
 
 			return sb.ToString();
 		}
+
+		public override bool Equals(object obj)
+		{
+			var other = obj as Prop;
+			if (other == null)
+				return false;
+
+			return
+				(this.EntityId == other.EntityId) &&
+				(this.Id == other.Id) &&
+				(this.State == other.State) &&
+				(this.Xml == other.Xml) &&
+				(this.Name == other.Name) &&
+				(this.Title == other.Title) &&
+				(this.Info.Equals(other.Info));
+		}
 	}
 }

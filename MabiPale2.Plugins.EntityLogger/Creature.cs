@@ -195,5 +195,21 @@ namespace MabiPale2.Plugins.EntityLogger
 
 			return sb.ToString();
 		}
+
+		public override bool Equals(object obj)
+		{
+			var other = obj as Creature;
+			if (other == null)
+				return false;
+
+			return
+				(this.EntityId == other.EntityId) &&
+				(this.Title == other.Title) &&
+				(this.Race == other.Race) &&
+				(this.SkinColor == other.SkinColor) &&
+				(this.EyeType == other.EyeType) &&
+				(this.EyeColor == other.EyeColor) &&
+				(this.MouthType == other.MouthType);
+		}
 	}
 }

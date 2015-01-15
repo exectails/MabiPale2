@@ -207,11 +207,20 @@ namespace MabiPale2.Plugins.EntityLogger
 
 		private void AddEntity(IEntity entity)
 		{
+			if (CheckDuplicate(entity))
+				return;
+
 			lock (entities)
 				entities.Add(entity);
 
 			if (form != null && !form.IsDisposed)
 				form.AddEntity(entity);
+		}
+
+		private bool CheckDuplicate(IEntity newEntity)
+		{
+			lock (entities)
+				return entities.Any(entity => entity.Equals(newEntity));
 		}
 	}
 }
