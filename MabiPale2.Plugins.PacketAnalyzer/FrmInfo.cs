@@ -71,6 +71,8 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 					case Op.OpenNpcShop: ParseOpenNpcShop(palePacket); break;
 					case Op.AddToNpcShop: ParseOpenNpcShop(palePacket); break;
 
+					case Op.CombatActionPack: ParseCombatActionPacket(palePacket); break;
+
 					default: ParseUnknown(palePacket); break;
 				}
 			}
@@ -80,6 +82,115 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			}
 
 			TxtInfo.Visible = true;
+		}
+
+		private void ParseCombatActionPacket(PalePacket palePacket)
+		{
+			var sb = new StringBuilder();
+
+			sb.AppendLine("Id: " + palePacket.Packet.GetInt());
+			sb.AppendLine("Prev Id: " + palePacket.Packet.GetInt());
+			sb.AppendLine("Hit: " + palePacket.Packet.GetByte());
+			sb.AppendLine("Max Hits: " + palePacket.Packet.GetByte());
+			palePacket.Packet.GetByte();
+			sb.AppendLine();
+
+			var count = palePacket.Packet.GetInt();
+			for (int i = 0; i < count; ++i)
+			{
+				var len = palePacket.Packet.GetInt();
+				var buff = palePacket.Packet.GetBin();
+				var attackeraction = len < 80;
+				CombatActionType type;
+
+				var actionPacket = new MabiPale2.Shared.Packet(buff, 0);
+				actionPacket.GetInt();
+				if (i > 0)
+					sb.AppendLine();
+				sb.AppendLine(attackeraction ? "Attacker Action" : "Target Action");
+				sb.AppendLine("--------------------");
+				sb.AppendLine("Creature: " + actionPacket.GetLong().ToString("X16"));
+				sb.AppendLine("Type: " + (type = (CombatActionType)actionPacket.GetByte()));
+				sb.AppendLine("Stun: " + actionPacket.GetShort());
+				sb.AppendLine("Skill Id: " + (SkillId)actionPacket.GetShort());
+				actionPacket.GetShort();
+
+				// AttackerAction
+				if (attackeraction)
+				{
+					sb.AppendLine("Target: " + actionPacket.GetLong().ToString("X16"));
+
+					var options = new List<uint>();
+					var topt = actionPacket.GetInt();
+					for (uint foo2 = 1; foo2 < 0x80000000; )
+					{
+						if ((topt & foo2) != 0)
+							options.Add(foo2);
+						foo2 <<= 1;
+					}
+					var strOptions = string.Join(", ", options.Select(a =>
+					{
+						var en = (AttackerOptions)a;
+						return "0x" + a.ToString("X2") + (en.ToString() != a.ToString() ? "(" + en + ")" : "");
+					}));
+
+					sb.AppendLine("Options: " + strOptions);
+
+					actionPacket.GetByte();
+					actionPacket.GetByte();
+					sb.AppendLine("X: " + actionPacket.GetInt());
+					sb.AppendLine("Y: " + actionPacket.GetInt());
+					if (actionPacket.NextIs(Shared.PacketElementType.Long))
+						sb.AppendLine("Prop: " + actionPacket.GetLong().ToString("X16"));
+				}
+				// TargetAction
+				else
+				{
+					// Target used Defense or Counter
+					if (type.HasFlag(CombatActionType.Defended) || type.HasFlag(CombatActionType.CounteredHit) || type.HasFlag((CombatActionType)0x73))
+					{
+						var attackerEntityId = actionPacket.GetLong();
+						actionPacket.GetInt();
+						actionPacket.GetByte();
+						actionPacket.GetByte();
+						var x = actionPacket.GetInt();
+						var y = actionPacket.GetInt();
+					}
+
+					var options = new List<uint>();
+					var topt = actionPacket.GetInt();
+					for (uint foo2 = 1; foo2 < 0x80000000; )
+					{
+						if ((topt & foo2) != 0)
+							options.Add(foo2);
+						foo2 <<= 1;
+					}
+					var strOptions = string.Join(", ", options.Select(a =>
+					{
+						var en = (TargetOptions)a;
+						return "0x" + a.ToString("X2") + (en.ToString() != a.ToString() ? "(" + en + ")" : "");
+					}));
+
+					sb.AppendLine("Options: " + strOptions);
+					sb.AppendLine("Damage: " + actionPacket.GetFloat());
+					sb.AppendLine("? Damage: " + actionPacket.GetFloat());
+					sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
+
+					sb.AppendLine("X-Diff: " + actionPacket.GetFloat());
+					sb.AppendLine("Y-Diff: " + actionPacket.GetFloat());
+					if (actionPacket.NextIs(Shared.PacketElementType.Float))
+					{
+						sb.AppendLine("New X: " + actionPacket.GetFloat());
+						sb.AppendLine("New Y: " + actionPacket.GetFloat());
+					}
+
+					actionPacket.GetByte();
+					sb.AppendLine("Delay: " + actionPacket.GetInt());
+					sb.AppendLine("Attacker: " + actionPacket.GetLong().ToString("X16"));
+				}
+			}
+
+			TxtInfo.Text = sb.ToString();
 		}
 
 		private void ParseOpenNpcShop(PalePacket palePacket)
