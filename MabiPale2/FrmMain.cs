@@ -297,7 +297,7 @@ namespace MabiPale2
 		/// <param name="e"></param>
 		private void BtnSave_Click(object sender, EventArgs e)
 		{
-			SaveLogDialog.FileName = DateTime.Now.ToString("yyyyMMdd_hhmmss"); // 20141214_202659
+			SaveLogDialog.FileName = DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
 			if (SaveLogDialog.ShowDialog() == DialogResult.Cancel)
 				return;
