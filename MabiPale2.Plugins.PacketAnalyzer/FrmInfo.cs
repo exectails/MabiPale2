@@ -223,6 +223,13 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 					palePacket.Packet.GetByte();
 					palePacket.Packet.GetLong();
 
+					// [190100, NA200 (2015-01-15)] New/Combined
+					if (palePacket.Packet.NextIs(Shared.PacketElementType.Byte))
+					{
+						palePacket.Packet.GetByte();
+						palePacket.Packet.GetByte();
+					}
+
 					tabs[name].Add(itemInfo);
 				}
 			}
