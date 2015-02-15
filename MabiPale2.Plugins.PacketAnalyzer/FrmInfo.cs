@@ -147,7 +147,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				else
 				{
 					// Target used Defense or Counter
-					if (type.HasFlag(CombatActionType.Defended) || type.HasFlag(CombatActionType.CounteredHit) || type.HasFlag((CombatActionType)0x73))
+					if (type.HasFlag(CombatActionType.Defended) || type.HasFlag(CombatActionType.CounteredHit) || type.HasFlag((CombatActionType)0x73)|| type.HasFlag((CombatActionType)0x13))
 					{
 						var attackerEntityId = actionPacket.GetLong();
 						actionPacket.GetInt();
