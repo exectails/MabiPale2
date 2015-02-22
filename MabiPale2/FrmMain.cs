@@ -488,7 +488,9 @@ namespace MabiPale2
 		{
 			if (!WinApi.IsWindow(alissaHWnd))
 			{
-				MessageBox.Show("Failed to connect, please make sure the selected packet provider is still running.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//MessageBox.Show("Failed to connect, please make sure the selected packet provider is still running.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				alissaHWnd = IntPtr.Zero;
+				BtnConnect_Click(null, null);
 				return;
 			}
 
