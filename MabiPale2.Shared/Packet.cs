@@ -625,7 +625,12 @@ namespace MabiPale2.Shared
 				else if (type == PacketElementType.Float)
 				{
 					var data = this.GetFloat();
-					result.AppendFormat("{0:000} [{1}] Float  : {2}", i, (BitConverter.DoubleToInt64Bits(data) >> 32).ToString("X8").PadLeft(16, '.'), data.ToString("0.0####", CultureInfo.InvariantCulture));
+
+					var hex = (BitConverter.DoubleToInt64Bits(data) >> 32).ToString("X8");
+					if (hex.Length > 8)
+						hex = hex.Substring(8);
+
+					result.AppendFormat("{0:000} [{1}] Float  : {2}", i, hex.PadLeft(16, '.'), data.ToString("0.0####", CultureInfo.InvariantCulture));
 				}
 				else if (type == PacketElementType.String)
 				{
