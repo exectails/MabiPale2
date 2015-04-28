@@ -254,6 +254,12 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 					{
 						sb.AppendLine("New X: " + actionPacket.GetFloat());
 						sb.AppendLine("New Y: " + actionPacket.GetFloat());
+
+						// [190200, NA203 (22.04.2015)]
+						if (actionPacket.Peek() == Shared.PacketElementType.Int)
+						{
+							actionPacket.PutInt(0);
+						}
 					}
 
 					actionPacket.GetByte();
