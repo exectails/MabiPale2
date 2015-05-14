@@ -441,6 +441,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			var conditionsC = palePacket.Packet.GetLong();
 			var conditionsD = palePacket.Packet.Peek() == Shared.PacketElementType.Long ? palePacket.Packet.GetLong() : 0;
 			var conditionsE = palePacket.Packet.Peek() == Shared.PacketElementType.Long ? palePacket.Packet.GetLong() : 0;
+			var conditionsF = palePacket.Packet.Peek() == Shared.PacketElementType.Long ? palePacket.Packet.GetLong() : 0;
 
 			var sb = new StringBuilder();
 			sb.AppendLine("A: {0}", (ConditionsA)conditionsA);
@@ -448,6 +449,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			sb.AppendLine("C: {0}", (ConditionsC)conditionsC);
 			sb.AppendLine("D: {0}", (ConditionsD)conditionsD);
 			sb.AppendLine("E: {0}", (ConditionsE)conditionsE);
+			sb.AppendLine("F: {0}", (ConditionsF)conditionsF);
 
 			var extraCount = palePacket.Packet.GetInt();
 			if (extraCount != 0)
@@ -467,6 +469,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 					case 2: sb.AppendLine("{0} - {1}", (ConditionsC)((ulong)1 << mod), str); break;
 					case 3: sb.AppendLine("{0} - {1}", (ConditionsD)((ulong)1 << mod), str); break;
 					case 4: sb.AppendLine("{0} - {1}", (ConditionsE)((ulong)1 << mod), str); break;
+					case 5: sb.AppendLine("{0} - {1}", (ConditionsF)((ulong)1 << mod), str); break;
 					default:
 						var ident = (char)('A' + div) + ":0x" + ((ulong)1 << mod).ToString("X16");
 						sb.AppendLine("{0} - {1}", ident, str);
