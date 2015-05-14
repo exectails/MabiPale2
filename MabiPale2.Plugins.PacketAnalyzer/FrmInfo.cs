@@ -1,6 +1,6 @@
-﻿using MabiLib.Const;
-using MabiLib.Network;
-using MabiLib.Structs;
+﻿using Aura.Mabi.Const;
+using Aura.Mabi.Network;
+using Aura.Mabi.Structs;
 using MabiPale2.Plugins.PacketAnalyzer.Properties;
 using MabiPale2.Shared;
 using System;
@@ -104,9 +104,9 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			sb.AppendLine("Pocket: {0}", info.Pocket);
 			sb.AppendLine("Region: {0}", info.Region);
 			sb.AppendLine("FigureA: {0}", info.State);
-			sb.AppendLine("FigureB: {0}", info.uFigureB);
-			sb.AppendLine("FigureC: {0}", info.uFigureC);
-			sb.AppendLine("FigureD: {0}", info.uFigureD);
+			sb.AppendLine("FigureB: {0}", info.FigureB);
+			sb.AppendLine("FigureC: {0}", info.FigureC);
+			sb.AppendLine("FigureD: {0}", info.FigureD);
 			sb.AppendLine("X: {0}", info.X);
 			sb.AppendLine("Y: {0}", info.Y);
 			sb.AppendLine();
@@ -134,7 +134,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			sb.AppendLine("EP: {0}", optioninfo.EP);
 			sb.AppendLine("Experience: {0}", optioninfo.Experience);
 			sb.AppendLine("ExpireTime: {0}", optioninfo.ExpireTime);
-			sb.AppendLine("Flag: {0}", optioninfo.Flag);
+			sb.AppendLine("Flags: {0}", optioninfo.Flags);
 			sb.AppendLine("Grade: {0}", optioninfo.Grade);
 			sb.AppendLine("JoustPointPrice: {0}", optioninfo.JoustPointPrice);
 			sb.AppendLine("KnockCount: {0}", optioninfo.KnockCount);
@@ -149,8 +149,8 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			sb.AppendLine("Suffix: {0}", optioninfo.Suffix);
 			sb.AppendLine("Upgraded: {0}", optioninfo.Upgraded);
 			sb.AppendLine("UpgradeMax: {0}", optioninfo.UpgradeMax);
-			sb.AppendLine("WAttackMax: {0}", optioninfo.WAttackMax);
-			sb.AppendLine("WAttackMin: {0}", optioninfo.WAttackMin);
+			sb.AppendLine("InjuryMax: {0}", optioninfo.InjuryMax);
+			sb.AppendLine("InjuryMin: {0}", optioninfo.InjuryMin);
 			sb.AppendLine("WeaponType: {0}", optioninfo.WeaponType);
 
 			TxtInfo.Text = sb.ToString();
