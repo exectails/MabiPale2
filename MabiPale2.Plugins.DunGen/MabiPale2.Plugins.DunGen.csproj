@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC521F5D-6C05-4AF4-AFA3-660B5BAB1F9B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MabiPale2.Plugins.DunGen</RootNamespace>
+    <AssemblyName>MabiPale2.Plugins.DunGen</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\MabiPale2\bin\Debug\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\MabiPale2\bin\Release\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mabi">
+      <HintPath>..\Libs\Mabi.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmDunGen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDunGen.Designer.cs">
+      <DependentUpon>FrmDunGen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MabiDungeon\Direction.cs" />
+    <Compile Include="MabiDungeon\DungeonClass.cs" />
+    <Compile Include="MabiDungeon\DungeonFloorStructure.cs" />
+    <Compile Include="MabiDungeon\DungeonStructure.cs" />
+    <Compile Include="MabiDungeon\MazeGenerator.cs" />
+    <Compile Include="MabiDungeon\maze_move.cs" />
+    <Compile Include="MabiDungeon\maze_room_internal.cs" />
+    <Compile Include="MabiDungeon\MTRandom.cs" />
+    <Compile Include="MabiDungeon\Position.cs" />
+    <Compile Include="MabiDungeon\RandomDirection.cs" />
+    <Compile Include="MabiDungeon\RoomTrait.cs" />
+    <Compile Include="MabiDungeon\SDungeonFloor.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MabiPale2.Plugins\MabiPale2.Plugins.csproj">
+      <Project>{694421c4-7979-4440-a917-3712c926aa2b}</Project>
+      <Name>MabiPale2.Plugins</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\MabiPale2.Shared\MabiPale2.Shared.csproj">
+      <Project>{c80e0843-5174-42f7-8715-86b7e46beabf}</Project>
+      <Name>MabiPale2.Shared</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmDunGen.resx">
+      <DependentUpon>FrmDunGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart_organisation.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
