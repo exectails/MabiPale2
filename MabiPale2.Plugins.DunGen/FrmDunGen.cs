@@ -258,7 +258,7 @@ namespace MabiPale2.Plugins.DunGen
 		{
 			if (!File.Exists("data/dungeondb.xml") || !File.Exists("data/dungeondb2.xml") || !File.Exists("data/dungeon_ruin.xml"))
 			{
-				MessageBox.Show("DunGen requires the following client files, please place them into the Data folder: dungeondb.xml, dungeondb2.xml, dungeon_ruin.xml", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("DunGen requires the following client files, please put them into the Data folder: dungeondb.xml, dungeondb2.xml, dungeon_ruin.xml", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				this.Close();
 			}
 

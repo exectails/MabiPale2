@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MabiPale2.Plugins.DunGen</RootNamespace>
-    <AssemblyName>MabiPale2.Plugins.DunGen</AssemblyName>
+    <AssemblyName>DunGen</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
