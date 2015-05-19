@@ -233,11 +233,18 @@ namespace MabiPale2.Plugins.DunGen
 
 		public void GenerateFromInput()
 		{
-			var name = TxtDungeonName.Text;
-			var itemId = Convert.ToInt32(TxtItemId.Text);
-			var floorPlan = Convert.ToInt32(TxtFloorPlan.Text);
+			try
+			{
+				var name = TxtDungeonName.Text;
+				var itemId = Convert.ToInt32(TxtItemId.Text);
+				var floorPlan = Convert.ToInt32(TxtFloorPlan.Text);
 
-			Generate(name, itemId, floorPlan);
+				Generate(name, itemId, floorPlan);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Invalid value.");
+			}
 		}
 
 		private void BtnSave_Click(object sender, EventArgs e)
