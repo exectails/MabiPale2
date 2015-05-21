@@ -71,6 +71,7 @@
 			this.BtnMenuPacketsCopyAuraWrite = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsCopyAuraRead = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsFilter = new System.Windows.Forms.MenuItem();
+			this.BtnRecord = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.SplitContainerPackets)).BeginInit();
 			this.SplitContainerPackets.Panel1.SuspendLayout();
 			this.SplitContainerPackets.Panel2.SuspendLayout();
@@ -163,6 +164,7 @@
             this.BtnConnect,
             this.BtnDisconnect,
             this.BtnConnectTo,
+            this.BtnRecord,
             this.BtnSettings,
             this.toolStripSeparator2});
 			this.ToolBar.Location = new System.Drawing.Point(0, 0);
@@ -418,6 +420,18 @@
 			this.BtnMenuPacketsFilter.Text = "Add to filter";
 			this.BtnMenuPacketsFilter.Click += new System.EventHandler(this.BtnMenuPacketsFilter_Click);
 			// 
+			// BtnRecord
+			// 
+			this.BtnRecord.Checked = true;
+			this.BtnRecord.CheckOnClick = true;
+			this.BtnRecord.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.BtnRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.BtnRecord.Image = ((System.Drawing.Image)(resources.GetObject("BtnRecord.Image")));
+			this.BtnRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.BtnRecord.Name = "BtnRecord";
+			this.BtnRecord.Size = new System.Drawing.Size(23, 22);
+			this.BtnRecord.Text = "Record logged packets in list below";
+			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
@@ -494,6 +508,7 @@
 		private System.Windows.Forms.MenuItem MenuFileExitSpacer;
 		private System.Windows.Forms.ToolStripStatusLabel LblPacketProvider;
 		private System.Windows.Forms.ToolStripButton BtnConnectTo;
+		private System.Windows.Forms.ToolStripButton BtnRecord;
 	}
 }
 

@@ -669,7 +669,8 @@ namespace MabiPale2
 						if (Settings.Default.FilterSendEnabled && sendFilter.Contains(palePacket.Op))
 							continue;
 
-					AddPacketToFormList(palePacket, true);
+					if (BtnRecord.Checked)
+						AddPacketToFormList(palePacket, true);
 
 					if (palePacket.Received)
 						pluginManager.OnRecv(palePacket);
