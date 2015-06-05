@@ -172,17 +172,21 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			{
 				var len = palePacket.Packet.GetInt();
 				var buff = palePacket.Packet.GetBin();
-				var attackeraction = len < 80;
-				CombatActionType type;
 
 				var actionPacket = new MabiPale2.Shared.Packet(buff, 0);
 				actionPacket.GetInt();
 				if (i > 0)
 					sb.AppendLine();
+
+				var creatureEntityId = actionPacket.GetLong();
+				var type = (CombatActionType)actionPacket.GetByte();
+
+				var attackeraction = len < 80 && type != 0; // Hot fix, TODO: Proper check of type.
+
 				sb.AppendLine(attackeraction ? "Attacker Action" : "Target Action");
 				sb.AppendLine("--------------------");
-				sb.AppendLine("Creature: " + actionPacket.GetLong().ToString("X16"));
-				sb.AppendLine("Type: " + (type = (CombatActionType)actionPacket.GetByte()));
+				sb.AppendLine("Creature: " + creatureEntityId.ToString("X16"));
+				sb.AppendLine("Type: " + type);
 				sb.AppendLine("Stun: " + actionPacket.GetShort());
 				sb.AppendLine("Skill Id: " + (SkillId)actionPacket.GetShort());
 				actionPacket.GetShort();
@@ -218,53 +222,58 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				// TargetAction
 				else
 				{
-					// Target used Defense or Counter
-					if (type.HasFlag(CombatActionType.Defended) || type.HasFlag(CombatActionType.CounteredHit) || type.HasFlag((CombatActionType)0x73) || type.HasFlag((CombatActionType)0x13))
+					// Target actions might end here, widnessed with a packet
+					// that had "97" as the previous short.
+					if (actionPacket.Peek() != Shared.PacketElementType.None)
 					{
-						var attackerEntityId = actionPacket.GetLong();
-						actionPacket.GetInt();
-						actionPacket.GetByte();
-						actionPacket.GetByte();
-						var x = actionPacket.GetInt();
-						var y = actionPacket.GetInt();
-					}
-
-					var options = new List<uint>();
-					var topt = actionPacket.GetInt();
-					for (uint foo2 = 1; foo2 < 0x80000000; )
-					{
-						if ((topt & foo2) != 0)
-							options.Add(foo2);
-						foo2 <<= 1;
-					}
-					var strOptions = string.Join(", ", options.Select(a =>
-					{
-						var en = (TargetOptions)a;
-						return "0x" + a.ToString("X2") + (en.ToString() != a.ToString() ? "(" + en + ")" : "");
-					}));
-
-					sb.AppendLine("Options: " + strOptions);
-					sb.AppendLine("Damage: " + actionPacket.GetFloat());
-					sb.AppendLine("? Damage: " + actionPacket.GetFloat());
-					sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
-
-					sb.AppendLine("X-Diff: " + actionPacket.GetFloat());
-					sb.AppendLine("Y-Diff: " + actionPacket.GetFloat());
-					if (actionPacket.NextIs(Shared.PacketElementType.Float))
-					{
-						sb.AppendLine("New X: " + actionPacket.GetFloat());
-						sb.AppendLine("New Y: " + actionPacket.GetFloat());
-
-						// [190200, NA203 (22.04.2015)]
-						if (actionPacket.Peek() == Shared.PacketElementType.Int)
+						// Target used Defense or Counter
+						if (type.HasFlag(CombatActionType.Defended) || type.HasFlag(CombatActionType.CounteredHit) || type.HasFlag((CombatActionType)0x73) || type.HasFlag((CombatActionType)0x13))
 						{
-							actionPacket.PutInt(0);
+							var attackerEntityId = actionPacket.GetLong();
+							actionPacket.GetInt();
+							actionPacket.GetByte();
+							actionPacket.GetByte();
+							var x = actionPacket.GetInt();
+							var y = actionPacket.GetInt();
 						}
-					}
 
-					actionPacket.GetByte();
-					sb.AppendLine("Delay: " + actionPacket.GetInt());
-					sb.AppendLine("Attacker: " + actionPacket.GetLong().ToString("X16"));
+						var options = new List<uint>();
+						var topt = actionPacket.GetInt();
+						for (uint foo2 = 1; foo2 < 0x80000000; )
+						{
+							if ((topt & foo2) != 0)
+								options.Add(foo2);
+							foo2 <<= 1;
+						}
+						var strOptions = string.Join(", ", options.Select(a =>
+						{
+							var en = (TargetOptions)a;
+							return "0x" + a.ToString("X2") + (en.ToString() != a.ToString() ? "(" + en + ")" : "");
+						}));
+
+						sb.AppendLine("Options: " + strOptions);
+						sb.AppendLine("Damage: " + actionPacket.GetFloat());
+						sb.AppendLine("? Damage: " + actionPacket.GetFloat());
+						sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
+
+						sb.AppendLine("X-Diff: " + actionPacket.GetFloat());
+						sb.AppendLine("Y-Diff: " + actionPacket.GetFloat());
+						if (actionPacket.NextIs(Shared.PacketElementType.Float))
+						{
+							sb.AppendLine("New X: " + actionPacket.GetFloat());
+							sb.AppendLine("New Y: " + actionPacket.GetFloat());
+
+							// [190200, NA203 (22.04.2015)]
+							if (actionPacket.Peek() == Shared.PacketElementType.Int)
+							{
+								actionPacket.PutInt(0);
+							}
+						}
+
+						actionPacket.GetByte();
+						sb.AppendLine("Delay: " + actionPacket.GetInt());
+						sb.AppendLine("Attacker: " + actionPacket.GetLong().ToString("X16"));
+					}
 				}
 			}
 
