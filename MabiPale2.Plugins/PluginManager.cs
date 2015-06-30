@@ -27,10 +27,15 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		event Action Ready;
 
-		/// <summary>
-		/// Fired when Pale is closing.
-		/// </summary>
-		event Action End;
+        /// <summary>
+        /// Fired when Pale is closing.
+        /// </summary>
+        event Action End;
+
+        /// <summary>
+        /// Fired when the packet list is cleared.
+        /// </summary>
+        event Action Clear;
 
 		/// <summary>
 		/// Fired when a packet is selected in the logger.

@@ -42,6 +42,11 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		public event Action<PalePacket> Selected;
 
+        /// <summary>
+        /// Fired when the packet list is cleared
+        /// </summary>
+        public event Action Clear;
+
 		/// <summary>
 		/// Creates new plugin manager.
 		/// </summary>
@@ -280,5 +285,21 @@ namespace MabiPale2.Plugins
 				Trace.TraceError(ex.ToString());
 			}
 		}
+
+        internal void OnClear()
+        {
+            var ev = Clear;
+            if (ev == null)
+                return;
+
+            try
+            {
+                ev();
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+            }
+        }
 	}
 }
