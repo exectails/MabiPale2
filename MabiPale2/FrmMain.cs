@@ -287,7 +287,7 @@ namespace MabiPale2
 
 			TxtPacket.Text = "";
 
-            pluginManager.OnClear();
+			pluginManager.OnClear();
 
 			UpdateCount();
 		}
