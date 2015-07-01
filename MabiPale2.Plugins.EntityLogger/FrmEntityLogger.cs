@@ -45,7 +45,7 @@ namespace MabiPale2.Plugins.EntityLogger
 		{
 			LstEntities.InvokeIfRequired((MethodInvoker)delegate
 			{
-				LstEntities.Clear();
+				LstEntities.Items.Clear();
 				TxtEntityInfo.Clear();
 				TxtEntityScript.Clear();
 			});
