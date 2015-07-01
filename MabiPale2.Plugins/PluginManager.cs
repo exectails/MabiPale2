@@ -33,6 +33,11 @@ namespace MabiPale2.Plugins
 		event Action End;
 
 		/// <summary>
+		/// Fired when the packet list is cleared.
+		/// </summary>
+		event Action Clear;
+
+		/// <summary>
 		/// Fired when a packet is selected in the logger.
 		/// Packet is null if selection was cleared or before changing.
 		/// </summary>

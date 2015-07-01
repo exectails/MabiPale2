@@ -41,6 +41,16 @@ namespace MabiPale2.Plugins.EntityLogger
 			});
 		}
 
+		public void ClearEntities()
+		{
+			LstEntities.InvokeIfRequired((MethodInvoker)delegate
+			{
+				LstEntities.Items.Clear();
+				TxtEntityInfo.Clear();
+				TxtEntityScript.Clear();
+			});
+		}
+
 		private void BtnClose_Click(object sender, EventArgs e)
 		{
 			Close();
