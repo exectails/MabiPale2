@@ -62,7 +62,10 @@ GetChannelListR = 0x4E35
 WarpUnk1 = 0x4E39
 RequestRebirth = 0x4E84
 RequestRebirthR = 0x4E85
-PonsUpdate = 0x4E8F
+
+
+
+PonsUpdate = 0x4E90
 
 ChannelCharacterInfoRequest = 0x5208
 ChannelCharacterInfoRequestR = 0x5209
@@ -102,6 +105,7 @@ NpcTalkEnd = 0x55F2
 NpcTalkEndR = 0x55F3
 NpcTalkEgo = 0x55F4
 NpcTalkEgoR = 0x55F5
+NpcInitiateDialog = 0x55F7
 NpcTalkPartner = 0x55F8
 NpcTalkPartnerR = 0x55F9
 ItemBlessed = 0x5BD8
@@ -182,7 +186,13 @@ FlyingTo = 0x65AF
 Land = 0x65AB
 Landing = 0x65AC
 CanLand = 0x65AD
-SawItemNotification = 0x65D7
+
+
+
+SawItemNotification = 0x65D8
+
+UnkCutsceneEnd = 0x65DC
+
 SkillInfo = 0x6979
 SkillTrainingUp = 0x697C
 SkillAdvance = 0x697E
@@ -202,6 +212,9 @@ SkillStartSilentCancel = 0x698F
 SkillStopSilentCancel = 0x6990
 SkillStackSet = 0x6991
 SkillStackUpdate = 0x6992
+FishingActionRequired = 0x699A
+FishingAction = 0x699B
+ResetCooldown = 0x69A7
 UseMotion = 0x6D62
 PlayAnimation = 0x6D63
 CancelMotion = 0x6D65
@@ -270,8 +283,11 @@ UnreadMailCount = 0x7255
 StatUpdatePrivate = 0x7530
 StatUpdatePublic = 0x7532
 CombatTargetUpdate = 0x791A
+UnkCombat = 0x791B
+UnkCombatR = 0x791C
 CombatSetAim = 0x791D
 CombatSetAimR = 0x791E
+CombatSetAim2 = 0x791F
 SetCombatTarget = 0x7920
 SetFinisher = 0x7921
 SetFinisher2 = 0x7922
@@ -280,6 +296,8 @@ CombatActionEnd = 0x7925
 CombatActionPack = 0x7926
 CombatUsedSkill = 0x7927
 CombatAttackR = 0x7D01
+TouchMimic = 0x7D03
+TouchMimicR = 0x7D04
 
 EventInform = 0x88B8
 NewQuest = 0x8CA0
@@ -292,6 +310,8 @@ GiveUpQuestR = 0x8CA6
 QuestStartPtj = 0x8D68
 QuestEndPtj = 0x8D69
 QuestUpdatePtj = 0x8D6A
+SquadUnk = 0x8D6E
+SquadUnkR = 0x8D6F
 PartyCreate = 0x8E94
 PartyCreateR = 0x8E95
 PartyCreateUpdate = 0x8E96
@@ -304,26 +324,26 @@ PartyLeaveUpdate = 0x8E9C
 PartyRemove = 0x8E9D
 PartyRemoveR = 0x8E9E
 PartyRemoved = 0x8E9F
-PartyChangeSetting = 0x8EA0
-PartyChangeSettingR = 0x8EA1
+PartyChangeSettings = 0x8EA0
+PartyChangeSettingsR = 0x8EA1
 PartySettingUpdate = 0x8EA2
 PartyChangePassword = 0x8EA3
 PartyChangePasswordR = 0x8EA4
 PartyChangeLeader = 0x8EA5
 PartyChangeLeaderR = 0x8EA6
 PartyChangeLeaderUpdate = 0x8EA7
-PartyWantedShow = 0x8EA9
-PartyWantedShowR = 0x8EAA
-PartyWantedOpened = 0x8EAB
-PartyWantedHide = 0x8EAC
-PartyWantedHideR = 0x8EAD
-PartyWantedClosed = 0x8EAE
-PartyChangeFinish = 0x8EB5
-PartyChangeFinishR = 0x8EB6
-PartyFinishUpdate = 0x8EB7
-PartyChangeExp = 0x8EB8
-PartyChangeExpR = 0x8EB9
-PartyExpUpdate = 0x8EBA
+PartyShowAd = 0x8EA9
+PartyShowAdR = 0x8EAA
+PartyEnableAd = 0x8EAB
+PartyHideAd = 0x8EAC
+PartyHideAdR = 0x8EAD
+PartyDisableAd = 0x8EAE
+PartyChangeFinishRule = 0x8EB5
+PartyChangeFinishRuleR = 0x8EB6
+PartyUpdateFinishRule = 0x8EB7
+PartyChangeExpSharingRule = 0x8EB8
+PartyChangeExpSharingRuleR = 0x8EB9
+PartyUpdateExpSharingRule = 0x8EBA
 GuildInfoNoGuild = 0x8EFB
 OpenGuildPanel = 0x8EFC
 GuildInfo = 0x8EFD
@@ -361,7 +381,8 @@ HitPropR = 0x9089
 HittingProp = 0x908A
 TouchProp = 0x908B
 TouchPropR = 0x908C
-PropInteraction = 0x908D
+AddPropExtension = 0x908D
+RemovePropExtension = 0x908E
 PlaySound = 0x908F
 
 
@@ -372,7 +393,7 @@ Effect = 0x9091
 EffectDelayed = 0x9092
 QuestOwlComplete = 0x9094
 QuestOwlNew = 0x9095
-PartyWantedUpdate = 0x9096
+PartyAdUpdate = 0x9096
 PvPInformation = 0x9097
 NaoRevivalExit = 0x9099
 NaoRevivalEntrance = 0x909D
@@ -417,6 +438,9 @@ SetPetAi = 0xA8A1
 GetPetAi = 0xA8A2
 GetPetAiR = 0xA8A3
 WarpUnk3 = 0xA8AF
+SetQuestTimer = 0xA8CF
+RemoveQuestTimer = 0xA8D0
+UpdateQuestTimerCounter = 0xA8D1
 UmbrellaJump = 0xA8E0
 UmbrellaJumpR = 0xA8E1
 UmbrellaLand = 0xA8E2
@@ -427,6 +451,8 @@ EnableRoyalAlchemist = 0xA9A3
 SosButtonRequest = 0xA9A9
 SosButtonRequestR = 0xA9AA
 SkillTeleport = 0xA9F0
+EnterRebirth = 0xA9F9
+EnterRebirthR = 0xA9FA
 
 
 
@@ -468,7 +494,10 @@ ShamalaTransformationEnd = 0xAB1E
 ShamalaTransformationEndR = 0xAB1F
 
 
-ItemMagnet = 0xABAB
+
+ItemMagnet = 0xABAC
+
+AmmoRequired = 0xABBB
 
 NpcTalk = 0x13882
 NpcTalkSelect = 0x13883
