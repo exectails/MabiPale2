@@ -75,11 +75,14 @@ namespace MabiPale2
 
 		private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			Settings.Default.X = Left;
-			Settings.Default.Y = Top;
-			Settings.Default.Width = Width;
-			Settings.Default.Height = Height;
-			Settings.Default.Maximized = (WindowState == FormWindowState.Maximized);
+			if (WindowState != FormWindowState.Minimized)
+			{
+				Settings.Default.X = Left;
+				Settings.Default.Y = Top;
+				Settings.Default.Width = Width;
+				Settings.Default.Height = Height;
+				Settings.Default.Maximized = (WindowState == FormWindowState.Maximized);
+			}
 			Settings.Default.Save();
 
 			Disconnect();
