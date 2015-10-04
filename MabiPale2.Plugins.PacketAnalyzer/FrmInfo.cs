@@ -270,6 +270,15 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 							}
 						}
 
+						// MultiHit Target Option
+						if (actionPacket.NextIs(Shared.PacketElementType.Int))
+						{
+							sb.AppendLine("MultiHitDamageCount: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitdamageShowTime: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitUnk1: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitUnk2: " + actionPacket.GetInt());
+						}
+
 						actionPacket.GetByte();
 						sb.AppendLine("Delay: " + actionPacket.GetInt());
 						sb.AppendLine("Attacker: " + actionPacket.GetLong().ToString("X16"));
