@@ -73,6 +73,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 					case Op.CombatActionPack: ParseCombatActionPacket(palePacket); break;
 
+					case Op.ItemUpdate:
 					case Op.ItemNew: ParseItemNew(palePacket); break;
 
 					default: ParseUnknown(palePacket); break;
