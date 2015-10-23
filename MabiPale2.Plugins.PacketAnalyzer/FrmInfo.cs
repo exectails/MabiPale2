@@ -97,9 +97,9 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 			var info = palePacket.Packet.GetObj<ItemInfo>();
 			sb.AppendLine("Amount: {0}", info.Amount);
-			sb.AppendLine("Color1: {0}", info.Color1);
-			sb.AppendLine("Color2: {0}", info.Color2);
-			sb.AppendLine("Color3: {0}", info.Color3);
+			sb.AppendLine("Color1: 0x{0:X6}", info.Color1);
+			sb.AppendLine("Color2: 0x{0:X6}", info.Color2);
+			sb.AppendLine("Color3: 0x{0:X6}", info.Color3);
 			sb.AppendLine("Id: {0}", info.Id);
 			sb.AppendLine("KnockCount: {0}", info.KnockCount);
 			sb.AppendLine("Pocket: {0}", info.Pocket);
