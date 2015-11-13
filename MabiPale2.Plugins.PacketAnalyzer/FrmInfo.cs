@@ -41,10 +41,13 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 		private void FrmInfo_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			Settings.Default.X = Left;
-			Settings.Default.Y = Top;
-			Settings.Default.Width = Width;
-			Settings.Default.Height = Height;
+			if (WindowState != FormWindowState.Minimized)
+			{
+				Settings.Default.X = Left;
+				Settings.Default.Y = Top;
+				Settings.Default.Width = Width;
+				Settings.Default.Height = Height;
+			}
 			Settings.Default.Save();
 		}
 
@@ -68,7 +71,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 					case Op.NpcTalk: ParseNpcTalk(palePacket); break;
 					case Op.NpcTalkSelect: ParseNpcTalkSelect(palePacket); break;
-					case Op.OpenNpcShop: ParseOpenNpcShop(palePacket); break;
+					case Op.OpenNpcShop:
 					case Op.AddToNpcShop: ParseOpenNpcShop(palePacket); break;
 
 					case Op.CombatActionPack: ParseCombatActionPacket(palePacket); break;
