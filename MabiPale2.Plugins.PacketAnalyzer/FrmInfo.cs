@@ -308,7 +308,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 					palePacket.Packet.GetLong();
 					palePacket.Packet.GetByte();
 					var itemInfo = palePacket.Packet.GetObj<ItemInfo>();
-					palePacket.Packet.GetBin();
+					var itemOptionInfo = palePacket.Packet.GetObj<ItemOptionInfo>();
 					var metaData1 = palePacket.Packet.GetString();
 					var metaData2 = palePacket.Packet.GetString();
 					palePacket.Packet.GetByte();
@@ -321,7 +321,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 						palePacket.Packet.GetByte();
 					}
 
-					tabs[name].Add(new ShopItem() { Info = itemInfo, MetaData1 = metaData1 });
+					tabs[name].Add(new ShopItem() { Info = itemInfo, OptionInfo = itemOptionInfo, MetaData1 = metaData1 });
 				}
 			}
 
@@ -345,11 +345,20 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 					var others = tab.Value.Count(a => a.Info.Id == item.Info.Id && a.Info.Amount != item.Info.Amount) != 0;
 
 					if (!string.IsNullOrWhiteSpace(item.MetaData1) && item.Info.Id != 70023)
-						sb.AppendLine("Add(\"{0}\", {1}, \"{2}\");", name, item.Info.Id, item.MetaData1);
+					{
+						if (item.MetaData1.Contains("FORMID:"))
+							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\", {3});", name, item.Info.Id, item.MetaData1, item.OptionInfo.Price);
+						else
+							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\");", name, item.Info.Id, item.MetaData1);
+					}
 					else if (item.Info.Amount <= 1 && !others)
+					{
 						sb.AppendLine("Add(\"{0}\", {1});", name, item.Info.Id);
+					}
 					else
+					{
 						sb.AppendLine("Add(\"{0}\", {1}, {2});", name, item.Info.Id, Math.Max(1, (int)item.Info.Amount));
+					}
 				}
 			}
 
@@ -503,6 +512,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 		private class ShopItem
 		{
 			public ItemInfo Info { get; set; }
+			public ItemOptionInfo OptionInfo { get; set; }
 			public string MetaData1 { get; set; }
 		}
 	}
