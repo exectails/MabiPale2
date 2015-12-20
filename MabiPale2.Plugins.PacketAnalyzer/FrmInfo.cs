@@ -346,7 +346,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 					if (!string.IsNullOrWhiteSpace(item.MetaData1) && item.Info.Id != 70023)
 					{
-						if (item.MetaData1.Contains("FORMID:"))
+						if (item.MetaData1.Contains("FORMID:") || item.MetaData1.Contains("QSTTIP:"))
 							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\", {3});", name, item.Info.Id, item.MetaData1, item.OptionInfo.Price);
 						else
 							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\");", name, item.Info.Id, item.MetaData1);
