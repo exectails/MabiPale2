@@ -335,7 +335,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				{
 					if (prev != "")
 						sb.AppendLine();
-					sb.AppendLine("// " + name);
+					//sb.AppendLine("// " + name);
 				}
 
 				prev = name;
