@@ -152,8 +152,8 @@ namespace MabiPale2.Plugins.EntityLogger
 			var upper = (Upper < 1f && Upper > 0.999f) ? 1 : Upper;
 			var lower = (Lower < 1f && Lower > 0.999f) ? 1 : Lower;
 
-			sb.AppendLine("SetName(\"{0}\");", IsPlayer || IsNpc ? Name : "?");
 			sb.AppendLine("SetRace({0});", Race);
+			sb.AppendLine("SetName(\"{0}\");", IsPlayer || IsNpc ? Name : "?");
 
 			if (height != 1 || weight != 1 || upper != 1 || lower != 1)
 			{

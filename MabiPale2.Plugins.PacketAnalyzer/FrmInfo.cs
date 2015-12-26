@@ -41,10 +41,13 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 		private void FrmInfo_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			Settings.Default.X = Left;
-			Settings.Default.Y = Top;
-			Settings.Default.Width = Width;
-			Settings.Default.Height = Height;
+			if (WindowState != FormWindowState.Minimized)
+			{
+				Settings.Default.X = Left;
+				Settings.Default.Y = Top;
+				Settings.Default.Width = Width;
+				Settings.Default.Height = Height;
+			}
 			Settings.Default.Save();
 		}
 
@@ -68,11 +71,12 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 					case Op.NpcTalk: ParseNpcTalk(palePacket); break;
 					case Op.NpcTalkSelect: ParseNpcTalkSelect(palePacket); break;
-					case Op.OpenNpcShop: ParseOpenNpcShop(palePacket); break;
+					case Op.OpenNpcShop:
 					case Op.AddToNpcShop: ParseOpenNpcShop(palePacket); break;
 
 					case Op.CombatActionPack: ParseCombatActionPacket(palePacket); break;
 
+					case Op.ItemUpdate:
 					case Op.ItemNew: ParseItemNew(palePacket); break;
 
 					default: ParseUnknown(palePacket); break;
@@ -96,9 +100,9 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 			var info = palePacket.Packet.GetObj<ItemInfo>();
 			sb.AppendLine("Amount: {0}", info.Amount);
-			sb.AppendLine("Color1: {0}", info.Color1);
-			sb.AppendLine("Color2: {0}", info.Color2);
-			sb.AppendLine("Color3: {0}", info.Color3);
+			sb.AppendLine("Color1: 0x{0:X6}", info.Color1);
+			sb.AppendLine("Color2: 0x{0:X6}", info.Color2);
+			sb.AppendLine("Color3: 0x{0:X6}", info.Color3);
 			sb.AppendLine("Id: {0}", info.Id);
 			sb.AppendLine("KnockCount: {0}", info.KnockCount);
 			sb.AppendLine("Pocket: {0}", info.Pocket);
@@ -297,13 +301,13 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			palePacket.Packet.GetInt();
 
 			var tabCount = palePacket.Packet.GetByte();
-			var tabs = new Dictionary<string, List<ItemInfo>>();
+			var tabs = new Dictionary<string, List<ShopItem>>();
 			for (int i = 0; i < tabCount; ++i)
 			{
 				var name = palePacket.Packet.GetString();
 
 				if (!tabs.ContainsKey(name))
-					tabs.Add(name, new List<ItemInfo>());
+					tabs.Add(name, new List<ShopItem>());
 
 				palePacket.Packet.GetByte();
 
@@ -313,9 +317,9 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 					palePacket.Packet.GetLong();
 					palePacket.Packet.GetByte();
 					var itemInfo = palePacket.Packet.GetObj<ItemInfo>();
-					palePacket.Packet.GetBin();
-					palePacket.Packet.GetString();
-					palePacket.Packet.GetString();
+					var itemOptionInfo = palePacket.Packet.GetObj<ItemOptionInfo>();
+					var metaData1 = palePacket.Packet.GetString();
+					var metaData2 = palePacket.Packet.GetString();
 					palePacket.Packet.GetByte();
 					palePacket.Packet.GetLong();
 
@@ -326,7 +330,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 						palePacket.Packet.GetByte();
 					}
 
-					tabs[name].Add(itemInfo);
+					tabs[name].Add(new ShopItem() { Info = itemInfo, OptionInfo = itemOptionInfo, MetaData1 = metaData1 });
 				}
 			}
 
@@ -340,19 +344,30 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				{
 					if (prev != "")
 						sb.AppendLine();
-					sb.AppendLine("// " + name);
+					//sb.AppendLine("// " + name);
 				}
 
 				prev = name;
 
-				foreach (var item in tab.Value.OrderBy(a => a.Id))
+				foreach (var item in tab.Value.OrderBy(a => a.Info.Id))
 				{
-					var others = tab.Value.Count(a => a.Id == item.Id && a.Amount != item.Amount) != 0;
+					var others = tab.Value.Count(a => a.Info.Id == item.Info.Id && a.Info.Amount != item.Info.Amount) != 0;
 
-					if (item.Amount <= 1 && !others)
-						sb.AppendLine("Add(\"{0}\", {1});", name, item.Id);
+					if (!string.IsNullOrWhiteSpace(item.MetaData1) && item.Info.Id != 70023)
+					{
+						if (item.MetaData1.Contains("FORMID:") || item.MetaData1.Contains("QSTTIP:"))
+							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\", {3});", name, item.Info.Id, item.MetaData1, item.OptionInfo.Price);
+						else
+							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\");", name, item.Info.Id, item.MetaData1);
+					}
+					else if (item.Info.Amount <= 1 && !others)
+					{
+						sb.AppendLine("Add(\"{0}\", {1});", name, item.Info.Id);
+					}
 					else
-						sb.AppendLine("Add(\"{0}\", {1}, {2});", name, item.Id, Math.Max(1, (int)item.Amount));
+					{
+						sb.AppendLine("Add(\"{0}\", {1}, {2});", name, item.Info.Id, Math.Max(1, (int)item.Info.Amount));
+					}
 				}
 			}
 
@@ -501,6 +516,13 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 		private void ParseUnknown(PalePacket palePacket)
 		{
 			TxtInfo.Text = "No information.";
+		}
+
+		private class ShopItem
+		{
+			public ItemInfo Info { get; set; }
+			public ItemOptionInfo OptionInfo { get; set; }
+			public string MetaData1 { get; set; }
 		}
 	}
 }
