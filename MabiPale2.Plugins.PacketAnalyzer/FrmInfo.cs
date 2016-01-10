@@ -1,4 +1,5 @@
-﻿using Aura.Mabi.Const;
+﻿using Aura.Mabi;
+using Aura.Mabi.Const;
 using Aura.Mabi.Network;
 using Aura.Mabi.Structs;
 using MabiPale2.Plugins.PacketAnalyzer.Properties;
@@ -346,10 +347,20 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 					if (!string.IsNullOrWhiteSpace(item.MetaData1) && item.Info.Id != 70023)
 					{
-						if (item.MetaData1.Contains("FORMID:") || item.MetaData1.Contains("QSTTIP:"))
+						if (item.MetaData1.Contains("FORMID:"))
+						{
 							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\", {3});", name, item.Info.Id, item.MetaData1, item.OptionInfo.Price);
+						}
+						else if (item.MetaData1.Contains("QSTTIP:"))
+						{
+							var start = "QSTTIP:s:N_".Length;
+							var questName = item.MetaData1.Substring(start, item.MetaData1.IndexOf("|") - start);
+							sb.AppendLine("//AddQuest(\"{0}\", InsertQuestId, {2}); // {3}", name, item.Info.Id, item.OptionInfo.Price, questName);
+						}
 						else
+						{
 							sb.AppendLine("Add(\"{0}\", {1}, \"{2}\");", name, item.Info.Id, item.MetaData1);
+						}
 					}
 					else if (item.Info.Amount <= 1 && !others)
 					{
