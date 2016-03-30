@@ -38,6 +38,7 @@ RefuseGiftR = 0x4C
 DisconnectInform = 0x4D
 PetCreationOptionsRequest = 0x50
 PetCreationOptionsRequestR = 0x51
+LoginRedirect = 0x54
 PartnerCreationOptionsRequest = 0x55
 PartnerCreationOptionsRequestR = 0x56
 LoginUnk = 0x5A
@@ -63,7 +64,7 @@ RequestRebirthR = 0x4E85
 
 
 
-PonsUpdate = 0x4E90
+PointsUpdate = 0x4E90
 
 ChannelCharacterInfoRequest = 0x5208
 ChannelCharacterInfoRequestR = 0x5209
@@ -94,8 +95,15 @@ Revived = 0x53FF
 DeadMenu = 0x5401
 DeadMenuR = 0x5402
 DeadFeather = 0x5403
-UseGesture = 0x540E
-UseGestureR = 0x540F
+
+
+
+
+
+
+UseGesture = 0x540F
+UseGestureR = 0x5410
+
 IncompatibleUnk = 0x5411
 NpcTalkStart = 0x55F0
 NpcTalkStartR = 0x55F1
@@ -284,6 +292,23 @@ DeleteMailR = 0x7251
 RecallMail = 0x7252
 RecallMailR = 0x7253
 UnreadMailCount = 0x7255
+EntrustedEnchant = 0x7469
+EntrustedEnchantR = 0x746A
+EntrustedEnchantRequest = 0x746B
+EntrustedEnchantUnk1 = 0x746C
+EntrustedEnchantUnk2 = 0x746D
+EntrustedEnchantFinalizeRequest = 0x746E
+EntrustedEnchantFinalizeRequestR = 0x746F
+EntrustedEnchantRequestFinalized = 0x7470
+EntrustedEnchantCancel = 0x7471
+EntrustedEnchantCancelUnk = 0x7473
+EntrustedEnchantClose = 0x7475
+EntrustedEnchantAcceptRequest = 0x7477
+EntrustedEnchantAcceptRequestR = 0x7478
+EntrustedEnchantUnk3 = 0x7479
+EntrustedEnchantChanceUpdate = 0x747A
+EntrustedEnchantAddItem = 0x747B
+EntrustedEnchantRemoveItem = 0x747C
 StatUpdatePrivate = 0x7530
 StatUpdatePublic = 0x7532
 CombatTargetUpdate = 0x791A
@@ -343,6 +368,12 @@ PartyWantedOpened = 0x8EAB
 PartyWantedHide = 0x8EAC
 PartyWantedHideR = 0x8EAD
 PartyWantedClosed = 0x8EAE
+PartySetQuest = 0x8EAF
+PartySetQuestR = 0x8EB0
+PartySetActiveQuest = 0x8EB1
+PartyUnsetQuest = 0x8EB2
+PartyUnsetQuestR = 0x8EB3
+PartyUnsetActiveQuest = 0x8EB4
 PartyChangeFinish = 0x8EB5
 PartyChangeFinishR = 0x8EB6
 PartyFinishUpdate = 0x8EB7
@@ -365,6 +396,23 @@ ConvertGpConfirmR = 0x8F06
 GuildDonate = 0x8F07
 GuildDonateR = 0x8F08
 GuildMessage = 0x8F0F
+TradeStart = 0x8F5C
+TradeInfo = 0x8F5D
+TradeStartR = 0x8F5E
+TradeRequest = 0x8F5F
+TradeCancel = 0x8F60
+TradeCancelR = 0x8F61
+TradeRequestCanceled = 0x8F62
+TradeComplete = 0x8F63
+TradeWait = 0x8F64
+TradeAcceptRequest = 0x8F65
+TradeAcceptRequestR = 0x8F66
+TradePartnerInfo = 0x8F67
+TradeReady = 0x8F68
+TradeReadyR = 0x8F69
+TradeReadied = 0x8F6A
+TradeItemAdded = 0x8F6E
+TradeItemRemoved = 0x8F6F
 AddTitleKnowledge = 0x8FC0
 AddTitle = 0x8FC1
 ChangeTitle = 0x8FC4
@@ -439,6 +487,7 @@ ContinentWarpCoolDown = 0xA43D
 ContinentWarpCoolDownR = 0xA43E
 PartyTypeUpdate = 0xA44B
 OpenItemShop = 0xA44D
+OpenItemShopR = 0xA44E
 
 
 
@@ -464,6 +513,7 @@ ChangeNameColor = 0xA9A7
 SosButtonRequest = 0xA9A9
 SosButtonRequestR = 0xA9AA
 SkillTeleport = 0xA9F0
+SetCamera = 0xA9F4
 EnterRebirth = 0xA9F9
 EnterRebirthR = 0xA9FA
 
@@ -510,9 +560,25 @@ BeginnerWarpBook = 0xABA3
 
 
 
-ItemMagnet = 0xABAC
+
+
+ItemMagnet = 0xABAD
+
+
+DestroyExpiredItems = 0xABAE
+DestroyExpiredItemsConfirm = 0xABAF
+DestroyExpiredItemsR = 0xABB0
 
 AmmoRequired = 0xABBB
+
+ChatSticker = 0xAC0A
+
+
+
+
+
+DcUnk = 0xAC23
+DcUnkR = 0xAC24
 
 NpcTalk = 0x13882
 NpcTalkSelect = 0x13883
@@ -529,6 +595,10 @@ CutsceneEnd = 0x186A7
 CutsceneUnk = 0x186A8
 
 Weather = 0x1ADB0
+
+
+NGS1 = 0x1D4C2
+NGS2 = 0x1D4C3
 
 GmcpOpen = 0x1D589
 GmcpClose = 0x1D58A
