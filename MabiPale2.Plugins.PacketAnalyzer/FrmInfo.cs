@@ -275,7 +275,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 							}
 						}
 
-						actionPacket.GetByte();
+						sb.AppendLine("EffectFlags: " + actionPacket.GetByte());
 						sb.AppendLine("Delay: " + actionPacket.GetInt());
 						sb.AppendLine("Attacker: " + actionPacket.GetLong().ToString("X16"));
 					}
@@ -415,19 +415,21 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 				var msgs = msgRaw.Split(new string[] { "<p/>" }, StringSplitOptions.RemoveEmptyEntries);
 
-				var sb = new StringBuilder();
+				var sb1 = new StringBuilder("// NPC Script" + Environment.NewLine);
+				var sb2 = new StringBuilder("// Quest Script" + Environment.NewLine);
+				var sb3 = new StringBuilder();
 				foreach (var msg in msgs)
 				{
 					var cleanMsg = msg.Trim();
 					cleanMsg = Regex.Replace(cleanMsg, " *(<br/>) *", "$1");
 					cleanMsg = cleanMsg.Replace("\"", "\\\"");
 
-					// TODO: Expressions, buttons, etc. Or wait for the dialog parser?
-					sb.AppendLine("Msg(\"{0}\");", cleanMsg);
+					sb1.AppendLine("Msg(L(\"{0}\"));", cleanMsg);
+					sb2.AppendLine("npc.Msg(L(\"{0}\"));", cleanMsg);
 				}
 
 				TxtInfo.WordWrap = false;
-				TxtInfo.Text = sb.ToString();
+				TxtInfo.Text = sb1.ToString() + Environment.NewLine + sb2.ToString();
 			}
 			else
 				TxtInfo.Text = "Unknown function name '" + functionName + "'.";
