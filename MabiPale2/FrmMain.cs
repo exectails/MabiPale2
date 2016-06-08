@@ -31,6 +31,8 @@ namespace MabiPale2
 
 		private StringWriter log;
 
+		private SearchParametres searchParams = new SearchParametres();
+
 		public FrmMain()
 		{
 			InitializeComponent();
@@ -951,6 +953,18 @@ namespace MabiPale2
 			}
 
 			RemoveFromList(toRemove);
+		}
+		
+		private void BtnMenuEditFind_Click(object sender, EventArgs e)
+		{
+			var form = new FrmFind(searchParams);
+			var result = form.ShowDialog();
+
+			if (result == DialogResult.Cancel)
+				return;
+			else if (result == DialogResult.OK)
+				searchParams = (SearchParametres)form.Tag;
+			;//TODO Perform find.
 		}
 
 		/// <summary>
