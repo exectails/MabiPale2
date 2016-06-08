@@ -667,11 +667,11 @@ namespace MabiPale2
 				foreach (var palePacket in newPackets)
 				{
 					lock (recvFilter)
-						if (Settings.Default.FilterRecvEnabled && recvFilter.Contains(palePacket.Op))
+						if (Settings.Default.FilterRecvEnabled && Settings.Default.FilterExcludeModeActive ? recvFilter.Contains(palePacket.Op) : !recvFilter.Contains(palePacket.Op))
 							continue;
 
 					lock (sendFilter)
-						if (Settings.Default.FilterSendEnabled && sendFilter.Contains(palePacket.Op))
+						if (Settings.Default.FilterSendEnabled && Settings.Default.FilterExcludeModeActive ? sendFilter.Contains(palePacket.Op) : !sendFilter.Contains(palePacket.Op))
 							continue;
 
 					AddPacketToFormList(palePacket, true);
@@ -936,7 +936,9 @@ namespace MabiPale2
 				{
 					lock (recvFilter)
 					{
-						if (recvFilter.Contains(palePacket.Op))
+						if (Settings.Default.FilterExcludeModeActive
+							? recvFilter.Contains(palePacket.Op)
+							: !recvFilter.Contains(palePacket.Op))
 							toRemove.Add(i);
 					}
 				}
@@ -944,7 +946,9 @@ namespace MabiPale2
 				{
 					lock (sendFilter)
 					{
-						if (sendFilter.Contains(palePacket.Op))
+						if (Settings.Default.FilterExcludeModeActive
+							? sendFilter.Contains(palePacket.Op)
+							: !sendFilter.Contains(palePacket.Op))
 							toRemove.Add(i);
 					}
 				}
