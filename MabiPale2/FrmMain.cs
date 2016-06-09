@@ -963,8 +963,88 @@ namespace MabiPale2
 			if (result == DialogResult.Cancel)
 				return;
 			else if (result == DialogResult.OK)
+			{
 				searchParams = (SearchParametres)form.Tag;
-			;//TODO Perform find.
+				PerformSearch(searchParams);
+			}
+		}
+
+		private void BtnMenuEditFindPrev_Click(object sender, EventArgs e)
+		{
+			searchParams.SearchDirection = SearchDirectionHint.Up;
+			PerformSearch(searchParams);
+		}
+
+		private void BtnMenuEditFindNext_Click(object sender, EventArgs e)
+		{
+			searchParams.SearchDirection = SearchDirectionHint.Down;
+			PerformSearch(searchParams);
+		}
+
+		private void PerformSearch(SearchParametres searchParams)
+		{
+			if (LstPackets.Items.Count <= 0)
+			{
+				MessageBox.Show("Nothing to search.", "No packets loaded", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			if (searchParams.SearchMode == SearchParametres.SearchModes.NoOp)
+			{ // Undefined parametres. Open Find window to define.
+				BtnMenuEditFind.PerformClick();
+				return;
+			}
+
+			// Determine starting (and possibly ending) point of search.
+			//TODO Multiple selected packets only picks the max or min as starting point.
+			//     Implement ability to only search within range?
+			int searchIndex;
+			//int searchEndIndex = -1;
+			if (LstPackets.SelectedIndices.Count <= 0)
+				if (searchParams.SearchDirection == SearchDirectionHint.Down)
+					searchIndex = 0; // Start from beginning
+				else
+					searchIndex = LstPackets.Items.Count - 1; // Start from end
+			else if (LstPackets.SelectedIndices.Count == 1)
+				searchIndex = LstPackets.SelectedIndices[0]; // Start from currently selected index.
+			else //if (LstPackets.SelectedIndices.Count > 1) // Implied only search in range.
+				if (searchParams.SearchDirection == SearchDirectionHint.Down)
+					searchIndex = Queryable.Min<int>(LstPackets.SelectedIndices.Cast<int>().AsQueryable<int>());
+				else
+					searchIndex = Queryable.Max<int>(LstPackets.SelectedIndices.Cast<int>().AsQueryable<int>());
+
+			// Define common action: select and scroll list item into view
+			Action<ListViewItem> SelectAndScrollTo = (ListViewItem lvi) => {
+				LstPackets.SelectedItems.Clear();
+				lvi.Selected = true;
+				lvi.EnsureVisible();
+			};
+
+			// Begin search
+			if (searchParams.SearchDirection == SearchDirectionHint.Down)
+			{
+				++searchIndex; // Skip currently selected packet.
+				for (; searchIndex < LstPackets.Items.Count; ++searchIndex)
+					if (searchParams.IsMatch((PalePacket)LstPackets.Items[searchIndex].Tag))
+					{
+						SelectAndScrollTo(LstPackets.Items[searchIndex]);
+						return;
+					}
+				SelectAndScrollTo(LstPackets.Items[LstPackets.Items.Count - 1]);
+				MessageBox.Show("Reached bottom of list.", "Packet not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				--searchIndex; // Skip currently selected packet.
+				for (; searchIndex >= 0; --searchIndex)
+					if (searchParams.IsMatch((PalePacket)LstPackets.Items[searchIndex].Tag))
+					{
+						SelectAndScrollTo(LstPackets.Items[searchIndex]);
+						return;
+					}
+				SelectAndScrollTo(LstPackets.Items[0]);
+				MessageBox.Show("Reached top of list.", "Packet not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
 		}
 
 		/// <summary>

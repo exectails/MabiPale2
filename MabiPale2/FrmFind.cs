@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MabiPale2.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -73,6 +74,24 @@ namespace MabiPale2
 			this.SearchDirection = spCopy.SearchDirection;
 			this.LookAt = spCopy.LookAt;
 			this.PacketBounds = spCopy.PacketBounds;
+		}
+
+		/// <param name="packet">Packet to test.</param>
+		/// <returns>Whether <paramref name="packet"/> matches against this SearchParametres object.</returns>
+		/// <exception cref="InvalidOperationException">Thrown if this SearchParametres object has its search mode set to 'NoOp'.</exception>
+		public bool IsMatch(PalePacket packet)
+		{ 
+			// DEBG
+			//return (new Random().Next(1)) == 1;
+			return true;
+
+			if (this.SearchMode == SearchModes.NoOp)
+				throw new InvalidOperationException("This object has its search mode set to 'NoOp'. Cannot evaluate packet.");
+
+			if (this.SearchMode == SearchModes.Hexadecimal)
+			{
+
+			}
 		}
 	}
 
