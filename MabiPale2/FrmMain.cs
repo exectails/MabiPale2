@@ -1025,7 +1025,7 @@ namespace MabiPale2
 			{
 				++searchIndex; // Skip currently selected packet.
 				for (; searchIndex < LstPackets.Items.Count; ++searchIndex)
-					if (searchParams.IsMatch((PalePacket)LstPackets.Items[searchIndex].Tag))
+					if (searchParams.IsMatch((PalePacket)LstPackets.Items[searchIndex].Tag, opNames))
 					{
 						SelectAndScrollTo(LstPackets.Items[searchIndex]);
 						return;
@@ -1037,7 +1037,7 @@ namespace MabiPale2
 			{
 				--searchIndex; // Skip currently selected packet.
 				for (; searchIndex >= 0; --searchIndex)
-					if (searchParams.IsMatch((PalePacket)LstPackets.Items[searchIndex].Tag))
+					if (searchParams.IsMatch((PalePacket)LstPackets.Items[searchIndex].Tag, opNames))
 					{
 						SelectAndScrollTo(LstPackets.Items[searchIndex]);
 						return;

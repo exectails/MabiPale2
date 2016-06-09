@@ -77,20 +77,41 @@ namespace MabiPale2
 		}
 
 		/// <param name="packet">Packet to test.</param>
+		/// <param name="opNames">Definitions pairing opcodes with their human-readable name.</param>
 		/// <returns>Whether <paramref name="packet"/> matches against this SearchParametres object.</returns>
 		/// <exception cref="InvalidOperationException">Thrown if this SearchParametres object has its search mode set to 'NoOp'.</exception>
-		public bool IsMatch(PalePacket packet)
+		public bool IsMatch(PalePacket packet, Dictionary<int, string> opNames)
 		{ 
-			// DEBG
-			//return (new Random().Next(1)) == 1;
-			return true;
-
+			// Handle obvious mismatches
 			if (this.SearchMode == SearchModes.NoOp)
-				throw new InvalidOperationException("This object has its search mode set to 'NoOp'. Cannot evaluate packet.");
-
-			if (this.SearchMode == SearchModes.Hexadecimal)
 			{
+				throw new InvalidOperationException("This object has its search mode set to 'NoOp'. Cannot evaluate packet.");
+				return false;
+			}
 
+			if (!this.PacketBounds.HasFlag(packet.Received ? SendOrRecv.Recv : SendOrRecv.Send))
+				return false;
+
+
+
+			// Begin probing packet
+			if (this.SearchMode == SearchModes.Hexadecimal)
+				return HexTool.ToString(packet.Packet.GetBuffer()).Contains(this.StringQuery);
+			else //if (this.SearchMode == SearchModes.String)
+			{
+				if (this.LookAt.HasFlag(LookAtCandidates.Ops))
+					if (opNames.ContainsKey(packet.Op) && opNames[packet.Op].Contains(this.StringQuery))
+						return true;
+
+				if (this.LookAt.HasFlag(LookAtCandidates.Ids))
+					if (packet.Id.ToString("X16").Contains(this.StringQuery.ToUpper()))
+						return true;
+
+				if (this.LookAt.HasFlag(LookAtCandidates.Data_String))
+					if (packet.ToString().Contains(this.StringQuery))
+						return true;
+
+				return false;
 			}
 		}
 	}
@@ -121,6 +142,7 @@ namespace MabiPale2
 			}
 			else
 			{
+				LblHexNotice.Visible = false;
 				ChkSearchInOps.Checked = searchParams.LookAt.HasFlag(SearchParametres.LookAtCandidates.Ops);
 				ChkSearchInIds.Checked = searchParams.LookAt.HasFlag(SearchParametres.LookAtCandidates.Ids);
 				ChkSearchInData.Checked = searchParams.LookAt.HasFlag(SearchParametres.LookAtCandidates.Data_String);
@@ -191,7 +213,10 @@ namespace MabiPale2
 			// Verify that the search query is hex if searching by hex.
 			if (RadSearchModeHex.Checked)
 			{
-				Regex hexPattern = new Regex("^[0-9A-F]+$", RegexOptions.IgnoreCase);
+				// (MabiPale saves packets in uppercase.)
+				TxtSearchQuery.Text = TxtSearchQuery.Text.ToUpper();
+
+				Regex hexPattern = new Regex("^[0-9A-F]+$");
 				if (!hexPattern.IsMatch(TxtSearchQuery.Text))
 				{
 					MessageBox.Show("Invalid hexadecimal string.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
