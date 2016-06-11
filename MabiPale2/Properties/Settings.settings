@@ -33,5 +33,8 @@
 0FF23431
 </Value>
     </Setting>
+    <Setting Name="FilterExcludeModeActive" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
