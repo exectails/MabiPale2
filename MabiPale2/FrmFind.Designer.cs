@@ -44,6 +44,7 @@
 			this.BtnFindPrev = new System.Windows.Forms.Button();
 			this.BtnFindNext = new System.Windows.Forms.Button();
 			this.BtnCancel = new System.Windows.Forms.Button();
+			this.ChkSearchCaseSensitive = new System.Windows.Forms.CheckBox();
 			label1 = new System.Windows.Forms.Label();
 			GrpSearchMode = new System.Windows.Forms.GroupBox();
 			GrpLookAt = new System.Windows.Forms.GroupBox();
@@ -58,7 +59,7 @@
 			label1.Name = "label1";
 			label1.Size = new System.Drawing.Size(56, 13);
 			label1.TabIndex = 0;
-			label1.Text = "Find what:";
+			label1.Text = "&Find what:";
 			// 
 			// GrpSearchMode
 			// 
@@ -67,7 +68,7 @@
 			GrpSearchMode.Controls.Add(this.RadSearchModeStr);
 			GrpSearchMode.Location = new System.Drawing.Point(12, 38);
 			GrpSearchMode.Name = "GrpSearchMode";
-			GrpSearchMode.Size = new System.Drawing.Size(149, 112);
+			GrpSearchMode.Size = new System.Drawing.Size(149, 97);
 			GrpSearchMode.TabIndex = 3;
 			GrpSearchMode.TabStop = false;
 			GrpSearchMode.Text = "Search mode";
@@ -76,7 +77,7 @@
 			// 
 			this.LblHexNotice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.LblHexNotice.ForeColor = System.Drawing.Color.Gray;
-			this.LblHexNotice.Location = new System.Drawing.Point(6, 76);
+			this.LblHexNotice.Location = new System.Drawing.Point(6, 64);
 			this.LblHexNotice.Name = "LblHexNotice";
 			this.LblHexNotice.Size = new System.Drawing.Size(137, 30);
 			this.LblHexNotice.TabIndex = 2;
@@ -88,8 +89,8 @@
 			this.RadSearchModeHex.Location = new System.Drawing.Point(6, 42);
 			this.RadSearchModeHex.Name = "RadSearchModeHex";
 			this.RadSearchModeHex.Size = new System.Drawing.Size(86, 17);
-			this.RadSearchModeHex.TabIndex = 0;
-			this.RadSearchModeHex.Text = "Hexadecimal";
+			this.RadSearchModeHex.TabIndex = 2;
+			this.RadSearchModeHex.Text = "He&xadecimal";
 			this.RadSearchModeHex.UseVisualStyleBackColor = true;
 			// 
 			// RadSearchModeStr
@@ -99,9 +100,9 @@
 			this.RadSearchModeStr.Location = new System.Drawing.Point(6, 19);
 			this.RadSearchModeStr.Name = "RadSearchModeStr";
 			this.RadSearchModeStr.Size = new System.Drawing.Size(52, 17);
-			this.RadSearchModeStr.TabIndex = 0;
+			this.RadSearchModeStr.TabIndex = 2;
 			this.RadSearchModeStr.TabStop = true;
-			this.RadSearchModeStr.Text = "String";
+			this.RadSearchModeStr.Text = "S&tring";
 			this.RadSearchModeStr.UseVisualStyleBackColor = true;
 			this.RadSearchModeStr.CheckedChanged += new System.EventHandler(this.RadSearchModeStr_CheckedChanged);
 			// 
@@ -114,30 +115,30 @@
 			GrpLookAt.Controls.Add(this.ChkSearchInOps);
 			GrpLookAt.Location = new System.Drawing.Point(167, 38);
 			GrpLookAt.Name = "GrpLookAt";
-			GrpLookAt.Size = new System.Drawing.Size(149, 112);
-			GrpLookAt.TabIndex = 3;
+			GrpLookAt.Size = new System.Drawing.Size(149, 120);
+			GrpLookAt.TabIndex = 4;
 			GrpLookAt.TabStop = false;
 			GrpLookAt.Text = "Look at";
 			// 
 			// ChkSearchInRecvs
 			// 
 			this.ChkSearchInRecvs.AutoSize = true;
-			this.ChkSearchInRecvs.Location = new System.Drawing.Point(63, 89);
+			this.ChkSearchInRecvs.Location = new System.Drawing.Point(63, 97);
 			this.ChkSearchInRecvs.Name = "ChkSearchInRecvs";
 			this.ChkSearchInRecvs.Size = new System.Drawing.Size(52, 17);
-			this.ChkSearchInRecvs.TabIndex = 0;
-			this.ChkSearchInRecvs.Text = "Recv";
+			this.ChkSearchInRecvs.TabIndex = 7;
+			this.ChkSearchInRecvs.Text = "&Recv";
 			this.ChkSearchInRecvs.UseVisualStyleBackColor = true;
 			this.ChkSearchInRecvs.CheckedChanged += new System.EventHandler(this.FrmFindCommon_TriggerValidation);
 			// 
 			// ChkSearchInSends
 			// 
 			this.ChkSearchInSends.AutoSize = true;
-			this.ChkSearchInSends.Location = new System.Drawing.Point(6, 89);
+			this.ChkSearchInSends.Location = new System.Drawing.Point(6, 97);
 			this.ChkSearchInSends.Name = "ChkSearchInSends";
 			this.ChkSearchInSends.Size = new System.Drawing.Size(51, 17);
-			this.ChkSearchInSends.TabIndex = 0;
-			this.ChkSearchInSends.Text = "Send";
+			this.ChkSearchInSends.TabIndex = 6;
+			this.ChkSearchInSends.Text = "&Send";
 			this.ChkSearchInSends.UseVisualStyleBackColor = true;
 			this.ChkSearchInSends.CheckedChanged += new System.EventHandler(this.FrmFindCommon_TriggerValidation);
 			// 
@@ -147,8 +148,8 @@
 			this.ChkSearchInData.Location = new System.Drawing.Point(6, 65);
 			this.ChkSearchInData.Name = "ChkSearchInData";
 			this.ChkSearchInData.Size = new System.Drawing.Size(90, 17);
-			this.ChkSearchInData.TabIndex = 0;
-			this.ChkSearchInData.Text = "Data (Strings)";
+			this.ChkSearchInData.TabIndex = 5;
+			this.ChkSearchInData.Text = "&Data (Strings)";
 			this.ChkSearchInData.UseVisualStyleBackColor = true;
 			this.ChkSearchInData.CheckedChanged += new System.EventHandler(this.FrmFindCommon_TriggerValidation);
 			// 
@@ -158,8 +159,8 @@
 			this.ChkSearchInIds.Location = new System.Drawing.Point(6, 42);
 			this.ChkSearchInIds.Name = "ChkSearchInIds";
 			this.ChkSearchInIds.Size = new System.Drawing.Size(40, 17);
-			this.ChkSearchInIds.TabIndex = 0;
-			this.ChkSearchInIds.Text = "Ids";
+			this.ChkSearchInIds.TabIndex = 4;
+			this.ChkSearchInIds.Text = "&Ids";
 			this.ChkSearchInIds.UseVisualStyleBackColor = true;
 			this.ChkSearchInIds.CheckedChanged += new System.EventHandler(this.FrmFindCommon_TriggerValidation);
 			// 
@@ -169,8 +170,8 @@
 			this.ChkSearchInOps.Location = new System.Drawing.Point(6, 19);
 			this.ChkSearchInOps.Name = "ChkSearchInOps";
 			this.ChkSearchInOps.Size = new System.Drawing.Size(45, 17);
-			this.ChkSearchInOps.TabIndex = 0;
-			this.ChkSearchInOps.Text = "Ops";
+			this.ChkSearchInOps.TabIndex = 3;
+			this.ChkSearchInOps.Text = "&Ops";
 			this.ChkSearchInOps.UseVisualStyleBackColor = true;
 			this.ChkSearchInOps.CheckedChanged += new System.EventHandler(this.FrmFindCommon_TriggerValidation);
 			this.ChkSearchInOps.Validating += new System.ComponentModel.CancelEventHandler(this.GrpLookAt_Validating);
@@ -191,8 +192,8 @@
 			this.BtnFindPrev.Location = new System.Drawing.Point(322, 12);
 			this.BtnFindPrev.Name = "BtnFindPrev";
 			this.BtnFindPrev.Size = new System.Drawing.Size(75, 23);
-			this.BtnFindPrev.TabIndex = 2;
-			this.BtnFindPrev.Text = "Find Prev";
+			this.BtnFindPrev.TabIndex = 10;
+			this.BtnFindPrev.Text = "Find &Prev";
 			this.BtnFindPrev.UseVisualStyleBackColor = true;
 			this.BtnFindPrev.Click += new System.EventHandler(this.BtnFind_Click);
 			// 
@@ -201,21 +202,31 @@
 			this.BtnFindNext.Location = new System.Drawing.Point(322, 41);
 			this.BtnFindNext.Name = "BtnFindNext";
 			this.BtnFindNext.Size = new System.Drawing.Size(75, 23);
-			this.BtnFindNext.TabIndex = 2;
-			this.BtnFindNext.Text = "Find Next";
+			this.BtnFindNext.TabIndex = 9;
+			this.BtnFindNext.Text = "Find &Next";
 			this.BtnFindNext.UseVisualStyleBackColor = true;
 			this.BtnFindNext.Click += new System.EventHandler(this.BtnFind_Click);
 			// 
 			// BtnCancel
 			// 
 			this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.BtnCancel.Location = new System.Drawing.Point(322, 127);
+			this.BtnCancel.Location = new System.Drawing.Point(322, 80);
 			this.BtnCancel.Name = "BtnCancel";
 			this.BtnCancel.Size = new System.Drawing.Size(75, 23);
-			this.BtnCancel.TabIndex = 2;
+			this.BtnCancel.TabIndex = 11;
 			this.BtnCancel.Text = "Cancel";
 			this.BtnCancel.UseVisualStyleBackColor = true;
 			this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+			// 
+			// ChkSearchCaseSensitive
+			// 
+			this.ChkSearchCaseSensitive.AutoSize = true;
+			this.ChkSearchCaseSensitive.Location = new System.Drawing.Point(15, 141);
+			this.ChkSearchCaseSensitive.Name = "ChkSearchCaseSensitive";
+			this.ChkSearchCaseSensitive.Size = new System.Drawing.Size(82, 17);
+			this.ChkSearchCaseSensitive.TabIndex = 8;
+			this.ChkSearchCaseSensitive.Text = "Match &case";
+			this.ChkSearchCaseSensitive.UseVisualStyleBackColor = true;
 			// 
 			// FrmFind
 			// 
@@ -223,8 +234,9 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.BtnCancel;
-			this.ClientSize = new System.Drawing.Size(409, 162);
+			this.ClientSize = new System.Drawing.Size(409, 170);
 			this.ControlBox = false;
+			this.Controls.Add(this.ChkSearchCaseSensitive);
 			this.Controls.Add(GrpSearchMode);
 			this.Controls.Add(GrpLookAt);
 			this.Controls.Add(this.BtnCancel);
@@ -263,5 +275,6 @@
         private System.Windows.Forms.CheckBox ChkSearchInData;
         private System.Windows.Forms.CheckBox ChkSearchInIds;
 		private System.Windows.Forms.Label LblHexNotice;
+		private System.Windows.Forms.CheckBox ChkSearchCaseSensitive;
     }
 }

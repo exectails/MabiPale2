@@ -55,6 +55,7 @@ namespace MabiPale2
 		public SearchDirectionHint SearchDirection { get; set; }
 		public LookAtCandidates LookAt { get; set; }
 		public SendOrRecv PacketBounds { get; set; }
+		public bool CaseSensitive { get; set; }
 
 		/*
 		public SearchParametres()
@@ -74,6 +75,7 @@ namespace MabiPale2
 			this.SearchDirection = spCopy.SearchDirection;
 			this.LookAt = spCopy.LookAt;
 			this.PacketBounds = spCopy.PacketBounds;
+			this.CaseSensitive = spCopy.CaseSensitive;
 		}
 
 		/// <param name="packet">Packet to test.</param>
@@ -96,19 +98,21 @@ namespace MabiPale2
 
 			// Begin probing packet
 			if (this.SearchMode == SearchModes.Hexadecimal)
-				return HexTool.ToString(packet.Packet.GetBuffer()).Contains(this.StringQuery);
+				return HexTool.ToString(packet.Packet.GetBuffer()).IndexOf(this.StringQuery, StringComparison.OrdinalIgnoreCase) >= 0;
 			else //if (this.SearchMode == SearchModes.String)
 			{
+				StringComparison comp = this.CaseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+
 				if (this.LookAt.HasFlag(LookAtCandidates.Ops))
-					if (opNames.ContainsKey(packet.Op) && opNames[packet.Op].Contains(this.StringQuery))
+					if (opNames.ContainsKey(packet.Op) && opNames[packet.Op].IndexOf(this.StringQuery, comp) >= 0)
 						return true;
 
 				if (this.LookAt.HasFlag(LookAtCandidates.Ids))
-					if (packet.Id.ToString("X16").Contains(this.StringQuery.ToUpper()))
+					if (packet.Id.ToString("X16").IndexOf(this.StringQuery, StringComparison.OrdinalIgnoreCase) >= 0)
 						return true;
 
 				if (this.LookAt.HasFlag(LookAtCandidates.Data_String))
-					if (packet.ToString().Contains(this.StringQuery))
+					if (packet.ToString().IndexOf(this.StringQuery, comp) >= 0)
 						return true;
 
 				return false;
@@ -150,6 +154,8 @@ namespace MabiPale2
 
 			ChkSearchInSends.Checked = searchParams.PacketBounds.HasFlag(SearchParametres.SendOrRecv.Send);
 			ChkSearchInRecvs.Checked = searchParams.PacketBounds.HasFlag(SearchParametres.SendOrRecv.Recv);
+
+			ChkSearchCaseSensitive.Checked = searchParams.CaseSensitive;
         }
 
         private void RadSearchModeStr_CheckedChanged(object sender, EventArgs e)
@@ -255,6 +261,7 @@ namespace MabiPale2
 					: SearchDirectionHint.Down,
 				LookAt = lookAt,
 				PacketBounds = packetBounds,
+				CaseSensitive = ChkSearchCaseSensitive.Checked,
 			};
 
 			this.Tag = searchParams;
