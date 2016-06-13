@@ -54,6 +54,10 @@ namespace MabiPale2
 
 		private void FrmSettings_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			// Do not save if cancelling or Close button is clicked.
+			if (DialogResult != DialogResult.OK)
+				return;
+
 			Settings.Default.FilterRecvEnabled = ChkFilterRecvEnabled.Checked;
 			Settings.Default.FilterSendEnabled = ChkFilterSendEnabled.Checked;
 			Settings.Default.FilterRecv = TxtFilterRecv.Text;

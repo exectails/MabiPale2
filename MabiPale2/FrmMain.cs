@@ -164,7 +164,7 @@ namespace MabiPale2
 		private DialogResult ClearListQuestion()
 		{
 			if (LstPackets.Items.Count == 0)
-				return DialogResult.No;
+				return DialogResult.Yes;
 
 			var answer = MessageBox.Show("Remove current packet data?", Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 			if (answer == DialogResult.Yes)
@@ -349,12 +349,18 @@ namespace MabiPale2
 		/// <param name="e"></param>
 		private void FrmMain_DragDrop(object sender, DragEventArgs e)
 		{
-			if (ClearListQuestion() == DialogResult.Cancel)
+			var promptDoClear = ClearListQuestion();
+
+			if (promptDoClear == DialogResult.Cancel)
 				return;
 
 			var fileNames = e.Data.GetData(DataFormats.FileDrop) as string[];
 			if (fileNames.Length == 0)
 				return;
+
+			// Update current file name on replacement, but not appendage.
+			if (promptDoClear == DialogResult.Yes)
+				LblCurrentFileName.Text = Path.GetFileName(fileNames[0]);
 
 			LoadFile(fileNames[0]);
 		}
