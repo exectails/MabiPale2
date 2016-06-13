@@ -38,6 +38,10 @@ namespace MabiPale2
 			ChkFilterSendEnabled.Checked = Settings.Default.FilterSendEnabled;
 			TxtFilterRecv.Text = Regex.Replace(Settings.Default.FilterRecv.TrimStart(), "\r?\n\r?\n", Environment.NewLine);
 			TxtFilterSend.Text = Regex.Replace(Settings.Default.FilterSend.TrimStart(), "\r?\n\r?\n", Environment.NewLine);
+			if (Settings.Default.FilterExcludeModeActive)
+				RadFilterExcludeMode.Checked = true;
+			else
+				RadFilterIncludeMode.Checked = true;
 
 			try
 			{
@@ -54,6 +58,7 @@ namespace MabiPale2
 			Settings.Default.FilterSendEnabled = ChkFilterSendEnabled.Checked;
 			Settings.Default.FilterRecv = TxtFilterRecv.Text;
 			Settings.Default.FilterSend = TxtFilterSend.Text;
+			Settings.Default.FilterExcludeModeActive = RadFilterExcludeMode.Checked;
 			Settings.Default.Save();
 
 			try

@@ -250,6 +250,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FrmFind";
 			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Find";
 			this.Load += new System.EventHandler(this.FrmFindCommon_TriggerValidation);
 			GrpSearchMode.ResumeLayout(false);
