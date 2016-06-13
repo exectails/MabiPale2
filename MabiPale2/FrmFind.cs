@@ -104,7 +104,8 @@ namespace MabiPale2
 				StringComparison comp = this.CaseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
 
 				if (this.LookAt.HasFlag(LookAtCandidates.Ops))
-					if (opNames.ContainsKey(packet.Op) && opNames[packet.Op].IndexOf(this.StringQuery, comp) >= 0)
+					if ((opNames.ContainsKey(packet.Op) && opNames[packet.Op].IndexOf(this.StringQuery, comp) >= 0) // Try op name
+						|| (packet.Op.ToString("X8").IndexOf(this.StringQuery, StringComparison.OrdinalIgnoreCase) >= 0)) // Try op code
 						return true;
 
 				if (this.LookAt.HasFlag(LookAtCandidates.Ids))
