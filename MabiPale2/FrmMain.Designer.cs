@@ -30,6 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
+			System.Windows.Forms.MenuItem menuItem1;
 			this.SplitContainerPackets = new System.Windows.Forms.SplitContainer();
 			this.LstPackets = new MabiPale2.Shared.ListViewNF();
 			this.ColOp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -59,6 +60,7 @@
 			this.BtnMenuExit = new System.Windows.Forms.MenuItem();
 			this.MenuEdit = new System.Windows.Forms.MenuItem();
 			this.BtnMenuEditFilter = new System.Windows.Forms.MenuItem();
+			this.BtnMenuEditFind = new System.Windows.Forms.MenuItem();
 			this.MenuPlugins = new System.Windows.Forms.MenuItem();
 			this.MenuHelp = new System.Windows.Forms.MenuItem();
 			this.BtnMenuAbout = new System.Windows.Forms.MenuItem();
@@ -71,6 +73,9 @@
 			this.BtnMenuPacketsCopyAuraWrite = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsCopyAuraRead = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsFilter = new System.Windows.Forms.MenuItem();
+			this.BtnMenuEditFindPrev = new System.Windows.Forms.MenuItem();
+			this.BtnMenuEditFindNext = new System.Windows.Forms.MenuItem();
+			menuItem1 = new System.Windows.Forms.MenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.SplitContainerPackets)).BeginInit();
 			this.SplitContainerPackets.Panel1.SuspendLayout();
 			this.SplitContainerPackets.Panel2.SuspendLayout();
@@ -334,7 +339,11 @@
 			// 
 			this.MenuEdit.Index = 1;
 			this.MenuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.BtnMenuEditFilter});
+            this.BtnMenuEditFilter,
+            menuItem1,
+            this.BtnMenuEditFind,
+            this.BtnMenuEditFindPrev,
+            this.BtnMenuEditFindNext});
 			this.MenuEdit.Text = "&Edit";
 			// 
 			// BtnMenuEditFilter
@@ -342,6 +351,13 @@
 			this.BtnMenuEditFilter.Index = 0;
 			this.BtnMenuEditFilter.Text = "Apply filters to list";
 			this.BtnMenuEditFilter.Click += new System.EventHandler(this.BtnMenuEditFilter_Click);
+			// 
+			// BtnMenuEditFind
+			// 
+			this.BtnMenuEditFind.Index = 2;
+			this.BtnMenuEditFind.Shortcut = System.Windows.Forms.Shortcut.CtrlF;
+			this.BtnMenuEditFind.Text = "Find...";
+			this.BtnMenuEditFind.Click += new System.EventHandler(this.BtnMenuEditFind_Click);
 			// 
 			// MenuPlugins
 			// 
@@ -417,6 +433,25 @@
 			this.BtnMenuPacketsFilter.Index = 5;
 			this.BtnMenuPacketsFilter.Text = "Add to filter";
 			this.BtnMenuPacketsFilter.Click += new System.EventHandler(this.BtnMenuPacketsFilter_Click);
+			// 
+			// menuItem1
+			// 
+			menuItem1.Index = 1;
+			menuItem1.Text = "-";
+			// 
+			// BtnMenuEditFindPrev
+			// 
+			this.BtnMenuEditFindPrev.Index = 3;
+			this.BtnMenuEditFindPrev.Shortcut = System.Windows.Forms.Shortcut.ShiftF3;
+			this.BtnMenuEditFindPrev.Text = "Find Previous";
+			this.BtnMenuEditFindPrev.Click += new System.EventHandler(this.BtnMenuEditFindPrev_Click);
+			// 
+			// BtnMenuEditFindNext
+			// 
+			this.BtnMenuEditFindNext.Index = 4;
+			this.BtnMenuEditFindNext.Shortcut = System.Windows.Forms.Shortcut.F3;
+			this.BtnMenuEditFindNext.Text = "Find Next";
+			this.BtnMenuEditFindNext.Click += new System.EventHandler(this.BtnMenuEditFindNext_Click);
 			// 
 			// FrmMain
 			// 
@@ -494,6 +529,9 @@
 		private System.Windows.Forms.MenuItem MenuFileExitSpacer;
 		private System.Windows.Forms.ToolStripStatusLabel LblPacketProvider;
 		private System.Windows.Forms.ToolStripButton BtnConnectTo;
+        private System.Windows.Forms.MenuItem BtnMenuEditFind;
+		private System.Windows.Forms.MenuItem BtnMenuEditFindPrev;
+		private System.Windows.Forms.MenuItem BtnMenuEditFindNext;
 	}
 }
 
