@@ -53,6 +53,7 @@ ChannelLoginR = 0x4E23
 DisconnectRequest = 0x4E24
 DisconnectRequestR = 0x4E25
 RequestClientDisconnect = 0x4E26
+RequestSecondaryLogin = 0x4E29
 Disappear = 0x4E2A
 SwitchChannel = 0x4E32
 SwitchChannelR = 0x4E33
@@ -71,6 +72,7 @@ ChannelCharacterInfoRequestR = 0x5209
 EntityAppears = 0x520C
 EntityDisappears = 0x520D
 CreatureBodyUpdate = 0x520E
+CreatureFaceUpdate = 0x5210
 ItemAppears = 0x5211
 ItemDisappears = 0x5212
 AssignSittingProp = 0x5215
@@ -143,7 +145,10 @@ UnequipBagR = 0x59F5
 
 
 
-
+CollectionAddItem = 0x59F6
+CollectionAddItemR = 0x59F7
+CollectionGetReward = 0x59F8
+CollectionGetRewardR = 0x59F9
 
 
 
@@ -165,6 +170,7 @@ ViewEquipment = 0x5BDF
 ViewEquipmentR = 0x5BE0
 OptionSet = 0x5BE7
 OptionSetR = 0x5BE8
+UpdateServiceExpiration = 0x5BE9
 AddKeyword = 0x5DC1
 RemoveKeyword = 0x5DC3
 NpcTalkKeyword = 0x5DC4
@@ -198,6 +204,11 @@ CanLand = 0x65AD
 SawItemNotification = 0x65D8
 
 UnkCutsceneEnd = 0x65DC
+
+
+RequestNpcNames = 0x65EE
+RequestNpcNamesR = 0x65EF
+SearchNpcName = 0x65F0
 
 SkillInfo = 0x6979
 SkillTrainingUp = 0x697C
@@ -237,6 +248,7 @@ StandUp = 0x6D6D
 ArenaHideOn = 0x6D6F
 ArenaHideOff = 0x6D70
 SetStandStyleTalking = 0x6D79
+UnkKnockBack = 0x6D7D
 ChangeStanceRequest = 0x6E28
 ChangeStanceRequestR = 0x6E29
 ChangeStance = 0x6E2A
@@ -244,6 +256,7 @@ ChangeStance = 0x6E2A
 RiseFromTheDead = 0x701D
 CharacterLock = 0x701E
 CharacterUnlock = 0x701F
+CharacterLockUpdate = 0x7020
 PlayDead = 0x7021
 OpenUmbrella = 0x7025
 CloseUmbrella = 0x7026
@@ -255,6 +268,8 @@ NpcShopSellItem = 0x7152
 NpcShopSellItemR = 0x7153
 ClearNpcShop = 0x7158
 AddToNpcShop = 0x7159
+CheckDirectBankSelling = 0x715A
+CheckDirectBankSellingR = 0x715B
 OpenShopRemotely = 0x715C
 OpenShopRemotelyR = 0x715D
 OpenNpcShop = 0x715E
@@ -273,6 +288,13 @@ BankWithdrawGoldR = 0x721E
 BankUpdateGold = 0x721F
 BankAddItem = 0x7220
 BankRemoveItem = 0x7221
+BankTransferInquiry = 0x7222
+BankTransferRequest = 0x7223
+BankTransferRequestR = 0x7224
+BankLicenseFeeInquiry = 0x7225
+BankPostLicenseInquiryDeposit = 0x7226
+BankPostLicenseInquiryDepositR = 0x7227
+BankTransferInfo = 0x7228
 OpenMail = 0x7242
 CloseMail = 0x7243
 ConfirmMailRecipent = 0x7244
@@ -292,23 +314,51 @@ DeleteMailR = 0x7251
 RecallMail = 0x7252
 RecallMailR = 0x7253
 UnreadMailCount = 0x7255
-EntrustedEnchant = 0x7469
-EntrustedEnchantR = 0x746A
-EntrustedEnchantRequest = 0x746B
-EntrustedEnchantUnk1 = 0x746C
-EntrustedEnchantUnk2 = 0x746D
-EntrustedEnchantFinalizeRequest = 0x746E
-EntrustedEnchantFinalizeRequestR = 0x746F
-EntrustedEnchantRequestFinalized = 0x7470
-EntrustedEnchantCancel = 0x7471
-EntrustedEnchantCancelUnk = 0x7473
-EntrustedEnchantClose = 0x7475
-EntrustedEnchantAcceptRequest = 0x7477
-EntrustedEnchantAcceptRequestR = 0x7478
-EntrustedEnchantUnk3 = 0x7479
-EntrustedEnchantChanceUpdate = 0x747A
-EntrustedEnchantAddItem = 0x747B
-EntrustedEnchantRemoveItem = 0x747C
+PersonalShopCheck = 0x73A1
+PersonalShopCheckR = 0x73A2
+PersonalShopTakeDown = 0x73A3
+PersonalShopTakeDownR = 0x73A4
+PersonalShopSetUp = 0x73A5
+PersonalShopSetUpR = 0x73A6
+PersonalShopChangeTitle = 0x73A7
+PersonalShopChangeDescription = 0x73A8
+PersonalShopSetPrice = 0x73A9
+PersonalShopSetPriceR = 0x73AA
+PersonalShopPriceUpdate = 0x73AB
+PersonalShopPetProtectRequest = 0x73AF
+PersonalShopPetProtectRequestR = 0x73B0
+PersonalShopPetProtectEndRequest = 0x73B1
+PersonalShopPetProtectEndRequestR = 0x73B2
+PersonalShopOpen = 0x7405
+PersonalShopOpenR = 0x7406
+PersonalShopClose = 0x7407
+PersonalShopCloseR = 0x7408
+PersonalShopBuy = 0x7409
+PersonalShopBuyR = 0x740A
+PersonalShopAddItem = 0x740B
+PersonalShopRemoveItem = 0x740C
+PersonalShopCustomerPriceUpdate = 0x740D
+PersonalShopUpdateDescription = 0x740E
+PersonalShopCloseWindow = 0x740F
+Entrustment = 0x7469
+EntrustmentR = 0x746A
+EntrustmentRequest = 0x746B
+EntrustmentEnableRequest = 0x746C
+EntrustmentDisableRequest = 0x746D
+EntrustmentFinalizeRequest = 0x746E
+EntrustmentFinalizeRequestR = 0x746F
+EntrustmentRequestFinalized = 0x7470
+EntrustmentCancel = 0x7471
+EntrustmentRefuse = 0x7473
+EntrustmentClose = 0x7475
+EntrustmentEnd = 0x7476
+EntrustmentAcceptRequest = 0x7477
+EntrustmentAcceptRequestR = 0x7478
+EntrustmentFinalizing = 0x7479
+EntrustmentChanceUpdate = 0x747A
+EntrustmentAddItem = 0x747B
+EntrustmentRemoveItem = 0x747C
+EntrustmentSetMaterial = 0x747D
 StatUpdatePrivate = 0x7530
 StatUpdatePublic = 0x7532
 CombatTargetUpdate = 0x791A
@@ -382,20 +432,41 @@ PartyChangeExpR = 0x8EB9
 PartyExpUpdate = 0x8EBA
 PartyBoardRequest = 0x8EBD
 PartyBoardRequestR = 0x8EBE
+GuildCreateRequest = 0x8EF8
+GuildCreateRequestR = 0x8EF9
 GuildInfoNoGuild = 0x8EFB
-OpenGuildPanel = 0x8EFC
+GuildPanel = 0x8EFC
 GuildInfo = 0x8EFD
+GuildInfoApplied = 0x8EFE
 GuildApply = 0x8EFF
 GuildApplyR = 0x8F00
-GuildMembershipChanged = 0x8F01
-GuildstoneLocation = 0x8F02
-ConvertGp = 0x8F03
-ConvertGpR = 0x8F04
-ConvertGpConfirm = 0x8F05
-ConvertGpConfirmR = 0x8F06
+GuildUpdateMember = 0x8F01
+GuildStoneLocation = 0x8F02
+GuildConvertPlayPoints = 0x8F03
+GuildConvertPlayPointsR = 0x8F04
+GuildConvertPlayPointsConfirm = 0x8F05
+GuildConvertPlayPointsConfirmR = 0x8F06
 GuildDonate = 0x8F07
 GuildDonateR = 0x8F08
+GuildCheckName = 0x8F0B
+GuildCheckNameR = 0x8F0C
 GuildMessage = 0x8F0F
+GuildNameAgreeRequest = 0x8F11
+GuildNameVote = 0x8F12
+GuildCreationConfirmRequest = 0x8F13
+GuildCreationConfirmation = 0x8F14
+GuildDestroyStone = 0x8F15
+GuildGoldUpdate = 0x8F16
+GuildWithdrawGold = 0x8F17
+GuildWithdrawGoldR = 0x8F18
+GuildOpenGuildRobeCreation = 0x8F19
+GuildCreateGuildRobe = 0x8F1A
+GuildCreateGuildRobeR = 0x8F1B
+GuildCreateGuildRobeUpdate = 0x8F1C
+GuildInvite = 0x8F1E
+GuildListJoinRequest = 0x8F20
+GuildPermitCheck = 0x8F2A
+GuildPermitCheckR = 0x8F2B
 TradeStart = 0x8F5C
 TradeInfo = 0x8F5D
 TradeStartR = 0x8F5E
@@ -413,6 +484,7 @@ TradeReadyR = 0x8F69
 TradeReadied = 0x8F6A
 TradeItemAdded = 0x8F6E
 TradeItemRemoved = 0x8F6F
+TradeExpandWindow = 0x8F70
 AddTitleKnowledge = 0x8FC0
 AddTitle = 0x8FC1
 ChangeTitle = 0x8FC4
@@ -421,8 +493,12 @@ ChangeTitleR = 0x8FC6
 
 PetRegister = 0x9024
 PetUnregister = 0x9025
+StartRP = 0x902A
+EndRP = 0x902B
 SummonPet = 0x902C
 SummonPetR = 0x902D
+PersonalShopPetProtectStart = 0x902F
+PersonalShopPetProtectStop = 0x9030
 UnsummonPet = 0x9031
 UnsummonPetR = 0x9032
 TelePet = 0x9033
@@ -463,11 +539,18 @@ InquiryResponse = 0x9665
 InquiryResponseR = 0x9666
 ArenaRoundInfo = 0x9667
 ArenaRoundInfoCancel = 0x9668
+DressingRoomOpen = 0x96C9
+DressingRoomOpenR = 0x96CA
+DressingRoomClose = 0x96CB
+DressingRoomCloseR = 0x96CC
+PurchaseMerchandise = 0x96D5
+PurchaseMerchandiseR = 0x96D6
 AgeUpEffect = 0x9858
 
 ConditionUpdate = 0xA028
 CollectAnimation = 0xA415
 CollectAnimationCancel = 0xA416
+SkillPrepareCancellation = 0xA417
 DyePaletteReq = 0xA418
 DyePaletteReqR = 0xA419
 DyePickColor = 0xA41A
@@ -485,100 +568,144 @@ ItemShopInfo = 0xA436
 PartyWindowUpdate = 0xA43C
 ContinentWarpCoolDown = 0xA43D
 ContinentWarpCoolDownR = 0xA43E
+PersonalShopUpdateBrownie = 0xA44A
 PartyTypeUpdate = 0xA44B
 OpenItemShop = 0xA44D
 OpenItemShopR = 0xA44E
 
 
 
+UnkOrdinaryChest = 0xA803
+UnkOrdinaryChestR = 0xA804
+GameEventStateUpdate = 0xA805
 MailsRequest = 0xA897
 MailsRequestR = 0xA898
 SetPetAi = 0xA8A1
 GetPetAi = 0xA8A2
 GetPetAiR = 0xA8A3
+GuildChangeStone = 0xA8AC
 WarpUnk3 = 0xA8AF
 SetQuestTimer = 0xA8CF
 RemoveQuestTimer = 0xA8D0
-UpdateQuestTimerCounter = 0xA8D1
+UpdateQuestTimer = 0xA8D1
 UmbrellaJump = 0xA8E0
 UmbrellaJumpR = 0xA8E1
 UmbrellaLand = 0xA8E2
-SetBgm = 0xA910
-UnsetBgm = 0xA911
-EnterDynamicRegionExtended = 0xA97E
-EnableRoyalAlchemist = 0xA9A3
-SpinColorWheel = 0xA9A5
-SpinColorWheelR = 0xA9A6
-ChangeNameColor = 0xA9A7
-SosButtonRequest = 0xA9A9
-SosButtonRequestR = 0xA9AA
-SkillTeleport = 0xA9F0
-SetCamera = 0xA9F4
-EnterRebirth = 0xA9F9
-EnterRebirthR = 0xA9FA
-
-
-
-
-SubsribeStabilityMeter = 0xAA21
-StabilityMeterInit = 0xAA22
-StabilityMeterUpdate = 0xAA23
-
-HomesteadInfoRequest = 0xAA58
-HomesteadInfoRequestR = 0xAA59
-
-
-
-ChannelLoginUnk = 0xAA87
-ChannelLoginUnkR = 0xAA88
-
-CollectionRequest = 0xAA8B
-CollectionRequestR = 0xAA8C
-
-UnkEsc = 0xAAF3
-GoBeautyShop = 0xAAF8
-GoBeautyShopR = 0xAAF9
-LeaveBeautyShop = 0xAAFA
-LeaveBeautyShopR = 0xAAFB
-OpenBeautyShop = 0xAAFC
-
-
-CancelBeautyShop = 0xAAFF
-CancelBeautyShopR = 0xAB00
-
-TalentInfoUpdate = 0xAB17
-TalentTitleChange = 0xAB18
-TalentTitleUpdate = 0xAB19
-
-ShamalaTransformationUpdate = 0xAB1B
-ShamalaTransformationUse = 0xAB1C
-ShamalaTransformation = 0xAB1D
-ShamalaTransformationEnd = 0xAB1E
-ShamalaTransformationEndR = 0xAB1F
-
-BeginnerWarpBook = 0xABA3
 
 
 
 
 
-ItemMagnet = 0xABAD
-
-
-DestroyExpiredItems = 0xABAE
-DestroyExpiredItemsConfirm = 0xABAF
-DestroyExpiredItemsR = 0xABB0
-
-AmmoRequired = 0xABBB
-
-ChatSticker = 0xAC0A
 
 
 
 
+SetBgm = 0xA914
+UnsetBgm = 0xA915
+EnterDynamicRegionExtended = 0xA984
+EnableRoyalAlchemist = 0xA9A9
+SpinColorWheel = 0xA9AB
+SpinColorWheelR = 0xA9AC
+ChangeNameColor = 0xA9AD
+SosButtonRequest = 0xA9AF
+SosButtonRequestR = 0xA9B0
+PersonalShopSetPriceForAll = 0xA9B6
+PersonalShopSetPriceForAllR = 0xA9B7
+SkillTeleport = 0xA9F6
+SetCamera = 0xA9FA
+EnterRebirth = 0xA9FF
+EnterRebirthR = 0xAA00
 
-DcUnk = 0xAC23
-DcUnkR = 0xAC24
+
+
+
+
+
+
+SubscribeStabilityMeter = 0xAA27
+StabilityMeterInit = 0xAA28
+StabilityMeterUpdate = 0xAA29
+
+HomesteadInfoRequest = 0xAA5E
+HomesteadInfoRequestR = 0xAA5F
+HomesteadEnterRequest = 0xAA60
+HomesteadEnterRequestR = 0xAA61
+
+
+
+CollectionRequest = 0xAA8D
+CollectionRequestR = 0xAA8E
+
+
+
+
+UnkEsc = 0xAAF9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BeginnerWarpBook = 0xABA8
+
+
+
+
+
+
+ItemMagnet = 0xABB3
+
+
+
+DestroyExpiredItems = 0xABB4
+DestroyExpiredItemsConfirm = 0xABB5
+DestroyExpiredItemsR = 0xABB6
+
+
+
+AmmoRequired = 0xABC5
+
+
+
+ChatSticker = 0xAC16
+
+
+
+
+
+
+
+
+
+DcUnk = 0xAC24
+DcUnkR = 0xAC25
+
+RebirthEventInfoRequest = 0xAC5E
+RebirthEventInfo = 0xAC5F
+RebirthEventReceivePotion = 0xAC61
+
+
+
+
+SwitchToPureMusicMode = 0xAC8B
 
 NpcTalk = 0x13882
 NpcTalkSelect = 0x13883
@@ -621,8 +748,74 @@ PetUnmount = 0x1FBD2
 PetUnmountR = 0x1FBD3
 VehicleInfo = 0x1FBD4
 
+
+SpecialUnitInfoRequest = 0x20F86
+SpecialUnitInfoRequestR = 0x20F87
+
+ErinnLandAchievementsRequest = 0x211DD
+ErinnLandAchievementsList = 0x211DE
+
 Run = 0x0F213303
 Running = 0x0F44BBA3
 CombatAttack = 0x0FCC3231
 Walking = 0x0FD13021
 Walk = 0x0FF23431
+
+
+
+Msgr.Login = 0xC350
+Msgr.LoginR = 0xC351
+Msgr.FriendInvite = 0xC352
+Msgr.FriendInviteR = 0xC353
+Msgr.FriendConfirm = 0xC354
+Msgr.FriendReply = 0xC355
+Msgr.ChatInvite = 0xC356
+Msgr.FriendListRequest = 0xC358
+Msgr.FriendListRequestR = 0xC359
+Msgr.FriendBlock = 0xC35A
+Msgr.FriendBlockR = 0xC35B
+Msgr.FriendUnblock = 0xC35C
+Msgr.FriendUnblockR = 0xC35D
+Msgr.FriendOnline = 0xC35E
+Msgr.FriendOffline = 0xC35F
+
+Msgr.ChatBegin = 0xC360
+Msgr.ChatBeginR = 0xC361
+Msgr.ChatEnd = 0xC362
+Msgr.ChatInviteR = 0xC366
+Msgr.ChatLeave = 0xC367
+Msgr.Chat = 0xC368
+Msgr.ChatR = 0xC36A
+Msgr.DeleteFriend = 0xC36B
+Msgr.ChatJoin = 0xC36C
+Msgr.GuildChat = 0xC36E
+Msgr.GuildChatMsg = 0xC36F
+
+Msgr.ChangeOptions = 0xC370
+Msgr.ChangeOptionsR = 0xC371
+Msgr.FriendOptionChanged = 0xC372
+Msgr.GroupList = 0xC376
+Msgr.AddGroup = 0xC377
+Msgr.DeleteGroup = 0xC379
+Msgr.RenameGroup = 0xC37B
+Msgr.ChangeGroup = 0xC37D
+Msgr.SendNote = 0xC37E
+Msgr.SendNoteR = 0xC37F
+
+Msgr.NoteListRequest = 0xC380
+Msgr.NoteListRequestR = 0xC381
+Msgr.DeleteNote = 0xC382
+Msgr.CheckNotes = 0xC384
+Msgr.YouGotNote = 0xC385
+Msgr.ReadNote = 0xC386
+Msgr.ReadNoteR = 0xC387
+Msgr.GuildJoin = 0xC388
+Msgr.ChangeChannel = 0xC389
+Msgr.FriendChannelChanged = 0xC38A
+Msgr.GuildMemberList = 0xC38B
+Msgr.GuildMemberListR = 0xC38C
+Msgr.GuildMemberState = 0xC38D
+Msgr.GuildMemberRemove = 0xC38E
+Msgr.GuildMemberListUpdate = 0xC38F
+
+Msgr.PlayerBlock = 0xC392
