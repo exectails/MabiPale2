@@ -185,7 +185,8 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				var creatureEntityId = actionPacket.GetLong();
 				var type = (CombatActionType)actionPacket.GetByte();
 
-				var attackeraction = len < 80 && type != 0; // Hot fix, TODO: Proper check of type.
+				// June 11, 2017 - changed length max to 82 instead of 79.
+				var attackeraction = len < 83 && type != 0; // Hot fix, TODO: Proper check of type.
 
 				sb.AppendLine(attackeraction ? "Attacker Action" : "Target Action");
 				sb.AppendLine("--------------------");
