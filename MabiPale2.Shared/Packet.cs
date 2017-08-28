@@ -605,22 +605,22 @@ namespace MabiPale2.Shared
 				if (type == PacketElementType.Byte)
 				{
 					var data = this.GetByte();
-					result.AppendFormat("{0:000} [{1}] Byte   : {2}", i, data.ToString("X2").PadLeft(16, '.'), data);
+					result.AppendFormat("{0:00000} [{1}] Byte   : {2}", i, data.ToString("X2").PadLeft(16, '.'), data);
 				}
 				else if (type == PacketElementType.Short)
 				{
 					var data = this.GetUShort();
-					result.AppendFormat("{0:000} [{1}] Short  : {2}", i, data.ToString("X4").PadLeft(16, '.'), data);
+					result.AppendFormat("{0:00000} [{1}] Short  : {2}", i, data.ToString("X4").PadLeft(16, '.'), data);
 				}
 				else if (type == PacketElementType.Int)
 				{
 					var data = this.GetUInt();
-					result.AppendFormat("{0:000} [{1}] Int    : {2}", i, data.ToString("X8").PadLeft(16, '.'), data);
+					result.AppendFormat("{0:00000} [{1}] Int    : {2}", i, data.ToString("X8").PadLeft(16, '.'), data);
 				}
 				else if (type == PacketElementType.Long)
 				{
 					var data = this.GetLong();
-					result.AppendFormat("{0:000} [{1}] Long   : {2}", i, data.ToString("X16"), data);
+					result.AppendFormat("{0:00000} [{1}] Long   : {2}", i, data.ToString("X16"), data);
 				}
 				else if (type == PacketElementType.Float)
 				{
@@ -630,25 +630,25 @@ namespace MabiPale2.Shared
 					if (hex.Length > 8)
 						hex = hex.Substring(8);
 
-					result.AppendFormat("{0:000} [{1}] Float  : {2}", i, hex.PadLeft(16, '.'), data.ToString("0.0####", CultureInfo.InvariantCulture));
+					result.AppendFormat("{0:00000} [{1}] Float  : {2}", i, hex.PadLeft(16, '.'), data.ToString("0.0####", CultureInfo.InvariantCulture));
 				}
 				else if (type == PacketElementType.String)
 				{
 					var data = this.GetString();
-					result.AppendFormat("{0:000} [................] String : {1}", i, data);
+					result.AppendFormat("{0:00000} [................] String : {1}", i, data);
 				}
 				else if (type == PacketElementType.Bin)
 				{
 					var data = BitConverter.ToString(this.GetBin());
 					var splitted = data.Split('-');
 
-					result.AppendFormat("{0:000} [................] Bin    : ", i);
+					result.AppendFormat("{0:00000} [................] Bin    : ", i);
 					for (var j = 1; j <= splitted.Length; ++j)
 					{
 						result.Append(splitted[j - 1]);
 						if (j < splitted.Length)
 							if (j % 16 == 0)
-								result.Append(Environment.NewLine.PadRight(34, ' '));
+								result.Append(Environment.NewLine.PadRight(36, ' '));
 							else
 								result.Append(' ');
 					}
