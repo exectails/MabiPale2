@@ -195,6 +195,8 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				sb.AppendLine("Stun: " + actionPacket.GetShort());
 				sb.AppendLine("Skill Id: " + (SkillId)actionPacket.GetShort());
 				actionPacket.GetShort();
+				if (actionPacket.Peek() == Shared.PacketElementType.Short)
+					actionPacket.GetShort(); // [200300, NA258 (2017-08-19)] ? 
 
 				// AttackerAction
 				if (attackeraction)
@@ -203,7 +205,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 					var options = new List<uint>();
 					var topt = actionPacket.GetInt();
-					for (uint foo2 = 1; foo2 < 0x80000000; )
+					for (uint foo2 = 1; foo2 < 0x80000000;)
 					{
 						if ((topt & foo2) != 0)
 							options.Add(foo2);
@@ -246,7 +248,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 						var options = new List<uint>();
 						var topt = actionPacket.GetInt();
-						for (uint foo2 = 1; foo2 < 0x80000000; )
+						for (uint foo2 = 1; foo2 < 0x80000000;)
 						{
 							if ((topt & foo2) != 0)
 								options.Add(foo2);
