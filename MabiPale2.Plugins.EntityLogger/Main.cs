@@ -164,7 +164,17 @@ namespace MabiPale2.Plugins.EntityLogger
 
 			var regenCount = packet.GetInt();
 			for (int i = 0; i < regenCount; ++i)
-				packet.Skip(6);
+			{
+				packet.GetInt();
+				packet.GetFloat();
+				packet.GetInt();
+				packet.GetInt();
+				packet.GetByte();
+				packet.GetFloat();
+				if (packet.NextIs(PacketElementType.Byte))
+					packet.GetByte(); // [200300, NA262 (2017-10-20)] ?
+			}
+
 			var unkCount = packet.GetInt();
 			for (int i = 0; i < unkCount; ++i)
 				packet.Skip(6);
