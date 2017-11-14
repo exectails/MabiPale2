@@ -72,6 +72,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.TxtHex.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TxtHex.Location = new System.Drawing.Point(12, 25);
+			this.TxtHex.MaxLength = 98301;
 			this.TxtHex.Multiline = true;
 			this.TxtHex.Name = "TxtHex";
 			this.TxtHex.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -85,6 +86,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TxtPacket.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TxtPacket.Location = new System.Drawing.Point(336, 25);
+			this.TxtPacket.MaxLength = 98301;
 			this.TxtPacket.Multiline = true;
 			this.TxtPacket.Name = "TxtPacket";
 			this.TxtPacket.ScrollBars = System.Windows.Forms.ScrollBars.Both;

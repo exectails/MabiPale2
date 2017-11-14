@@ -186,7 +186,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				var creatureEntityId = actionPacket.GetLong();
 				var type = (CombatActionType)actionPacket.GetByte();
 
-				var attackeraction = len < 80 && type != 0; // Hot fix, TODO: Proper check of type.
+				var attackeraction = len < 86 && type != 0; // Hot fix, TODO: Proper check of type.
 
 				sb.AppendLine(attackeraction ? "Attacker Action" : "Target Action");
 				sb.AppendLine("--------------------");

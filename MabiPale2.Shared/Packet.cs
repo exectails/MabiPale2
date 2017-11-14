@@ -597,64 +597,71 @@ namespace MabiPale2.Shared
 			var prevPtr = _ptr;
 			_ptr = _bodyStart;
 
-			result.AppendFormat("Op: {0:X08}, Id: {1:X016}" + Environment.NewLine + Environment.NewLine, this.Op, this.Id);
-
-			PacketElementType type;
-			for (int i = 1; (this.IsValidType(type = this.Peek()) && _ptr < _buffer.Length); ++i)
+			try
 			{
-				if (type == PacketElementType.Byte)
-				{
-					var data = this.GetByte();
-					result.AppendFormat("{0:00000} [{1}] Byte   : {2}", i, data.ToString("X2").PadLeft(16, '.'), data);
-				}
-				else if (type == PacketElementType.Short)
-				{
-					var data = this.GetUShort();
-					result.AppendFormat("{0:00000} [{1}] Short  : {2}", i, data.ToString("X4").PadLeft(16, '.'), data);
-				}
-				else if (type == PacketElementType.Int)
-				{
-					var data = this.GetUInt();
-					result.AppendFormat("{0:00000} [{1}] Int    : {2}", i, data.ToString("X8").PadLeft(16, '.'), data);
-				}
-				else if (type == PacketElementType.Long)
-				{
-					var data = this.GetLong();
-					result.AppendFormat("{0:00000} [{1}] Long   : {2}", i, data.ToString("X16"), data);
-				}
-				else if (type == PacketElementType.Float)
-				{
-					var data = this.GetFloat();
+				result.AppendFormat("Op: {0:X08}, Id: {1:X016}" + Environment.NewLine + Environment.NewLine, this.Op, this.Id);
 
-					var hex = (BitConverter.DoubleToInt64Bits(data) >> 32).ToString("X8");
-					if (hex.Length > 8)
-						hex = hex.Substring(8);
-
-					result.AppendFormat("{0:00000} [{1}] Float  : {2}", i, hex.PadLeft(16, '.'), data.ToString("0.0####", CultureInfo.InvariantCulture));
-				}
-				else if (type == PacketElementType.String)
+				PacketElementType type;
+				for (int i = 1; (this.IsValidType(type = this.Peek()) && _ptr < _buffer.Length); ++i)
 				{
-					var data = this.GetString();
-					result.AppendFormat("{0:00000} [................] String : {1}", i, data);
-				}
-				else if (type == PacketElementType.Bin)
-				{
-					var data = BitConverter.ToString(this.GetBin());
-					var splitted = data.Split('-');
-
-					result.AppendFormat("{0:00000} [................] Bin    : ", i);
-					for (var j = 1; j <= splitted.Length; ++j)
+					if (type == PacketElementType.Byte)
 					{
-						result.Append(splitted[j - 1]);
-						if (j < splitted.Length)
-							if (j % 16 == 0)
-								result.Append(Environment.NewLine.PadRight(36, ' '));
-							else
-								result.Append(' ');
+						var data = this.GetByte();
+						result.AppendFormat("{0:00000} [{1}] Byte   : {2}", i, data.ToString("X2").PadLeft(16, '.'), data);
 					}
-				}
+					else if (type == PacketElementType.Short)
+					{
+						var data = this.GetUShort();
+						result.AppendFormat("{0:00000} [{1}] Short  : {2}", i, data.ToString("X4").PadLeft(16, '.'), data);
+					}
+					else if (type == PacketElementType.Int)
+					{
+						var data = this.GetUInt();
+						result.AppendFormat("{0:00000} [{1}] Int    : {2}", i, data.ToString("X8").PadLeft(16, '.'), data);
+					}
+					else if (type == PacketElementType.Long)
+					{
+						var data = this.GetLong();
+						result.AppendFormat("{0:00000} [{1}] Long   : {2}", i, data.ToString("X16"), data);
+					}
+					else if (type == PacketElementType.Float)
+					{
+						var data = this.GetFloat();
 
-				result.AppendLine();
+						var hex = (BitConverter.DoubleToInt64Bits(data) >> 32).ToString("X8");
+						if (hex.Length > 8)
+							hex = hex.Substring(8);
+
+						result.AppendFormat("{0:00000} [{1}] Float  : {2}", i, hex.PadLeft(16, '.'), data.ToString("0.0####", CultureInfo.InvariantCulture));
+					}
+					else if (type == PacketElementType.String)
+					{
+						var data = this.GetString();
+						result.AppendFormat("{0:00000} [................] String : {1}", i, data);
+					}
+					else if (type == PacketElementType.Bin)
+					{
+						var data = BitConverter.ToString(this.GetBin());
+						var splitted = data.Split('-');
+
+						result.AppendFormat("{0:00000} [................] Bin    : ", i);
+						for (var j = 1; j <= splitted.Length; ++j)
+						{
+							result.Append(splitted[j - 1]);
+							if (j < splitted.Length)
+								if (j % 16 == 0)
+									result.Append(Environment.NewLine.PadRight(36, ' '));
+								else
+									result.Append(' ');
+						}
+					}
+
+					result.AppendLine();
+				}
+			}
+			catch (Exception ex)
+			{
+				result.AppendLine(ex.ToString());
 			}
 
 			_ptr = prevPtr;
