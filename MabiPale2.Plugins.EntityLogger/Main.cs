@@ -153,6 +153,13 @@ namespace MabiPale2.Plugins.EntityLogger
 			creature.CombatPower = packet.GetFloat();
 			creature.StandStyle = packet.GetString();
 
+			// [200400, NA267 (2018-01-11)] ?
+			if (packet.NextIs(PacketElementType.Byte))
+			{
+				packet.GetByte();
+				packet.GetByte();
+			}
+
 			creature.LifeRaw = packet.GetFloat();
 			creature.LifeMaxBase = packet.GetFloat();
 			creature.LifeMaxMod = packet.GetFloat();
