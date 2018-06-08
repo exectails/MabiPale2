@@ -330,6 +330,14 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 						palePacket.Packet.GetByte();
 					}
 
+					// [200200, NA252 (2017-05-18)]
+					// New long that is equal to the owner's entity id for all
+					// items in the creature info packet. Maybe the id of the
+					// owner?
+					{
+						palePacket.Packet.GetLong();
+					}
+
 					tabs[name].Add(new ShopItem() { Info = itemInfo, OptionInfo = itemOptionInfo, MetaData1 = metaData1 });
 				}
 			}
