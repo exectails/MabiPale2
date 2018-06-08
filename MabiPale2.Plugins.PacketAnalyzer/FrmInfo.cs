@@ -300,6 +300,9 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 			var tabs = new Dictionary<string, List<ShopItem>>();
 			for (int i = 0; i < tabCount; ++i)
 			{
+				if (palePacket.Packet.NextIs(Shared.PacketElementType.Long))
+					palePacket.Packet.GetLong();
+
 				var name = palePacket.Packet.GetString();
 
 				if (!tabs.ContainsKey(name))
@@ -313,6 +316,8 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 				for (int j = 0; j < itemCount; ++j)
 				{
 					palePacket.Packet.GetLong();
+					if (palePacket.Packet.NextIs(Shared.PacketElementType.Long))
+						palePacket.Packet.GetLong();
 					palePacket.Packet.GetByte();
 					var itemInfo = palePacket.Packet.GetObj<ItemInfo>();
 					var itemOptionInfo = palePacket.Packet.GetObj<ItemOptionInfo>();
