@@ -127,11 +127,10 @@ namespace MabiPale2.Plugins.EntityLogger
 			creature.EyeColor = packet.GetByte();
 			creature.MouthType = packet.GetByte();
 			creature.State = packet.GetUInt();
-			creature.StateEx = packet.GetUInt();
 			// Public only
-			if (packet.NextIs(PacketElementType.Int))
+			if (type == 5)
 			{
-				creature.StateEx2 = packet.GetUInt();
+				creature.StateEx = packet.GetUInt();
 
 				// [180300, NA166 (18.09.2013)]
 				if (packet.NextIs(PacketElementType.Int))
@@ -184,7 +183,11 @@ namespace MabiPale2.Plugins.EntityLogger
 
 			var unkCount = packet.GetInt();
 			for (int i = 0; i < unkCount; ++i)
+			{
 				packet.Skip(6);
+				if (packet.NextIs(PacketElementType.Byte))
+					packet.GetByte(); // [200300, NA262 (2017-10-20)] ?
+			}
 
 			creature.Title = packet.GetUShort();
 			creature.TitleApplied = packet.GetDate();

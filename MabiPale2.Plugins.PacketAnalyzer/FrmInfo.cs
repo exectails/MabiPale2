@@ -265,6 +265,9 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 						sb.AppendLine("? Damage: " + actionPacket.GetFloat());
 						sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
 
+						if (actionPacket.NextIs(Shared.PacketElementType.Int))
+							actionPacket.GetInt(); // [210100, NA280 (2018-06-14)]
+
 						sb.AppendLine("X-Diff: " + actionPacket.GetFloat());
 						sb.AppendLine("Y-Diff: " + actionPacket.GetFloat());
 						if (actionPacket.NextIs(Shared.PacketElementType.Float))
