@@ -221,9 +221,27 @@ namespace MabiPale2.Plugins.PacketAnalyzer
 
 					actionPacket.GetByte();
 					actionPacket.GetByte();
-					actionPacket.GetInt();
-					sb.AppendLine("X: " + actionPacket.GetInt());
-					sb.AppendLine("Y: " + actionPacket.GetInt());
+
+					// Another int was added in front of the position at
+					// some point, to handle old and new logs we have to
+					// read the first two ints and then determine if there's
+					// another one. If there is, we shift the information,
+					// so the variables point to the correct info.
+
+					int unkInt, x, y;
+
+					x = actionPacket.GetInt();
+					y = actionPacket.GetInt();
+
+					if (actionPacket.NextIs(Shared.PacketElementType.Int))
+					{
+						unkInt = x;
+						x = y;
+						y = actionPacket.GetInt();
+					}
+
+					sb.AppendLine("X: " + x);
+					sb.AppendLine("Y: " + y);
 					if (actionPacket.NextIs(Shared.PacketElementType.Long))
 						sb.AppendLine("Prop: " + actionPacket.GetLong().ToString("X16"));
 				}
