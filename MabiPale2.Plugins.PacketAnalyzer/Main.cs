@@ -1,9 +1,6 @@
 ﻿using MabiPale2.Plugins.PacketAnalyzer.Properties;
 using MabiPale2.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MabiPale2.Plugins.PacketAnalyzer
 {
