@@ -152,11 +152,18 @@ namespace MabiPale2.Plugins.EntityLogger
 			creature.CombatPower = packet.GetFloat();
 			creature.StandStyle = packet.GetString();
 
-			// [200400, NA267 (2018-01-11)] ?
+			// [200400, NA267 (2018-01-11)] OddEye support
 			if (packet.NextIs(PacketElementType.Byte))
 			{
 				packet.GetByte();
 				packet.GetByte();
+			}
+
+			// [210300, NA292 (2018-12-07)] ?
+			if (packet.NextIs(PacketElementType.Short))
+			{
+				packet.PutShort(0);
+				packet.PutInt(0);
 			}
 
 			creature.LifeRaw = packet.GetFloat();
