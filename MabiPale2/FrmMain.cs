@@ -580,14 +580,38 @@ namespace MabiPale2
 		/// <summary>
 		/// Sends message to Alissa window.
 		/// </summary>
+		/// <param name="op"></param>
+		/// <param name="data"></param>
+		public void SendAlissa(int op, byte[] data = null)
+		{
+			if (alissaHWnd == IntPtr.Zero)
+				return;
+
+			SendAlissa(alissaHWnd, op, data);
+		}
+
+		/// <summary>
+		/// Sends message to Alissa window.
+		/// </summary>
 		/// <param name="hWnd"></param>
 		/// <param name="op"></param>
-		private void SendAlissa(IntPtr hWnd, int op)
+		/// <param name="data"></param>
+		private void SendAlissa(IntPtr hWnd, int op, byte[] data = null)
 		{
+			var dataLength = 0;
+			var dataPtr = IntPtr.Zero;
+
+			if (data != null)
+			{
+				dataLength = data.Length;
+				dataPtr = Marshal.AllocHGlobal(dataLength);
+				Marshal.Copy(data, 0, dataPtr, dataLength);
+			}
+
 			WinApi.COPYDATASTRUCT cds;
 			cds.dwData = (IntPtr)op;
-			cds.cbData = 0;
-			cds.lpData = IntPtr.Zero;
+			cds.cbData = dataLength;
+			cds.lpData = dataPtr;
 
 			var cdsBuffer = Marshal.AllocHGlobal(Marshal.SizeOf(cds));
 			Marshal.StructureToPtr(cds, cdsBuffer, false);
@@ -596,6 +620,10 @@ namespace MabiPale2
 			{
 				WinApi.SendMessage(hWnd, WinApi.WM_COPYDATA, this.Handle, cdsBuffer);
 			});
+
+			if (dataPtr != IntPtr.Zero)
+				Marshal.FreeHGlobal(dataPtr);
+			Marshal.FreeHGlobal(cdsBuffer);
 		}
 
 		/// <summary>
@@ -964,7 +992,7 @@ namespace MabiPale2
 
 			RemoveFromList(toRemove);
 		}
-		
+
 		private void BtnMenuEditFind_Click(object sender, EventArgs e)
 		{
 			var form = new FrmFind(searchParams);
@@ -1019,12 +1047,13 @@ namespace MabiPale2
 				searchIndex = LstPackets.SelectedIndices[0]; // Start from currently selected index.
 			else //if (LstPackets.SelectedIndices.Count > 1) // Implied only search in range.
 				if (searchParams.SearchDirection == SearchDirectionHint.Down)
-					searchIndex = Queryable.Min<int>(LstPackets.SelectedIndices.Cast<int>().AsQueryable<int>());
-				else
-					searchIndex = Queryable.Max<int>(LstPackets.SelectedIndices.Cast<int>().AsQueryable<int>());
+				searchIndex = Queryable.Min<int>(LstPackets.SelectedIndices.Cast<int>().AsQueryable<int>());
+			else
+				searchIndex = Queryable.Max<int>(LstPackets.SelectedIndices.Cast<int>().AsQueryable<int>());
 
 			// Define common action: select and scroll list item into view
-			Action<ListViewItem> SelectAndScrollTo = (ListViewItem lvi) => {
+			Action<ListViewItem> SelectAndScrollTo = (ListViewItem lvi) =>
+			{
 				LstPackets.SelectedItems.Clear();
 				lvi.Selected = true;
 				lvi.EnsureVisible();

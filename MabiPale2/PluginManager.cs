@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MabiPale2.Plugins
@@ -286,6 +285,9 @@ namespace MabiPale2.Plugins
 			}
 		}
 
+		/// <summary>
+		/// Raises clear event.
+		/// </summary>
 		internal void OnClear()
 		{
 			var ev = Clear;
@@ -300,6 +302,26 @@ namespace MabiPale2.Plugins
 			{
 				Trace.TraceError(ex.ToString());
 			}
+		}
+
+		/// <summary>
+		/// Sends packet to packet provider for it to be sent.
+		/// </summary>
+		/// <param name="packet"></param>
+		public void SendPacket(Packet packet)
+		{
+			var data = packet.Build();
+			frmMain.SendAlissa(Sign.Send, data);
+		}
+
+		/// <summary>
+		/// Sends packet to packet provider for it to be received.
+		/// </summary>
+		/// <param name="packet"></param>
+		public void RecvPacket(Packet packet)
+		{
+			var data = packet.Build();
+			frmMain.SendAlissa(Sign.Recv, data);
 		}
 	}
 }

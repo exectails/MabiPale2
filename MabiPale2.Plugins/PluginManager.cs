@@ -2,10 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MabiPale2.Plugins
@@ -92,5 +88,17 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		/// <returns></returns>
 		PalePacket GetSelectedPacket();
+
+		/// <summary>
+		/// Sends packet to packet provider to be sent.
+		/// </summary>
+		/// <param name="packet"></param>
+		void SendPacket(Packet packet);
+
+		/// <summary>
+		/// Sends packet to packet provider to be received.
+		/// </summary>
+		/// <param name="packet"></param>
+		void RecvPacket(Packet packet);
 	}
 }
