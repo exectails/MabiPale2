@@ -14,7 +14,6 @@ namespace MabiPale2.Plugins
 	public class PluginManager : IPluginManager
 	{
 		private FrmMain frmMain;
-		private bool addedToListContext;
 
 		/// <summary>
 		/// Fired when a new recv packet is added, either by logging or opening files.
@@ -163,12 +162,6 @@ namespace MabiPale2.Plugins
 		/// <param name="onClick">Event handler for when the item is clicked</param>
 		public MenuItem AddToListContextMenu(int index, string text, EventHandler onClick)
 		{
-			if (!addedToListContext && index == frmMain.CtxPacketList.MenuItems.Count)
-			{
-				frmMain.CtxPacketList.MenuItems.Add(index, new MenuItem() { Text = "-" });
-				index = frmMain.CtxPacketList.MenuItems.Count;
-			}
-
 			index = Math.Min(frmMain.CtxPacketList.MenuItems.Count, Math.Max(0, index));
 
 			var mi = new MenuItem();
@@ -177,7 +170,6 @@ namespace MabiPale2.Plugins
 				mi.Click += onClick;
 
 			frmMain.CtxPacketList.MenuItems.Add(index, mi);
-			addedToListContext = true;
 
 			return mi;
 		}
