@@ -702,15 +702,27 @@ namespace MabiPale2
 				LstPackets.BeginUpdate();
 				foreach (var palePacket in newPackets)
 				{
-					lock (recvFilter)
-						if (Settings.Default.FilterRecvEnabled && Settings.Default.FilterExcludeModeActive ? recvFilter.Contains(palePacket.Op) : !recvFilter.Contains(palePacket.Op))
-							continue;
+					var addToList = true;
 
-					lock (sendFilter)
-						if (Settings.Default.FilterSendEnabled && Settings.Default.FilterExcludeModeActive ? sendFilter.Contains(palePacket.Op) : !sendFilter.Contains(palePacket.Op))
-							continue;
+					if (Settings.Default.FilterRecvEnabled && palePacket.Received)
+					{
+						lock (recvFilter)
+						{
+							if (Settings.Default.FilterExcludeModeActive ? recvFilter.Contains(palePacket.Op) : !recvFilter.Contains(palePacket.Op))
+								addToList = false;
+						}
+					}
+					if (Settings.Default.FilterSendEnabled && !palePacket.Received)
+					{
+						lock (sendFilter)
+						{
+							if (Settings.Default.FilterExcludeModeActive ? sendFilter.Contains(palePacket.Op) : !sendFilter.Contains(palePacket.Op))
+								addToList = false;
+						}
+					}
 
-					AddPacketToFormList(palePacket, true);
+					if (addToList)
+						AddPacketToFormList(palePacket, true);
 
 					if (palePacket.Received)
 						pluginManager.OnRecv(palePacket);
