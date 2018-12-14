@@ -121,9 +121,9 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		public void AddToMenu(string text, EventHandler onClick)
+		public MenuItem AddToMenu(string text, EventHandler onClick)
 		{
-			AddToMenu(frmMain.MenuPlugins.MenuItems.Count, text, onClick);
+			return AddToMenu(frmMain.MenuPlugins.MenuItems.Count, text, onClick);
 		}
 
 		/// <summary>
@@ -132,15 +132,18 @@ namespace MabiPale2.Plugins
 		/// <param name="index">Index at which to insert the item</param>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		public void AddToMenu(int index, string text, EventHandler onClick)
+		public MenuItem AddToMenu(int index, string text, EventHandler onClick)
 		{
 			index = Math.Min(frmMain.MenuPlugins.MenuItems.Count, Math.Max(0, index));
 
 			var mi = new MenuItem();
 			mi.Text = text;
-			mi.Click += onClick;
+			if (onClick != null)
+				mi.Click += onClick;
 
 			frmMain.MenuPlugins.MenuItems.Add(index, mi);
+
+			return mi;
 		}
 
 		/// <summary>
@@ -148,9 +151,9 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		public void AddToListContextMenu(string text, EventHandler onClick)
+		public MenuItem AddToListContextMenu(string text, EventHandler onClick)
 		{
-			AddToListContextMenu(frmMain.CtxPacketList.MenuItems.Count, text, onClick);
+			return AddToListContextMenu(frmMain.CtxPacketList.MenuItems.Count, text, onClick);
 		}
 
 		/// <summary>
@@ -158,7 +161,7 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		public void AddToListContextMenu(int index, string text, EventHandler onClick)
+		public MenuItem AddToListContextMenu(int index, string text, EventHandler onClick)
 		{
 			if (!addedToListContext && index == frmMain.CtxPacketList.MenuItems.Count)
 			{
@@ -170,11 +173,13 @@ namespace MabiPale2.Plugins
 
 			var mi = new MenuItem();
 			mi.Text = text;
-			mi.Click += onClick;
+			if (onClick != null)
+				mi.Click += onClick;
 
 			frmMain.CtxPacketList.MenuItems.Add(index, mi);
-
 			addedToListContext = true;
+
+			return mi;
 		}
 
 		/// <summary>

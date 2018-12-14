@@ -61,7 +61,7 @@ namespace MabiPale2.Plugins
 		/// </summary>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		void AddToMenu(string text, EventHandler onClick);
+		MenuItem AddToMenu(string text, EventHandler onClick);
 
 		/// <summary>
 		/// Adds item to Plugin menu.
@@ -69,14 +69,14 @@ namespace MabiPale2.Plugins
 		/// <param name="index">Index at which to insert the item</param>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		void AddToMenu(int index, string text, EventHandler onClick);
+		MenuItem AddToMenu(int index, string text, EventHandler onClick);
 
 		/// <summary>
 		/// Adds item to context menu of packet list.
 		/// </summary>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		void AddToListContextMenu(string text, EventHandler onClick);
+		MenuItem AddToListContextMenu(string text, EventHandler onClick);
 
 		/// <summary>
 		/// Adds item to context menu of packet list.
@@ -84,7 +84,7 @@ namespace MabiPale2.Plugins
 		/// <param name="index">Index at which to insert the item</param>
 		/// <param name="text">Text used for item</param>
 		/// <param name="onClick">Event handler for when the item is clicked</param>
-		void AddToListContextMenu(int index, string text, EventHandler onClick);
+		MenuItem AddToListContextMenu(int index, string text, EventHandler onClick);
 
 		/// <summary>
 		/// Opens form centered on the main window.
