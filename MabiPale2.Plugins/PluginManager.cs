@@ -72,6 +72,21 @@ namespace MabiPale2.Plugins
 		void AddToMenu(int index, string text, EventHandler onClick);
 
 		/// <summary>
+		/// Adds item to context menu of packet list.
+		/// </summary>
+		/// <param name="text">Text used for item</param>
+		/// <param name="onClick">Event handler for when the item is clicked</param>
+		void AddToListContextMenu(string text, EventHandler onClick);
+
+		/// <summary>
+		/// Adds item to context menu of packet list.
+		/// </summary>
+		/// <param name="index">Index at which to insert the item</param>
+		/// <param name="text">Text used for item</param>
+		/// <param name="onClick">Event handler for when the item is clicked</param>
+		void AddToListContextMenu(int index, string text, EventHandler onClick);
+
+		/// <summary>
 		/// Opens form centered on the main window.
 		/// </summary>
 		/// <param name="form">Form to show</param>

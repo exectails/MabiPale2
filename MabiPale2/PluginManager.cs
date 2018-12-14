@@ -14,6 +14,7 @@ namespace MabiPale2.Plugins
 	public class PluginManager : IPluginManager
 	{
 		private FrmMain frmMain;
+		private bool addedToListContext;
 
 		/// <summary>
 		/// Fired when a new recv packet is added, either by logging or opening files.
@@ -140,6 +141,40 @@ namespace MabiPale2.Plugins
 			mi.Click += onClick;
 
 			frmMain.MenuPlugins.MenuItems.Add(index, mi);
+		}
+
+		/// <summary>
+		/// Adds item to context menu of packet list.
+		/// </summary>
+		/// <param name="text">Text used for item</param>
+		/// <param name="onClick">Event handler for when the item is clicked</param>
+		public void AddToListContextMenu(string text, EventHandler onClick)
+		{
+			AddToListContextMenu(frmMain.CtxPacketList.MenuItems.Count, text, onClick);
+		}
+
+		/// <summary>
+		/// Adds item to context menu of packet list.
+		/// </summary>
+		/// <param name="text">Text used for item</param>
+		/// <param name="onClick">Event handler for when the item is clicked</param>
+		public void AddToListContextMenu(int index, string text, EventHandler onClick)
+		{
+			if (!addedToListContext && index == frmMain.CtxPacketList.MenuItems.Count)
+			{
+				frmMain.CtxPacketList.MenuItems.Add(index, new MenuItem() { Text = "-" });
+				index = frmMain.CtxPacketList.MenuItems.Count;
+			}
+
+			index = Math.Min(frmMain.CtxPacketList.MenuItems.Count, Math.Max(0, index));
+
+			var mi = new MenuItem();
+			mi.Text = text;
+			mi.Click += onClick;
+
+			frmMain.CtxPacketList.MenuItems.Add(index, mi);
+
+			addedToListContext = true;
 		}
 
 		/// <summary>

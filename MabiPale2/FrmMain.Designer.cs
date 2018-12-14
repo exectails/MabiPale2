@@ -29,8 +29,8 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
 			System.Windows.Forms.MenuItem menuItem1;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
 			this.SplitContainerPackets = new System.Windows.Forms.SplitContainer();
 			this.LstPackets = new MabiPale2.Shared.ListViewNF();
 			this.ColOp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,6 +61,8 @@
 			this.MenuEdit = new System.Windows.Forms.MenuItem();
 			this.BtnMenuEditFilter = new System.Windows.Forms.MenuItem();
 			this.BtnMenuEditFind = new System.Windows.Forms.MenuItem();
+			this.BtnMenuEditFindPrev = new System.Windows.Forms.MenuItem();
+			this.BtnMenuEditFindNext = new System.Windows.Forms.MenuItem();
 			this.MenuPlugins = new System.Windows.Forms.MenuItem();
 			this.MenuHelp = new System.Windows.Forms.MenuItem();
 			this.BtnMenuAbout = new System.Windows.Forms.MenuItem();
@@ -73,8 +75,6 @@
 			this.BtnMenuPacketsCopyAuraWrite = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsCopyAuraRead = new System.Windows.Forms.MenuItem();
 			this.BtnMenuPacketsFilter = new System.Windows.Forms.MenuItem();
-			this.BtnMenuEditFindPrev = new System.Windows.Forms.MenuItem();
-			this.BtnMenuEditFindNext = new System.Windows.Forms.MenuItem();
 			menuItem1 = new System.Windows.Forms.MenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.SplitContainerPackets)).BeginInit();
 			this.SplitContainerPackets.Panel1.SuspendLayout();
@@ -83,6 +83,11 @@
 			this.ToolBar.SuspendLayout();
 			this.StatusStrip.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// menuItem1
+			// 
+			menuItem1.Index = 1;
+			menuItem1.Text = "-";
 			// 
 			// SplitContainerPackets
 			// 
@@ -359,6 +364,20 @@
 			this.BtnMenuEditFind.Text = "Find...";
 			this.BtnMenuEditFind.Click += new System.EventHandler(this.BtnMenuEditFind_Click);
 			// 
+			// BtnMenuEditFindPrev
+			// 
+			this.BtnMenuEditFindPrev.Index = 3;
+			this.BtnMenuEditFindPrev.Shortcut = System.Windows.Forms.Shortcut.ShiftF3;
+			this.BtnMenuEditFindPrev.Text = "Find Previous";
+			this.BtnMenuEditFindPrev.Click += new System.EventHandler(this.BtnMenuEditFindPrev_Click);
+			// 
+			// BtnMenuEditFindNext
+			// 
+			this.BtnMenuEditFindNext.Index = 4;
+			this.BtnMenuEditFindNext.Shortcut = System.Windows.Forms.Shortcut.F3;
+			this.BtnMenuEditFindNext.Text = "Find Next";
+			this.BtnMenuEditFindNext.Click += new System.EventHandler(this.BtnMenuEditFindNext_Click);
+			// 
 			// MenuPlugins
 			// 
 			this.MenuPlugins.Index = 2;
@@ -434,25 +453,6 @@
 			this.BtnMenuPacketsFilter.Text = "Add to filter";
 			this.BtnMenuPacketsFilter.Click += new System.EventHandler(this.BtnMenuPacketsFilter_Click);
 			// 
-			// menuItem1
-			// 
-			menuItem1.Index = 1;
-			menuItem1.Text = "-";
-			// 
-			// BtnMenuEditFindPrev
-			// 
-			this.BtnMenuEditFindPrev.Index = 3;
-			this.BtnMenuEditFindPrev.Shortcut = System.Windows.Forms.Shortcut.ShiftF3;
-			this.BtnMenuEditFindPrev.Text = "Find Previous";
-			this.BtnMenuEditFindPrev.Click += new System.EventHandler(this.BtnMenuEditFindPrev_Click);
-			// 
-			// BtnMenuEditFindNext
-			// 
-			this.BtnMenuEditFindNext.Index = 4;
-			this.BtnMenuEditFindNext.Shortcut = System.Windows.Forms.Shortcut.F3;
-			this.BtnMenuEditFindNext.Text = "Find Next";
-			this.BtnMenuEditFindNext.Click += new System.EventHandler(this.BtnMenuEditFindNext_Click);
-			// 
 			// FrmMain
 			// 
 			this.AllowDrop = true;
@@ -517,7 +517,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.MenuItem BtnMenuOpen;
 		private System.Windows.Forms.MenuItem BtnMenuSaveAs;
-		private System.Windows.Forms.ContextMenu CtxPacketList;
 		private System.Windows.Forms.MenuItem BtnMenuPacketsCopyOp;
 		private System.Windows.Forms.MenuItem BtnMenuPacketsCopyHex;
 		private System.Windows.Forms.MenuItem BtnMenuPacketsFilter;
@@ -532,6 +531,7 @@
         private System.Windows.Forms.MenuItem BtnMenuEditFind;
 		private System.Windows.Forms.MenuItem BtnMenuEditFindPrev;
 		private System.Windows.Forms.MenuItem BtnMenuEditFindNext;
+		public System.Windows.Forms.ContextMenu CtxPacketList;
 	}
 }
 
