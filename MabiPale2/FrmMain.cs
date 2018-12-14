@@ -782,7 +782,7 @@ namespace MabiPale2
 			if (selected == null)
 				return;
 
-			Clipboard.SetText(selected.Op.ToString());
+			Clipboard.SetText("0x" + selected.Op.ToString("X4"));
 		}
 
 		/// <summary>
@@ -796,7 +796,7 @@ namespace MabiPale2
 			if (selected == null)
 				return;
 
-			Clipboard.SetText(selected.Id.ToString());
+			Clipboard.SetText("0x" + selected.Id.ToString("X16"));
 		}
 
 		/// <summary>

@@ -578,7 +578,7 @@ namespace MabiPale2.Shared
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		private bool IsValidType(PacketElementType type)
+		public bool IsValidType(PacketElementType type)
 		{
 			return (type >= PacketElementType.Byte && type <= PacketElementType.Bin);
 		}
