@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2", "MabiPale2\MabiPale2.csproj", "{84F826FA-28C2-44CC-9872-7074C0ABC3ED}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.PacketAnalyzer", "MabiPale2.Plugins.PacketAnalyzer\MabiPale2.Plugins.PacketAnalyzer.csproj", "{93D36669-B285-4B0F-A76D-DA5C0742D700}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.DunGen", "MabiPale2.Plugins.DunGen\MabiPale2.Plugins.DunGen.csproj", "{EC521F5D-6C05-4AF4-AFA3-660B5BAB1F9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.Pake", "MabiPale2.Plugins.Pake\MabiPale2.Plugins.Pake.csproj", "{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,8 +59,15 @@ Global
 		{EC521F5D-6C05-4AF4-AFA3-660B5BAB1F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC521F5D-6C05-4AF4-AFA3-660B5BAB1F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC521F5D-6C05-4AF4-AFA3-660B5BAB1F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E470F52B-A97F-4E51-A04C-B64D6620A7A6}
 	EndGlobalSection
 EndGlobal
