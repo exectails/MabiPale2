@@ -109,6 +109,7 @@ namespace MabiPale2.Plugins.Pake
 						case "uint": packet.PutUInt((uint)ParseNumber(dataStr)); break;
 						case "long": packet.PutLong((long)ParseNumber(dataStr)); break;
 						case "ulong": packet.PutULong((ulong)ParseNumber(dataStr)); break;
+						case "float": packet.PutFloat(float.Parse(dataStr)); break;
 						case "string": packet.PutString(dataStr.Replace("\\n", "\n").Replace("\\t", "\t")); break;
 						case "bin": packet.PutBin(HexTool.ToByteArray(dataStr.Replace(" ", "").Replace("-", ""))); break;
 
