@@ -175,6 +175,13 @@ namespace MabiPale2.Plugins.EntityLogger
 			if (packet.NextIs(PacketElementType.Short))
 				packet.GetShort(); // ?
 
+			// [220100, NA293 (2019-01-12)] ? (same as in private?)
+			if (packet.NextIs(PacketElementType.Float))
+			{
+				packet.GetFloat();
+				packet.GetFloat();
+			}
+
 			var regenCount = packet.GetInt();
 			for (int i = 0; i < regenCount; ++i)
 			{
