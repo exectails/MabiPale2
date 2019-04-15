@@ -15,7 +15,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 			sb.AppendLine("Id: " + palePacket.Packet.GetInt());
 			sb.AppendLine("Prev Id: " + palePacket.Packet.GetInt());
 			sb.AppendLine("Hit: " + palePacket.Packet.GetByte());
-			palePacket.Packet.GetByte(); // [200200, NA296 (2019-04-11)]
+			palePacket.Packet.GetByte(); // [220200, NA296 (2019-04-11)]
 			sb.AppendLine("Type: " + palePacket.Packet.GetByte());
 			palePacket.Packet.GetByte();
 			sb.AppendLine();
