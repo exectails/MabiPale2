@@ -61,8 +61,15 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 					// New long that is equal to the owner's entity id for all
 					// items in the creature info packet. Maybe the id of the
 					// owner?
+					if (palePacket.Packet.NextIs(Shared.PacketElementType.Long))
 					{
 						palePacket.Packet.GetLong();
+					}
+
+					// [200200, NA297 (2019-05-09] ?
+					if (palePacket.Packet.NextIs(Shared.PacketElementType.Int))
+					{
+						palePacket.Packet.GetInt();
 					}
 
 					tabs[name].Add(new ShopItem() { Info = itemInfo, OptionInfo = itemOptionInfo, MetaData1 = metaData1 });
