@@ -67,9 +67,9 @@
 			this.LblVersion.AutoSize = true;
 			this.LblVersion.Location = new System.Drawing.Point(51, 32);
 			this.LblVersion.Name = "LblVersion";
-			this.LblVersion.Size = new System.Drawing.Size(37, 13);
+			this.LblVersion.Size = new System.Drawing.Size(43, 13);
 			this.LblVersion.TabIndex = 3;
-			this.LblVersion.Text = "v2.9.3";
+			this.LblVersion.Text = "v2.10.5";
 			// 
 			// GrpGpl
 			// 
