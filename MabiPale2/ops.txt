@@ -789,7 +789,7 @@ ScrapbookListRequestR = 0xAAA2
 
 CommerceProductListRequest = 0xAAB3
 CommerceInfoUpdate = 0xAABA
-CommerceInfoRequest = 0xAAC0
+CommerceInfoRequest = 0xAABF
 
 
 
