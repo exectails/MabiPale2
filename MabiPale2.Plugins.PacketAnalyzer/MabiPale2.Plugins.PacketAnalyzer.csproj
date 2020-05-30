@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analyzer.cs" />
-    <Compile Include="ConditionId.cs" />
+    <Compile Include="Conditions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="FrmInfo.cs">
       <SubType>Form</SubType>

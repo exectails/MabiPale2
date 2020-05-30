@@ -1,5 +1,7 @@
 ﻿using Aura.Mabi.Const;
 using MabiPale2.Shared;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace MabiPale2.Plugins.PacketAnalyzer.Packets
@@ -13,11 +15,6 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 			// [200300, NA262 (2017-10-20)]
 			// The condition format changed, first, with the longs, is the
 			// old one, the other is the new one.
-
-			// [(2020-05-30)]
-			// Updated Pale's Mabi.dll, which doesn't include the old conditions
-			// format.
-			/*
 			if (palePacket.Packet.Peek() == Shared.PacketElementType.Long)
 			{
 				var conditionsA = palePacket.Packet.GetLong();
@@ -68,7 +65,15 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 				var active = palePacket.Packet.GetBool();
 				var conditionId = palePacket.Packet.GetInt();
 
-				sb.AppendLine("Condition Id: {0} ({1})", (ConditionId)conditionId, conditionId);
+				// Get a list of current conditions
+				var type = typeof(ConditionId);
+				var conditionIdFields = type.GetFields();
+				var conditionList = new List<FieldInfo>(conditionIdFields);
+
+				// Find the condition matching conditionId
+				var name = conditionList.Find(x => (int)x.GetValue(null) == conditionId).Name;
+
+				sb.AppendLine("Condition Id: {0} ({1})", name, conditionId);
 				sb.AppendLine("Active: {0}", (active ? "Yes" : "No"));
 
 				if (active)
@@ -78,21 +83,6 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 
 					sb.AppendLine("Parameters: {0}", parameters);
 				}
-			}
-			*/
-
-			var active = palePacket.Packet.GetBool();
-			var conditionId = palePacket.Packet.GetInt();
-
-			sb.AppendLine("Condition Id: {0} ({1})", (ConditionId)conditionId, conditionId);
-			sb.AppendLine("Active: {0}", (active ? "Yes" : "No"));
-
-			if (active)
-			{
-				palePacket.Packet.GetLong();
-				var parameters = palePacket.Packet.GetString();
-
-				sb.AppendLine("Parameters: {0}", parameters);
 			}
 
 			return sb.ToString();
