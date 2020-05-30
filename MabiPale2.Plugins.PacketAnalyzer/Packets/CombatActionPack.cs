@@ -128,7 +128,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 
 						sb.AppendLine("Options: " + strOptions);
 						sb.AppendLine("Damage: " + actionPacket.GetFloat());
-						sb.AppendLine("? Damage: " + actionPacket.GetFloat());
+						sb.AppendLine("Wound: " + actionPacket.GetFloat());
 						sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
 
 						if (actionPacket.NextIs(Shared.PacketElementType.Int))
@@ -146,6 +146,15 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 							{
 								actionPacket.PutInt(0);
 							}
+						}
+
+						// MultiHit Target Option
+						if (actionPacket.NextIs(Shared.PacketElementType.Int))
+						{
+							sb.AppendLine("MultiHitDamageCount: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitDamageInterval: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitUnk: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitDivisionSeed: " + actionPacket.GetInt());
 						}
 
 						sb.AppendLine("EffectFlags: " + actionPacket.GetByte());
