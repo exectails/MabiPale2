@@ -151,7 +151,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 						// MultiHit Target Option
 						if (actionPacket.NextIs(Shared.PacketElementType.Int))
 						{
-							sb.AppendLine("MultiHitDamageCount: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitCount: " + actionPacket.GetInt());
 							sb.AppendLine("MultiHitDamageInterval: " + actionPacket.GetInt());
 							sb.AppendLine("MultiHitUnk: " + actionPacket.GetInt());
 							sb.AppendLine("MultiHitDivisionSeed: " + actionPacket.GetInt());
