@@ -152,7 +152,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 						if (actionPacket.NextIs(Shared.PacketElementType.Int))
 						{
 							sb.AppendLine("MultiHitCount: " + actionPacket.GetInt());
-							sb.AppendLine("MultiHitDamageInterval: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitInterval: " + actionPacket.GetInt());
 							sb.AppendLine("MultiHitUnk: " + actionPacket.GetInt());
 							sb.AppendLine("MultiHitDivisionSeed: " + actionPacket.GetInt());
 						}
