@@ -1,5 +1,6 @@
 ﻿using Aura.Mabi.Const;
 using MabiPale2.Shared;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -71,7 +72,15 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 				var conditionList = new List<FieldInfo>(conditionIdFields);
 
 				// Find the condition matching conditionId
-				var name = conditionList.Find(x => (int)x.GetValue(null) == conditionId).Name;
+				var name = "";
+				try
+				{
+					name = conditionList.Find(x => (int)x.GetValue(null) == conditionId).Name;
+				}
+				catch (Exception)
+				{
+					// The name will just remain blank if it's something we haven't seen yet
+				}
 
 				sb.AppendLine("Condition Id: {0} ({1})", name, conditionId);
 				sb.AppendLine("Active: {0}", (active ? "Yes" : "No"));
