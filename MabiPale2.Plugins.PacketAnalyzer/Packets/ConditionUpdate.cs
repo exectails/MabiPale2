@@ -2,6 +2,7 @@
 using MabiPale2.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -66,21 +67,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 				var active = palePacket.Packet.GetBool();
 				var conditionId = palePacket.Packet.GetInt();
 
-				// Get a list of current conditions
-				var type = typeof(ConditionId);
-				var conditionIdFields = type.GetFields();
-				var conditionList = new List<FieldInfo>(conditionIdFields);
-
-				// Find the condition matching conditionId
-				var name = "";
-				try
-				{
-					name = conditionList.Find(x => (int)x.GetValue(null) == conditionId).Name;
-				}
-				catch (Exception)
-				{
-					// The name will just remain blank if it's something we haven't seen yet
-				}
+				var name = typeof(ConditionId).GetFields().FirstOrDefault(a => (int)a.GetValue(null) == conditionId)?.Name ?? "?";
 
 				sb.AppendLine("Condition Id: {0} ({1})", name, conditionId);
 				sb.AppendLine("Active: {0}", (active ? "Yes" : "No"));
