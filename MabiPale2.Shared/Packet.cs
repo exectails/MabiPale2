@@ -48,6 +48,11 @@ namespace MabiPale2.Shared
 		/// </summary>
 		public long Id { get; set; }
 
+		/// <summary>
+		/// Returns true if this packet's header was in the KR72 format.
+		/// </summary>
+		public bool KR72Header { get; private set; }
+
 		public Packet(int op, long id)
 		{
 			this.Op = op;
@@ -67,8 +72,27 @@ namespace MabiPale2.Shared
 			this.Id = IPAddress.NetworkToHostOrder(BitConverter.ToInt64(_buffer, _ptr + sizeof(int)));
 			_ptr += 12;
 
-			_bodyLen = this.ReadVarInt(_buffer, ref _ptr);
-			_elements = this.ReadVarInt(_buffer, ref _ptr);
+			// If the next byte is 0 and the buffer is longer than 15 bytes,
+			// we're most likely looking at a KR72 packet, where the length
+			// and the element count were an int and a short respectively.
+			// A var int will never start with 0 if there's a packet body,
+			// and an empty packet would be exactly 15 bytes long.
+			if (_buffer[_ptr] == 0 && length > 15)
+			{
+				var packetLength = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(_buffer, _ptr));
+
+				_bodyLen = packetLength - sizeof(int) - sizeof(long) - sizeof(int) - sizeof(short) - sizeof(byte);
+				_elements = IPAddress.NetworkToHostOrder(BitConverter.ToInt16(_buffer, _ptr + sizeof(int)));
+				_ptr += 6;
+
+				this.KR72Header = true;
+			}
+			else
+			{
+				_bodyLen = this.ReadVarInt(_buffer, ref _ptr);
+				_elements = this.ReadVarInt(_buffer, ref _ptr);
+			}
+
 			_ptr++; // 0x00
 
 			_bodyStart = _ptr;
