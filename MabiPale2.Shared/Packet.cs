@@ -53,6 +53,13 @@ namespace MabiPale2.Shared
 		/// </summary>
 		public bool KR72Header { get; private set; }
 
+		/// <summary>
+		/// Gets or sets whether to use the KR72 header when creating new
+		/// packets. This is set automatically once a KR72 packet was read,
+		/// and back when a newer packet was read.
+		/// </summary>
+		public static bool UseKR72Header { get; set; }
+
 		public Packet(int op, long id)
 		{
 			this.Op = op;
@@ -86,6 +93,7 @@ namespace MabiPale2.Shared
 				_ptr += 6;
 
 				this.KR72Header = true;
+				UseKR72Header = true;
 			}
 			else
 			{
@@ -539,11 +547,19 @@ namespace MabiPale2.Shared
 		{
 			var i = 4 + 8; // op + id + body
 
-			int n = _bodyLen; // + body len
-			do { i++; n >>= 7; } while (n != 0);
+			if (UseKR72Header)
+			{
+				i += sizeof(int); // + packet length
+				i += sizeof(short); // + element count
+			}
+			else
+			{
+				int n = _bodyLen; // + body len
+				do { i++; n >>= 7; } while (n != 0);
 
-			n = _elements; // + number of elements
-			do { i++; n >>= 7; } while (n != 0);
+				n = _elements; // + number of elements
+				do { i++; n >>= 7; } while (n != 0);
+			}
 
 			++i; // + zero
 			i += _bodyLen; // + body
@@ -581,11 +597,23 @@ namespace MabiPale2.Shared
 				Buffer.BlockCopy(BitConverter.GetBytes(IPAddress.HostToNetworkOrder(this.Id)), 0, buffer, offset + sizeof(int), sizeof(long));
 				offset += 12;
 
-				// Body len
-				this.WriteVarInt(_bodyLen, buffer, ref offset);
+				if (UseKR72Header)
+				{
+					// body + id + op + length + elements + terminator
+					var packetLength = _bodyLen + sizeof(int) + sizeof(long) + sizeof(int) + sizeof(short) + sizeof(byte);
 
-				// Element amount
-				this.WriteVarInt(_elements, buffer, ref offset);
+					Buffer.BlockCopy(BitConverter.GetBytes(IPAddress.HostToNetworkOrder(packetLength)), 0, buffer, offset, sizeof(int));
+					Buffer.BlockCopy(BitConverter.GetBytes(IPAddress.HostToNetworkOrder((short)_elements)), 0, buffer, offset + sizeof(int), sizeof(short));
+					offset += 6;
+				}
+				else
+				{
+					// Body len
+					this.WriteVarInt(_bodyLen, buffer, ref offset);
+
+					// Element amount
+					this.WriteVarInt(_elements, buffer, ref offset);
+				}
 
 				buffer[offset++] = 0;
 
