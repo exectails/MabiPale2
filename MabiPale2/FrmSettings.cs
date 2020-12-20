@@ -14,6 +14,8 @@ namespace MabiPale2
 {
 	public partial class FrmSettings : Form
 	{
+		private const string OpsFileDefaultName = "ops.txt";
+
 		public FrmSettings(string log)
 		{
 			InitializeComponent();
@@ -43,9 +45,24 @@ namespace MabiPale2
 			else
 				RadFilterIncludeMode.Checked = true;
 
+			this.CboOpsFile.Items.Clear();
+			foreach (var fileName in Directory.EnumerateFiles(".", "ops*.txt", SearchOption.TopDirectoryOnly))
+			{
+				var name = fileName.Replace("\\", "/");
+				if (name.StartsWith("./"))
+					name = name.Substring(2);
+
+				this.CboOpsFile.Items.Add(name);
+			}
+
+			if (this.CboOpsFile.Items.Count == 0)
+				this.CboOpsFile.Items.Add(OpsFileDefaultName);
+
+			this.CboOpsFile.SelectedIndex = 0;
+
 			try
 			{
-				TxtOpNames.Text = File.ReadAllText("ops.txt");
+				TxtOpNames.Text = File.ReadAllText(OpsFileDefaultName);
 			}
 			catch
 			{
@@ -63,11 +80,25 @@ namespace MabiPale2
 			Settings.Default.FilterRecv = TxtFilterRecv.Text;
 			Settings.Default.FilterSend = TxtFilterSend.Text;
 			Settings.Default.FilterExcludeModeActive = RadFilterExcludeMode.Checked;
+			Settings.Default.OpsFileName = this.CboOpsFile.SelectedItem.ToString();
 			Settings.Default.Save();
 
 			try
 			{
-				File.WriteAllText("ops.txt", TxtOpNames.Text);
+				var fileName = Settings.Default.OpsFileName;
+				File.WriteAllText(fileName, TxtOpNames.Text);
+			}
+			catch
+			{
+			}
+		}
+
+		private void CboOpsFile_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				var fileName = this.CboOpsFile.SelectedItem.ToString();
+				TxtOpNames.Text = File.ReadAllText(fileName);
 			}
 			catch
 			{

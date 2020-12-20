@@ -36,5 +36,8 @@
     <Setting Name="FilterExcludeModeActive" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="OpsFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ops.txt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
