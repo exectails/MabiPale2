@@ -58,7 +58,10 @@ namespace MabiPale2
 			if (this.CboOpsFile.Items.Count == 0)
 				this.CboOpsFile.Items.Add(OpsFileDefaultName);
 
-			this.CboOpsFile.SelectedIndex = 0;
+			if (this.CboOpsFile.Items.Contains(Settings.Default.OpsFileName))
+				this.CboOpsFile.SelectedItem = Settings.Default.OpsFileName;
+			else
+				this.CboOpsFile.SelectedIndex = 0;
 
 			try
 			{
