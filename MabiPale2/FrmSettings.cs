@@ -65,7 +65,7 @@ namespace MabiPale2
 
 			try
 			{
-				TxtOpNames.Text = File.ReadAllText(OpsFileDefaultName);
+				TxtOpNames.Text = File.ReadAllText(this.CboOpsFile.SelectedItem.ToString());
 			}
 			catch
 			{
