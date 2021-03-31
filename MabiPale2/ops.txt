@@ -42,11 +42,12 @@ PetCreationOptionsRequestR = 0x52
 LoginRedirect = 0x55
 PartnerCreationOptionsRequest = 0x56
 PartnerCreationOptionsRequestR = 0x57
-LoginUnk = 0x5B
-LoginUnkR = 0x5C
+LoginUnk = 0x5B 
+LoginUnkR = 0x5C 
 TradeCard = 0x5D
 TradeCardR = 0x5E
-LoginUnk2 = 0x61
+LoginUnk2 = 0x61 
+
 
 
 ChannelLogin = 0x4E22
@@ -85,15 +86,16 @@ WarpUnk2 = 0x526E
 MsgBox = 0x526F
 
 
+
 AcquireInfo = 0x5272
 WhisperChat = 0x5274
 BeginnerChat = 0x5276
-AcquireInfo2 = 0x5279
+AcquireInfo2 = 0x5279 
 VisualChat = 0x527B
 
 PropAppears = 0x52D0
 PropDisappears = 0x52D1
-PropUpdate = 0x52D2
+PropUpdate = 0x52D2 
 PropColorUpdate = 0x52D3
 EntitiesAppear = 0x5334
 EntitiesDisappear = 0x5335
@@ -104,6 +106,9 @@ Revived = 0x53FF
 DeadMenu = 0x5401
 DeadMenuR = 0x5402
 DeadFeather = 0x5403
+
+
+
 
 
 
@@ -138,6 +143,9 @@ ItemDestroyR = 0x59E4
 EquipmentChanged = 0x59E6
 EquipmentMoved = 0x59E7
 
+
+
+
 ItemSplit = 0x59EC
 ItemSplitR = 0x59ED
 ItemAmount = 0x59EE
@@ -154,10 +162,14 @@ UnequipBag = 0x59F8
 UnequipBagR = 0x59F9
 
 
+
 CollectionAddItem = 0x59FA
 CollectionAddItemR = 0x59FB
 CollectionGetReward = 0x59FC
 CollectionGetRewardR = 0x59FD
+
+
+
 
 
 NpcTalkSelectEnd = 0x59FF
@@ -180,7 +192,7 @@ ViewEquipmentSetEnabled = 0x5BE1
 PetFinishModeChange = 0x5BE6
 OptionSet = 0x5BE7
 OptionSetR = 0x5BE8
-UpdateServiceExpiration = 0x5BE9
+UpdateServiceExpiration = 0x5BE9 
 AddKeyword = 0x5DC1
 RemoveKeyword = 0x5DC3
 NpcTalkKeyword = 0x5DC4
@@ -191,10 +203,10 @@ SetLocation = 0x6594
 TurnTo = 0x6596
 EnterRegion = 0x6597
 EnterRegionRequest = 0x6598
-WarpRegion = 0x6599
+WarpRegion = 0x6599 
 ForceRunTo = 0x659A
 ForceWalkTo = 0x659B
-EnterRegionRequestR = 0x659C
+EnterRegionRequestR = 0x659C 
 UrlUpdateChronicle = 0x65A2
 UrlUpdateAdvertise = 0x65A3
 UrlUpdateGuestbook = 0x65A4
@@ -212,9 +224,10 @@ CanLand = 0x65AD
 OpenBelowTotal1000Popup = 0x65C4
 
 
-SawItemNotification = 0x65D8
 
-UnkCutsceneEnd = 0x65DC
+SawItemNotification = 0x65D8 
+
+UnkCutsceneEnd = 0x65DC 
 
 
 RequestNpcNames = 0x65EE
@@ -229,14 +242,15 @@ SkillRemove = 0x697A
 SkillUpdate = 0x697B
 SkillTrainingUp = 0x697C
 SkillAdvance = 0x697E
-SkillRankUp = 0x697F
+SkillRankUp = 0x697F 
+
 
 
 SkillPrepare = 0x6984
 SkillReady = 0x6985
 SkillUse = 0x6988
 SkillComplete = 0x6989
-SkillCompleteUnk = 0x698A
+SkillCompleteUnk = 0x698A 
 SkillCancel = 0x698B
 SkillStart = 0x698C
 SkillStop = 0x698D
@@ -259,10 +273,10 @@ SetSkillEnabled = 0x69A4
 ResetCooldown = 0x69A9
 
 UseMotion = 0x6D62
-PlayAnimation = 0x6D63
-MotionUnk = 0x6D64
+PlayAnimation = 0x6D63 
+MotionUnk = 0x6D64 
 CancelMotion = 0x6D65
-MotionCancel2 = 0x6D66
+MotionCancel2 = 0x6D66 
 SetStandStyle = 0x6D68
 LevelUp = 0x6D69
 RankUp = 0x6D6A
@@ -281,7 +295,7 @@ StateDownSync = 0x701C
 RiseFromTheDead = 0x701D
 CharacterLock = 0x701E
 CharacterUnlock = 0x701F
-CharacterLockUpdate = 0x7020
+CharacterLockUpdate = 0x7020 
 PlayDeadStart = 0x7021
 PlayDeadEnd = 0x7022
 OpenUmbrella = 0x7025
@@ -292,12 +306,12 @@ NpcShopBuyItem = 0x7150
 NpcShopBuyItemR = 0x7151
 NpcShopSellItem = 0x7152
 NpcShopSellItemR = 0x7153
-ClearNpcShop = 0x7158
-AddToNpcShop = 0x7159
+ClearNpcShop = 0x7158 
+AddToNpcShop = 0x7159 
 CheckDirectBankSelling = 0x715A
 CheckDirectBankSellingR = 0x715B
-OpenShopRemotely = 0x715C
-OpenShopRemotelyR = 0x715D
+OpenShopRemotely = 0x715C 
+OpenShopRemotelyR = 0x715D 
 OpenNpcShop = 0x715E
 RequestBankTabs = 0x7211
 OpenBank = 0x7212
@@ -389,9 +403,9 @@ StatUpdatePrivate = 0x7530
 StatUpdatePublic = 0x7532
 AttackEngageRequest = 0x7918
 AttackEngageReply = 0x7919
-CombatTargetUpdate = 0x791A
-UnkCombat = 0x791B
-UnkCombatR = 0x791C
+CombatTargetUpdate = 0x791A 
+UnkCombat = 0x791B 
+UnkCombatR = 0x791C 
 CombatSetAim = 0x791D
 CombatSetAimR = 0x791E
 CombatSetAim2 = 0x791F
@@ -512,8 +526,8 @@ TradeStartR = 0x8F5E
 TradeRequest = 0x8F5F
 TradeCancel = 0x8F60
 TradeCancelR = 0x8F61
-TradeRequestCanceled = 0x8F62
-TradeComplete = 0x8F63
+TradeRequestCanceled = 0x8F62 
+TradeComplete = 0x8F63 
 TradeWait = 0x8F64
 TradeAcceptRequest = 0x8F65
 TradeAcceptRequestR = 0x8F66
@@ -545,16 +559,18 @@ SummonPetR = 0x902D
 PersonalShopPetProtectStart = 0x902F
 PersonalShopPetProtectStop = 0x9030
 
-UnsummonPet = 0x9032
-UnsummonPetR = 0x9033
-TelePet = 0x9034
-TelePetR = 0x9035
-PutItemIntoPetInv = 0x9036
-PutItemIntoPetInvR = 0x9037
-TakeItemFromPetInv = 0x9038
-TakeItemFromPetInvR = 0x9039
 
-PetSummonedByGiant = 0x9062
+
+UnsummonPet = 0x9033
+UnsummonPetR = 0x9034
+TelePet = 0x9035
+TelePetR = 0x9036
+PutItemIntoPetInv = 0x9037
+PutItemIntoPetInvR = 0x9038
+TakeItemFromPetInv = 0x9039
+TakeItemFromPetInvR = 0x903A
+
+PetSummonedByGiant = 0x9063
 
 HitProp = 0x9088
 HitPropR = 0x9089
@@ -564,6 +580,9 @@ TouchPropR = 0x908C
 AddPropExtension = 0x908D
 RemovePropExtension = 0x908E
 PlaySound = 0x908F
+
+
+
 
 
 Effect = 0x9091
@@ -576,11 +595,14 @@ PvpStatusUpdate = 0x9097
 NaoRevivalExit = 0x9099
 NaoRevivalEntrance = 0x909D
 
+
+
 AcceptDailyAdvancedItem = 0x90A2
 
 
+
 DungeonInfo = 0x9470
-EnterDynamicRegion = 0x9571
+EnterDynamicRegion = 0x9571 
 RemoveDynamicRegion = 0x9572
 Inquiry = 0x9664
 InquiryResponse = 0x9665
@@ -635,6 +657,8 @@ OpenItemShopR = 0xA44E
 ChangeOptionTransformCutsceneSkip = 0xA471
 
 
+
+
 UnkOrdinaryChest = 0xA803
 UnkOrdinaryChestR = 0xA804
 GameEventStateUpdate = 0xA805
@@ -647,12 +671,31 @@ PetSearchItem = 0xA8AA
 PetSearchItemR = 0xA8AB
 GuildChangeStone = 0xA8AC
 WarpUnk3 = 0xA8AF
-SetQuestTimer = 0xA8CF
+SetQuestTimer = 0xA8CF 
 RemoveQuestTimer = 0xA8D0
 UpdateQuestTimer = 0xA8D1
 UmbrellaJump = 0xA8E0
 UmbrellaJumpR = 0xA8E1
 UmbrellaLand = 0xA8E2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ShadowMissionPuzzleInfoRequest = 0xA919
@@ -664,7 +707,7 @@ SetBgm = 0xA91E
 UnsetBgm = 0xA91F
 
 AchievmentVisibleChange = 0xA98D
-EnterDynamicRegionExtended = 0xA98E
+EnterDynamicRegionExtended = 0xA98E 
 EnableRoyalAlchemist = 0xA9B3
 SpinColorWheel = 0xA9B5
 SpinColorWheelR = 0xA9B6
@@ -672,6 +715,12 @@ ChangeNameColor = 0xA9B7
 
 SosButtonRequest = 0xA9B9
 SosButtonRequestR = 0xA9BA
+
+
+
+
+
+
 
 Unk1 = 0xA9B9
 Unk1R = 0xA9BA
@@ -688,151 +737,264 @@ EnterRebirth = 0xAA0A
 EnterRebirthR = 0xAA0B
 
 
-SubscribeStabilityMeter = 0xAA32
-StabilityMeterInit = 0xAA33
-StabilityMeterUpdate = 0xAA34
-
-
-HomesteadBuildRequest = 0xAA56
-HomesteadBuildRequestR = 0xAA57
-HomesteadRemoveFacility = 0xAA58
-HomesteadRemoveFacilityR = 0xAA59
-HomesteadUpgradeFacility = 0xAA5A
-HomesteadUpgradeFacilityR = 0xAA5B
-HomesteadMoveFacility = 0xAA5E
-HomesteadMoveFacilityR = 0xAA5F
-HomesteadEnterBuildMode = 0xAA60
-HomesteadEnterBuildModeR = 0xAA61
-HomesteadPlantSeed = 0xAA62
-HomesteadPlantSeedR = 0xAA63
-
-
-HomesteadUi = 0xAA66
-HomesteadExitRequest = 0xAA67
-HomesteadExitRequestR = 0xAA68
-HomesteadInfoRequest = 0xAA6B
-HomesteadInfoRequestR = 0xAA6C
-HomesteadEnterRequest = 0xAA6D
-HomesteadEnterRequestR = 0xAA6E
-HomesteadCreateRequest = 0xAA6F
-HomesteadCreateRequestR = 0xAA70
-HomesteadAddFacility = 0xAA71
-
-HomesteadUpdateExp = 0xAA74
-HomesteadBuildComplete = 0xAA75
-HomesteadBuildCompleteR = 0xAA76
-HomesteadExpandRequest = 0xAA77
-HomesteadExpandRequestR = 0xAA78
-HomesteadReloadRequest = 0xAA79
-HomesteadReloadRequestR = 0xAA7A
-HomesteadUnk1Request = 0xAA7B
-
-HomesteadFacilityRules = 0xAA7E
-HomesteadFacilityRulesR = 0xAA7F
-HomesteadVisitorUpdateRequest = 0xAA80
-HomesteadVisitorUpdateReply = 0xAA81
-HomesteadVisitorDeleteRequest = 0xAA82
-HomesteadVisitorDeleteReply = 0xAA83
-HomesteadVisitorDataRequest = 0xAA86
-HomesteadVisitorDataReply = 0xAA87
-
-
-CollectionRequest = 0xAA98
-CollectionRequestR = 0xAA99
-
-UnkRequest = 0xAA9F
-UnkRequestR = 0xAAA0
-
-
-ScrapbookListRequest = 0xAAA3
-ScrapbookListRequestR = 0xAAA4
-
-CommerceProductListRequest = 0xAAB5
-CommerceInfoUpdate = 0xAABC
-CommerceInfoRequest = 0xAAC1
-
-
-UnkEsc = 0xAB10
 
 
 
-RewardSelectDialog = 0xAB5C
-RewardSelectDialogR = 0xAB5D
-
-OpenTravelersGuidePopup = 0xAB7D
-
-
-BeginnerWarpBook = 0xABBE
-
-
-ItemMagnet = 0xABCF
-
-
-DestroyExpiredItems = 0xABD0
-DestroyExpiredItemsConfirm = 0xABD1
-DestroyExpiredItemsR = 0xABD2
-
-
-AmmoRequired = 0xABE1
-
-
-SwitchExtraEquipment = 0xAC22
-SwitchExtraEquipmentR = 0xAC23
-UpdateExtraEquipmentEnd = 0xAC24
-
-
-ChatSticker = 0xAC38
-
-
-DcUnk = 0xAC46
-DcUnkR = 0xAC47
-
-RebirthEventInfoRequest = 0xAC70
-RebirthEventInfo = 0xAC71
-RebirthEventReceivePotion = 0xAC72
-
-
-UnkLoginReq = 0xAC9D
-UnkLoginReqR = 0xAC9E
-
-
-SwitchToPureMusicMode = 0xACAD
 
 
 
-UnkCharWindow = 0xACC9
 
-SkillApTraining = 0xACCC
-SkillApTrainingR = 0xACCD
 
-HairUpdateColor = 0xACD3
-HairDyeUse = 0xACD4
-HairDyeUseR = 0xACD5
+SubscribeStabilityMeter = 0xAA34
+StabilityMeterInit = 0xAA35
+StabilityMeterUpdate = 0xAA36
+
+
+
+
+HomesteadBuildRequest = 0xAA58
+HomesteadBuildRequestR = 0xAA59
+HomesteadRemoveFacility = 0xAA5A
+HomesteadRemoveFacilityR = 0xAA5B
+HomesteadUpgradeFacility = 0xAA5C
+HomesteadUpgradeFacilityR = 0xAA5D
+
+
+HomesteadMoveFacility = 0xAA60
+HomesteadMoveFacilityR = 0xAA61
+HomesteadEnterBuildMode = 0xAA62
+HomesteadEnterBuildModeR = 0xAA63
+HomesteadPlantSeed = 0xAA64
+HomesteadPlantSeedR = 0xAA65
+
+
+
+
+HomesteadUi = 0xAA68
+HomesteadExitRequest = 0xAA69
+HomesteadExitRequestR = 0xAA6A
+
+
+HomesteadInfoRequest = 0xAA6D
+HomesteadInfoRequestR = 0xAA6E
+HomesteadEnterRequest = 0xAA6F
+HomesteadEnterRequestR = 0xAA70
+HomesteadCreateRequest = 0xAA71
+HomesteadCreateRequestR = 0xAA72
+HomesteadAddFacility = 0xAA73
+
+
+HomesteadUpdateExp = 0xAA76
+HomesteadBuildComplete = 0xAA77
+HomesteadBuildCompleteR = 0xAA78
+HomesteadExpandRequest = 0xAA79
+HomesteadExpandRequestR = 0xAA7A
+HomesteadReloadRequest = 0xAA7B
+HomesteadReloadRequestR = 0xAA7C
+HomesteadUnk1Request = 0xAA7D
+
+
+HomesteadFacilityRules = 0xAA80
+HomesteadFacilityRulesR = 0xAA81
+HomesteadVisitorUpdateRequest = 0xAA82
+HomesteadVisitorUpdateReply = 0xAA83
+HomesteadVisitorDeleteRequest = 0xAA84
+HomesteadVisitorDeleteReply = 0xAA85
+
+
+HomesteadVisitorDataRequest = 0xAA88
+HomesteadVisitorDataReply = 0xAA89
+
+
+
+
+
+
+CollectionRequest = 0xAAA4
+CollectionRequestR = 0xAAA5
+
+
+
+UnkRequest = 0xAAAB 
+UnkRequestR = 0xAAAC
+
+
+
+
+
+ScrapbookListRequest = 0xAAAF
+ScrapbookListRequestR = 0xAAB0
+
+
+CommerceProductListRequest = 0xAAC1
+CommerceInfoUpdate = 0xAAC8
+CommerceInfoRequest = 0xAACD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UnkEsc = 0xAB1C
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+RewardSelectDialog = 0xAB68
+RewardSelectDialogR = 0xAB69
+
+OpenTravelersGuidePopup = 0xAB89
+
+
+
+
+
+
+
+BeginnerWarpBook = 0xABCA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ItemMagnet = 0xABDB
+
+
+
+DestroyExpiredItems = 0xABDC
+DestroyExpiredItemsConfirm = 0xABDD
+DestroyExpiredItemsR = 0xABDE
+
+
+
+AmmoRequired = 0xABED
+
+
+SwitchExtraEquipment = 0xAC2E
+SwitchExtraEquipmentR = 0xAC2F
+UpdateExtraEquipmentEnd = 0xAC30
+
+
+
+
+ChatSticker = 0xAC44
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DcUnk = 0xAC52
+DcUnkR = 0xAC53
+
+RebirthEventInfoRequest = 0xAC7C
+RebirthEventInfo = 0xAC7D
+RebirthEventReceivePotion = 0xAC7E
+
+
+UnkLoginReq = 0xACA9
+UnkLoginReqR = 0xACAA
+
+
+
+
+SwitchToPureMusicMode = 0xACB9
+
+
+
+
+UnkCharWindow = 0xACD5 
+
+
+SkillApTraining = 0xACD8
+SkillApTrainingR = 0xACD9
+
+HairUpdateColor = 0xACDF
+HairDyeUse = 0xACE0
+HairDyeUseR = 0xACE1
 
 UnkRequest3 = 0xACFB
-UnkRequest2 = 0xAD01
-UnkRequest2R = 0xAD02
+UnkRequest2 = 0xAD0D
+UnkRequest2R = 0xAD0E
 
 
-HomesteadLease = 0xAD03
-HomesteadLeaseR = 0xAD04
 
 
-StudiesUnk = 0xAD4C
-StudiesUnkR = 0xAD4D
+
+HomesteadLease = 0xAD0F
+HomesteadLeaseR = 0xAD10
 
 
-UnkAchievementCrystalReq = 0xAD5E
-UnkAchievementCrystalReqR = 0xAD5F
+StudiesUnk = 0xAD58
+StudiesUnkR = 0xAD59
 
 
-ObtainPerk = 0xAD8F
-ObtainPerkR = 0xAD90
+UnkAchievementCrystalReq = 0xAD6A
+UnkAchievementCrystalReqR = 0xAD6B
+
+
+ObtainPerk = 0xAD9B
+ObtainPerkR = 0xAD9C
 
 NpcTalk = 0x13882
 NpcTalkSelect = 0x13883
 
-SpecialLogin = 0x15F90
+SpecialLogin = 0x15F90 
 EnterSoulStream = 0x15F91
 
 LeaveSoulStream = 0x15F93
@@ -844,6 +1006,7 @@ CutsceneEnd = 0x186A7
 CutsceneUnk = 0x186A8
 
 Weather = 0x1ADB0
+
 
 NGS1 = 0x1D4C2
 NGS2 = 0x1D4C3
@@ -861,7 +1024,7 @@ GmcpExpel = 0x1D596
 GmcpBan = 0x1D597
 GmcpNpcList = 0x1D59F
 GmcpNpcListR = 0x1D5A0
-GmcpBoost = 0x1D5A1
+GmcpBoost = 0x1D5A1 
 
 PetMount = 0x1FBD0
 PetMountR = 0x1FBD1
@@ -878,6 +1041,8 @@ SpecialUnitInfoRequestR = 0x20F87
 
 ErinnLandAchievementsRequest = 0x211DD
 ErinnLandAchievementsList = 0x211DE
+
+
 
 
 UnkWeaponBonusInfo = 0x2121B
