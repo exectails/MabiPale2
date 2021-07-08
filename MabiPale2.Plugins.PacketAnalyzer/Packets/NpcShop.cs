@@ -47,7 +47,11 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 					var metaData2 = "";
 					if (palePacket.Packet.NextIs(Shared.PacketElementType.String))
 						metaData2 = palePacket.Packet.GetString();
-					palePacket.Packet.GetByte();
+
+					var upgradeCount = palePacket.Packet.GetByte();
+					for (var k = 0; k < upgradeCount; ++k)
+						palePacket.Packet.GetBin();
+
 					palePacket.Packet.GetLong();
 
 					// [190100, NA200 (2015-01-15)] New/Combined

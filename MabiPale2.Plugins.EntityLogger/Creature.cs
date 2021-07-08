@@ -52,9 +52,9 @@ namespace MabiPale2.Plugins.EntityLogger
 		public float LifeMaxMod { get; set; }
 		public float LifeInjured { get; set; }
 
-		public ushort Title { get; set; }
+		public int Title { get; set; }
 		public DateTime TitleApplied { get; set; }
-		public ushort OptionTitle { get; set; }
+		public int OptionTitle { get; set; }
 
 		public string MateName { get; set; }
 		public byte Destiny { get; set; }
