@@ -162,8 +162,14 @@ namespace MabiPale2.Plugins.EntityLogger
 			// [210300, NA292 (2018-12-07)] ?
 			if (packet.NextIs(PacketElementType.Short))
 			{
-				packet.PutShort(0);
-				packet.PutInt(0);
+				packet.GetShort();
+				packet.GetInt();
+			}
+
+			// [250100, NA360 (2020-12-19)] ?
+			if (packet.NextIs(PacketElementType.Short))
+			{
+				packet.GetShort();
 			}
 
 			creature.LifeRaw = packet.GetFloat();
@@ -203,9 +209,17 @@ namespace MabiPale2.Plugins.EntityLogger
 					packet.GetByte(); // [200300, NA262 (2017-10-20)] ?
 			}
 
-			creature.Title = packet.GetUShort();
+			if (packet.NextIs(PacketElementType.Short))
+				creature.Title = packet.GetUShort();
+			else
+				creature.Title = packet.GetInt();
+
 			creature.TitleApplied = packet.GetDate();
-			creature.OptionTitle = packet.GetUShort();
+
+			if (packet.NextIs(PacketElementType.Short))
+				creature.OptionTitle = packet.GetUShort();
+			else
+				creature.OptionTitle = packet.GetInt();
 
 			creature.MateName = packet.GetString();
 			creature.Destiny = packet.GetByte();
