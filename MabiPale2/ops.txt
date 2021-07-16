@@ -8,43 +8,45 @@ CharacterInfoRequestR = 0x2A
 CreateCharacter = 0x2B
 CreateCharacterR = 0x2C
 DeleteCharacterRequest = 0x2D
-DeleteCharacterRequestR = 0x2E
-ChannelInfoRequest = 0x2F
-ChannelInfoRequestR = 0x30
-DeleteCharacter = 0x35
-DeleteCharacterR = 0x36
-RecoverCharacter = 0x37
-RecoverCharacterR = 0x38
-NameCheck = 0x39
-NameCheckR = 0x3A
-PetInfoRequest = 0x3B
-PetInfoRequestR = 0x3C
-CreatePet = 0x3D
-CreatePetR = 0x3E
-DeletePetRequest = 0x3F
-DeletePetRequestR = 0x40
-DeletePet = 0x41
-DeletePetR = 0x42
-RecoverPet = 0x43
-RecoverPetR = 0x44
-CreatePartner = 0x45
-CreatePartnerR = 0x46
-AccountInfoRequest = 0x47
-AccountInfoRequestR = 0x48
-AcceptGift = 0x49
-AcceptGiftR = 0x4A
-RefuseGift = 0x4B
-RefuseGiftR = 0x4C
-DisconnectInform = 0x4D
-PetCreationOptionsRequest = 0x50
-PetCreationOptionsRequestR = 0x51
-LoginRedirect = 0x54
-PartnerCreationOptionsRequest = 0x55
-PartnerCreationOptionsRequestR = 0x56
-LoginUnk = 0x5A  
-LoginUnkR = 0x5B 
-TradeCard = 0x5C
-TradeCardR = 0x5D
+
+DeleteCharacterRequestR = 0x2F
+ChannelInfoRequest = 0x30
+ChannelInfoRequestR = 0x31
+DeleteCharacter = 0x36
+DeleteCharacterR = 0x37
+RecoverCharacter = 0x38
+RecoverCharacterR = 0x39
+NameCheck = 0x3A
+NameCheckR = 0x3B
+PetInfoRequest = 0x3C
+PetInfoRequestR = 0x3D
+CreatePet = 0x3E
+CreatePetR = 0x3F
+DeletePetRequest = 0x40
+DeletePetRequestR = 0x41
+DeletePet = 0x42
+DeletePetR = 0x43
+RecoverPet = 0x44
+RecoverPetR = 0x45
+CreatePartner = 0x46
+CreatePartnerR = 0x47
+AccountInfoRequest = 0x48
+AccountInfoRequestR = 0x49
+AcceptGift = 0x4A
+AcceptGiftR = 0x4B
+RefuseGift = 0x4C
+RefuseGiftR = 0x4D
+DisconnectInform = 0x4E
+PetCreationOptionsRequest = 0x51
+PetCreationOptionsRequestR = 0x52
+LoginRedirect = 0x55
+PartnerCreationOptionsRequest = 0x56
+PartnerCreationOptionsRequestR = 0x57
+LoginUnk = 0x5B 
+LoginUnkR = 0x5C 
+TradeCard = 0x5D
+TradeCardR = 0x5E
+LoginUnk2 = 0x61 
 
 
 
@@ -97,8 +99,8 @@ PropUpdate = 0x52D2
 PropColorUpdate = 0x52D3
 EntitiesAppear = 0x5334
 EntitiesDisappear = 0x5335
-RemoveDeathScreen = 0x53FD
 IsNowDead = 0x53FC
+RemoveDeathScreen = 0x53FD
 Revive = 0x53FE
 Revived = 0x53FF
 DeadMenu = 0x5401
@@ -289,11 +291,13 @@ ChangeStanceRequest = 0x6E28
 ChangeStanceRequestR = 0x6E29
 ChangeStance = 0x6E2A
 
+StateDownSync = 0x701C
 RiseFromTheDead = 0x701D
 CharacterLock = 0x701E
 CharacterUnlock = 0x701F
 CharacterLockUpdate = 0x7020 
-PlayDead = 0x7021
+PlayDeadStart = 0x7021
+PlayDeadEnd = 0x7022
 OpenUmbrella = 0x7025
 CloseUmbrella = 0x7026
 SpreadWingsOn = 0x702E
@@ -556,14 +560,17 @@ PersonalShopPetProtectStart = 0x902F
 PersonalShopPetProtectStop = 0x9030
 
 
-UnsummonPet = 0x9032
-UnsummonPetR = 0x9033
-TelePet = 0x9034
-TelePetR = 0x9035
-PutItemIntoPetInv = 0x9036
-PutItemIntoPetInvR = 0x9037
-TakeItemFromPetInv = 0x9038
-TakeItemFromPetInvR = 0x9039
+
+UnsummonPet = 0x9033
+UnsummonPetR = 0x9034
+TelePet = 0x9035
+TelePetR = 0x9036
+PutItemIntoPetInv = 0x9037
+PutItemIntoPetInvR = 0x9038
+TakeItemFromPetInv = 0x9039
+TakeItemFromPetInvR = 0x903A
+
+PetSummonedByGiant = 0x9063
 
 HitProp = 0x9088
 HitPropR = 0x9089
@@ -587,6 +594,10 @@ PartyWantedUpdate = 0x9096
 PvpStatusUpdate = 0x9097
 NaoRevivalExit = 0x9099
 NaoRevivalEntrance = 0x909D
+
+
+
+AcceptDailyAdvancedItem = 0x90A2
 
 
 
@@ -614,6 +625,9 @@ PurchaseMerchandiseR = 0x96D6
 AgeUpEffect = 0x9858
 
 ConditionUpdate = 0xA028
+
+PummelCharged = 0xA02E
+PummelChargedR = 0xA02F
 
 CollectAnimation = 0xA415
 CollectAnimationCancel = 0xA416
@@ -653,6 +667,8 @@ MailsRequestR = 0xA898
 SetPetAi = 0xA8A1
 GetPetAi = 0xA8A2
 GetPetAiR = 0xA8A3
+PetSearchItem = 0xA8AA
+PetSearchItemR = 0xA8AB
 GuildChangeStone = 0xA8AC
 WarpUnk3 = 0xA8AF
 SetQuestTimer = 0xA8CF 
@@ -679,142 +695,145 @@ UmbrellaLand = 0xA8E2
 
 
 
-ShadowMissionPuzzleInfoRequest = 0xA917
-ShadowMissionPuzzleInfoUpdate = 0xA918
-ShadowMissionExitRequest = 0xA919
-ShadowMissionExitRequestR = 0xA91A
 
-SetBgm = 0xA91C
-UnsetBgm = 0xA91D
 
-AchievmentVisibleChange = 0xA98B
-EnterDynamicRegionExtended = 0xA98C 
-EnableRoyalAlchemist = 0xA9B1
-SpinColorWheel = 0xA9B3
-SpinColorWheelR = 0xA9B4
-ChangeNameColor = 0xA9B5
 
-SosButtonRequest = 0xA9B7
-SosButtonRequestR = 0xA9B8
+ShadowMissionPuzzleInfoRequest = 0xA919
+ShadowMissionPuzzleInfoUpdate = 0xA91A
+ShadowMissionExitRequest = 0xA91B
+ShadowMissionExitRequestR = 0xA91C
 
+SetBgm = 0xA91E
+UnsetBgm = 0xA91F
 
+AchievmentVisibleChange = 0xA98D
+EnterDynamicRegionExtended = 0xA98E 
+EnableRoyalAlchemist = 0xA9B3
+SpinColorWheel = 0xA9B5
+SpinColorWheelR = 0xA9B6
+ChangeNameColor = 0xA9B7
 
+SosButtonRequest = 0xA9B9
+SosButtonRequestR = 0xA9BA
 
 
 
 
-Unk1 = 0xA9B7
-Unk1R = 0xA9B8
 
-PersonalShopSetPriceForAll = 0xA9BF
-PersonalShopSetPriceForAllR = 0xA9C0
 
-FamilyTreeOpen = 0xA9DC
-FamilyTreeOpenR = 0xA9DD
 
-SkillTeleport = 0xA9FF
-SetCamera = 0xAA03
-EnterRebirth = 0xAA08
-EnterRebirthR = 0xAA09
+Unk1 = 0xA9B9
+Unk1R = 0xA9BA
 
+PersonalShopSetPriceForAll = 0xA9C1
+PersonalShopSetPriceForAllR = 0xA9C2
 
+FamilyTreeOpen = 0xA9DE
+FamilyTreeOpenR = 0xA9DF
 
+SkillTeleport = 0xAA01
+SetCamera = 0xAA05
+EnterRebirth = 0xAA0A
+EnterRebirthR = 0xAA0B
 
 
 
 
-SubscribeStabilityMeter = 0xAA30
-StabilityMeterInit = 0xAA31
-StabilityMeterUpdate = 0xAA32
 
 
 
 
-HomesteadBuildRequest = 0xAA54
-HomesteadBuildRequestR = 0xAA55
-HomesteadRemoveFacility = 0xAA56
-HomesteadRemoveFacilityR = 0xAA57
-HomesteadUpgradeFacility = 0xAA58
-HomesteadUpgradeFacilityR = 0xAA59
-HomesteadMoveFacility = 0xAA5C
-HomesteadMoveFacilityR = 0xAA5D
-HomesteadEnterBuildMode = 0xAA5E
-HomesteadEnterBuildModeR = 0xAA5F
-HomesteadPlantSeed = 0xAA60
-HomesteadPlantSeedR = 0xAA61
 
 
+SubscribeStabilityMeter = 0xAA34
+StabilityMeterInit = 0xAA35
+StabilityMeterUpdate = 0xAA36
 
 
-HomesteadUi = 0xAA64
-HomesteadExitRequest = 0xAA65
-HomesteadExitRequestR = 0xAA66
-HomesteadInfoRequest = 0xAA69
-HomesteadInfoRequestR = 0xAA6A
-HomesteadEnterRequest = 0xAA6B
-HomesteadEnterRequestR = 0xAA6C
-HomesteadCreateRequest = 0xAA6D
-HomesteadCreateRequestR = 0xAA6E
-HomesteadAddFacility = 0xAA6F
-HomesteadUpdateExp = 0xAA72
-HomesteadBuildComplete = 0xAA73
-HomesteadBuildCompleteR = 0xAA74
-HomesteadExpandRequest = 0xAA75
-HomesteadExpandRequestR = 0xAA76
-HomesteadReloadRequest = 0xAA77
-HomesteadReloadRequestR = 0xAA78
-HomesteadUnk1Request = 0xAA79
-HomesteadFacilityRules = 0xAA7C
-HomesteadFacilityRulesR = 0xAA7D
-HomesteadUnk2Request = 0xAA84
-HomesteadUnk2RequestR = 0xAA85
 
 
+HomesteadBuildRequest = 0xAA58
+HomesteadBuildRequestR = 0xAA59
+HomesteadRemoveFacility = 0xAA5A
+HomesteadRemoveFacilityR = 0xAA5B
+HomesteadUpgradeFacility = 0xAA5C
+HomesteadUpgradeFacilityR = 0xAA5D
 
-CollectionRequest = 0xAA96
-CollectionRequestR = 0xAA97
 
+HomesteadMoveFacility = 0xAA60
+HomesteadMoveFacilityR = 0xAA61
+HomesteadEnterBuildMode = 0xAA62
+HomesteadEnterBuildModeR = 0xAA63
+HomesteadPlantSeed = 0xAA64
+HomesteadPlantSeedR = 0xAA65
 
 
-UnkRequest = 0xAA9D 
-UnkRequestR = 0xAA9E
 
 
+HomesteadUi = 0xAA68
+HomesteadExitRequest = 0xAA69
+HomesteadExitRequestR = 0xAA6A
 
 
+HomesteadInfoRequest = 0xAA6D
+HomesteadInfoRequestR = 0xAA6E
+HomesteadEnterRequest = 0xAA6F
+HomesteadEnterRequestR = 0xAA70
+HomesteadCreateRequest = 0xAA71
+HomesteadCreateRequestR = 0xAA72
+HomesteadAddFacility = 0xAA73
 
-ScrapbookListRequest = 0xAAA1
-ScrapbookListRequestR = 0xAAA2
 
+HomesteadUpdateExp = 0xAA76
+HomesteadBuildComplete = 0xAA77
+HomesteadBuildCompleteR = 0xAA78
+HomesteadExpandRequest = 0xAA79
+HomesteadExpandRequestR = 0xAA7A
+HomesteadReloadRequest = 0xAA7B
+HomesteadReloadRequestR = 0xAA7C
+HomesteadUnk1Request = 0xAA7D
 
-CommerceProductListRequest = 0xAAB3
-CommerceInfoUpdate = 0xAABA
-CommerceInfoRequest = 0xAABF
 
+HomesteadFacilityRules = 0xAA80
+HomesteadFacilityRulesR = 0xAA81
+HomesteadVisitorUpdateRequest = 0xAA82
+HomesteadVisitorUpdateReply = 0xAA83
+HomesteadVisitorDeleteRequest = 0xAA84
+HomesteadVisitorDeleteReply = 0xAA85
 
 
+HomesteadVisitorDataRequest = 0xAA88
+HomesteadVisitorDataReply = 0xAA89
 
 
 
 
 
 
+CollectionRequest = 0xAAA4
+CollectionRequestR = 0xAAA5
 
 
 
+UnkRequest = 0xAAAB 
+UnkRequestR = 0xAAAC
 
 
 
 
 
+ScrapbookListRequest = 0xAAAF
+ScrapbookListRequestR = 0xAAB0
 
 
+CommerceProductListRequest = 0xAAC1
+CommerceInfoUpdate = 0xAAC8
+CommerceInfoRequest = 0xAACD
 
 
 
 
 
-UnkEsc = 0xAB0E
 
 
 
@@ -834,13 +853,11 @@ UnkEsc = 0xAB0E
 
 
 
+UnkEsc = 0xAB1C
 
 
 
-RewardSelectDialog = 0xAB5A
-RewardSelectDialogR = 0xAB5B
 
-OpenTravelersGuidePopup = 0xAB7B
 
 
 
@@ -848,7 +865,6 @@ OpenTravelersGuidePopup = 0xAB7B
 
 
 
-BeginnerWarpBook = 0xABBC
 
 
 
@@ -860,31 +876,26 @@ BeginnerWarpBook = 0xABBC
 
 
 
+RewardSelectDialog = 0xAB68
+RewardSelectDialogR = 0xAB69
 
+OpenTravelersGuidePopup = 0xAB89
 
 
 
-ItemMagnet = 0xABCD
 
 
 
-DestroyExpiredItems = 0xABCE
-DestroyExpiredItemsConfirm = 0xABCF
-DestroyExpiredItemsR = 0xABD0
 
+BeginnerWarpBook = 0xABCA
 
 
-AmmoRequired = 0xABDF
 
 
-SwitchExtraEquipment = 0xAC20
-SwitchExtraEquipmentR = 0xAC21
-UpdateExtraEquipmentEnd = 0xAC22
 
 
 
 
-ChatSticker = 0xAC36
 
 
 
@@ -892,61 +903,93 @@ ChatSticker = 0xAC36
 
 
 
+ItemMagnet = 0xABDB
 
 
 
+DestroyExpiredItems = 0xABDC
+DestroyExpiredItemsConfirm = 0xABDD
+DestroyExpiredItemsR = 0xABDE
 
 
 
+AmmoRequired = 0xABED
 
 
-DcUnk = 0xAC44
-DcUnkR = 0xAC45
+SwitchExtraEquipment = 0xAC2E
+SwitchExtraEquipmentR = 0xAC2F
+UpdateExtraEquipmentEnd = 0xAC30
 
-RebirthEventInfoRequest = 0xAC6E
-RebirthEventInfo = 0xAC6F
-RebirthEventReceivePotion = 0xAC70
 
 
-UnkLoginReq = 0xAC9B
-UnkLoginReqR = 0xAC9C
 
+ChatSticker = 0xAC44
 
 
 
-SwitchToPureMusicMode = 0xACAB
 
 
 
 
-UnkCharWindow = 0xACC7 
 
 
-SkillApTraining = 0xACCA
-SkillApTrainingR = 0xACCB
 
-HairUpdateColor = 0xACD1
-HairDyeUse = 0xACD2
-HairDyeUseR = 0xACD3
 
-UnkRequest3 = 0xACF9
-UnkRequest2 = 0xACFF
-UnkRequest2R = 0xAD00
 
 
 
 
+DcUnk = 0xAC52
+DcUnkR = 0xAC53
 
-HomesteadLease = 0xAD01
-HomesteadLeaseR = 0xAD02
+RebirthEventInfoRequest = 0xAC7C
+RebirthEventInfo = 0xAC7D
+RebirthEventReceivePotion = 0xAC7E
 
 
-StudiesUnk = 0xAD4A
-StudiesUnkR = 0xAD4B
+UnkLoginReq = 0xACA9
+UnkLoginReqR = 0xACAA
 
 
-UnkAchievementCrystalReq = 0xAD5C
-UnkAchievementCrystalReqR = 0xAD5D
+
+
+SwitchToPureMusicMode = 0xACB9
+
+
+
+
+UnkCharWindow = 0xACD5 
+
+
+SkillApTraining = 0xACD8
+SkillApTrainingR = 0xACD9
+
+HairUpdateColor = 0xACDF
+HairDyeUse = 0xACE0
+HairDyeUseR = 0xACE1
+
+UnkRequest3 = 0xACFB
+UnkRequest2 = 0xAD0D
+UnkRequest2R = 0xAD0E
+
+
+
+
+
+HomesteadLease = 0xAD0F
+HomesteadLeaseR = 0xAD10
+
+
+StudiesUnk = 0xAD58
+StudiesUnkR = 0xAD59
+
+
+UnkAchievementCrystalReq = 0xAD6A
+UnkAchievementCrystalReqR = 0xAD6B
+
+
+ObtainPerk = 0xAD9B
+ObtainPerkR = 0xAD9C
 
 NpcTalk = 0x13882
 NpcTalkSelect = 0x13883

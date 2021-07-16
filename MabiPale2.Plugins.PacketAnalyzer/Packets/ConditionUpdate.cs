@@ -1,5 +1,9 @@
 ﻿using Aura.Mabi.Const;
 using MabiPale2.Shared;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace MabiPale2.Plugins.PacketAnalyzer.Packets
@@ -63,7 +67,9 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 				var active = palePacket.Packet.GetBool();
 				var conditionId = palePacket.Packet.GetInt();
 
-				sb.AppendLine("Condition Id: {0} ({1})", (ConditionId)conditionId, conditionId);
+				var name = typeof(ConditionId).GetFields().FirstOrDefault(a => (int)a.GetValue(null) == conditionId)?.Name ?? "?";
+
+				sb.AppendLine("Condition Id: {0} ({1})", name, conditionId);
 				sb.AppendLine("Active: {0}", (active ? "Yes" : "No"));
 
 				if (active)
