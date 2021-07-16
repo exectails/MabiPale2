@@ -123,6 +123,31 @@ namespace MabiPale2.Shared
 		}
 
 		/// <summary>
+		/// Returns true if the next element to be read is of type.
+		/// </summary>
+		/// <param name="types"></param>
+		/// <returns></returns>
+		public bool NextAre(params PacketElementType[] types)
+		{
+			var ptr = _ptr;
+			var result = true;
+
+			foreach (var type in types)
+			{
+				if (!this.NextIs(type))
+				{
+					result = false;
+					break;
+				}
+
+				this.Skip(1);
+			}
+
+			_ptr = ptr;
+			return result;
+		}
+
+		/// <summary>
 		/// Returns new empty packet.
 		/// </summary>
 		/// <returns></returns>
