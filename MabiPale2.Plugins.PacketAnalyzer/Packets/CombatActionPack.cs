@@ -17,7 +17,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 			sb.AppendLine("Hit: " + palePacket.Packet.GetByte());
 			palePacket.Packet.GetByte(); // [220200, NA296 (2019-04-11)]
 			sb.AppendLine("Type: " + palePacket.Packet.GetByte());
-			palePacket.Packet.GetByte();
+			palePacket.Packet.GetByte(); // Flags
 			sb.AppendLine();
 
 			var count = palePacket.Packet.GetInt();
@@ -76,6 +76,10 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 					// another one. If there is, we shift the information,
 					// so the variables point to the correct info.
 
+					// ^ This int appears to be the attacker's Weapon ID
+					// (not the enitity ID, but the base item ID).
+					// Only seen in Spinning Uppercut, Somersault Kick, and Pummel so far.
+
 					int unkInt, x, y;
 
 					x = actionPacket.GetInt();
@@ -86,10 +90,16 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 						unkInt = x;
 						x = y;
 						y = actionPacket.GetInt();
+
+						sb.AppendLine("WeaponId: " + unkInt);
 					}
 
 					sb.AppendLine("X: " + x);
 					sb.AppendLine("Y: " + y);
+
+					if (actionPacket.NextIs(Shared.PacketElementType.Byte))
+						sb.AppendLine("Phase: " + actionPacket.GetByte()); // Used in Pummel
+
 					if (actionPacket.NextIs(Shared.PacketElementType.Long))
 						sb.AppendLine("Prop: " + actionPacket.GetLong().ToString("X16"));
 				}
@@ -128,7 +138,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 
 						sb.AppendLine("Options: " + strOptions);
 						sb.AppendLine("Damage: " + actionPacket.GetFloat());
-						sb.AppendLine("? Damage: " + actionPacket.GetFloat());
+						sb.AppendLine("Wound: " + actionPacket.GetFloat());
 						sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
 
 						if (actionPacket.NextIs(Shared.PacketElementType.Int))
@@ -146,6 +156,15 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 							{
 								actionPacket.PutInt(0);
 							}
+						}
+
+						// MultiHit Target Option
+						if (actionPacket.NextIs(Shared.PacketElementType.Int))
+						{
+							sb.AppendLine("MultiHitCount: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitInterval: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitUnk: " + actionPacket.GetInt());
+							sb.AppendLine("MultiHitDivisionSeed: " + actionPacket.GetInt());
 						}
 
 						sb.AppendLine("EffectFlags: " + actionPacket.GetByte());
