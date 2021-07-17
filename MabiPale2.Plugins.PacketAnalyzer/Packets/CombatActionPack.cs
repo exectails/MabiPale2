@@ -10,26 +10,27 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 	{
 		public string AnalyzePacket(PalePacket palePacket)
 		{
+			var packet = palePacket.Packet;
 			var sb = new StringBuilder();
 
-			sb.AppendLine("Id: " + palePacket.Packet.GetInt());
-			sb.AppendLine("Prev Id: " + palePacket.Packet.GetInt());
-			sb.AppendLine("Hit: " + palePacket.Packet.GetByte());
+			sb.AppendLine("Id: " + packet.GetInt());
+			sb.AppendLine("Prev Id: " + packet.GetInt());
+			sb.AppendLine("Hit: " + packet.GetByte());
 
-			if (palePacket.Packet.NextAre(PacketElementType.Byte, PacketElementType.Byte, PacketElementType.Byte))
-				palePacket.Packet.GetByte(); // [220200, NA296 (2019-04-11)]
+			if (packet.NextAre(PacketElementType.Byte, PacketElementType.Byte, PacketElementType.Byte))
+				packet.GetByte(); // [220200, NA296 (2019-04-11)]
 
-			sb.AppendLine("Type: " + palePacket.Packet.GetByte());
-			palePacket.Packet.GetByte(); // Flags
+			sb.AppendLine("Type: " + packet.GetByte());
+			packet.GetByte(); // Flags
 			sb.AppendLine();
 
-			var count = palePacket.Packet.GetInt();
+			var count = packet.GetInt();
 			for (int i = 0; i < count; ++i)
 			{
-				var len = palePacket.Packet.GetInt();
-				var buff = palePacket.Packet.GetBin();
+				var len = packet.GetInt();
+				var buff = packet.GetBin();
 
-				var actionPacket = new MabiPale2.Shared.Packet(buff, 0);
+				var actionPacket = new Packet(buff, 0);
 				actionPacket.GetInt();
 				if (i > 0)
 					sb.AppendLine();
@@ -46,7 +47,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 				sb.AppendLine("Stun: " + actionPacket.GetShort());
 				sb.AppendLine("Skill Id: " + (SkillId)actionPacket.GetShort());
 				actionPacket.GetShort();
-				if (actionPacket.Peek() == Shared.PacketElementType.Short)
+				if (actionPacket.Peek() == PacketElementType.Short)
 					actionPacket.GetShort(); // [200300, NA258 (2017-08-19)] ? 
 
 				// AttackerAction
@@ -88,7 +89,7 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 					x = actionPacket.GetInt();
 					y = actionPacket.GetInt();
 
-					if (actionPacket.NextIs(Shared.PacketElementType.Int))
+					if (actionPacket.NextIs(PacketElementType.Int))
 					{
 						unkInt = x;
 						x = y;
@@ -100,10 +101,10 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 					sb.AppendLine("X: " + x);
 					sb.AppendLine("Y: " + y);
 
-					if (actionPacket.NextIs(Shared.PacketElementType.Byte))
+					if (actionPacket.NextIs(PacketElementType.Byte))
 						sb.AppendLine("Phase: " + actionPacket.GetByte()); // Used in Pummel
 
-					if (actionPacket.NextIs(Shared.PacketElementType.Long))
+					if (actionPacket.NextIs(PacketElementType.Long))
 						sb.AppendLine("Prop: " + actionPacket.GetLong().ToString("X16"));
 				}
 				// TargetAction
@@ -111,69 +112,69 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 				{
 					// Target actions might end here, widnessed with a packet
 					// that had "97" as the previous short.
-					if (actionPacket.Peek() != Shared.PacketElementType.None)
+					if (actionPacket.Peek() == PacketElementType.None)
+						continue;
+
+					// Target used Defense or Counter
+					if (type.HasFlag(CombatActionType.Defended) || type.HasFlag(CombatActionType.CounteredHit) || type.HasFlag((CombatActionType)0x73) || type.HasFlag((CombatActionType)0x13))
 					{
-						// Target used Defense or Counter
-						if (type.HasFlag(CombatActionType.Defended) || type.HasFlag(CombatActionType.CounteredHit) || type.HasFlag((CombatActionType)0x73) || type.HasFlag((CombatActionType)0x13))
-						{
-							var attackerEntityId = actionPacket.GetLong();
-							actionPacket.GetInt();
-							actionPacket.GetByte();
-							actionPacket.GetByte();
-							actionPacket.GetInt();
-							var x = actionPacket.GetInt();
-							var y = actionPacket.GetInt();
-						}
-
-						var options = new List<uint>();
-						var topt = actionPacket.GetInt();
-						for (uint foo2 = 1; foo2 < 0x80000000;)
-						{
-							if ((topt & foo2) != 0)
-								options.Add(foo2);
-							foo2 <<= 1;
-						}
-						var strOptions = string.Join(", ", options.Select(a =>
-						{
-							var en = (TargetOptions)a;
-							return "0x" + a.ToString("X2") + (en.ToString() != a.ToString() ? "(" + en + ")" : "");
-						}));
-
-						sb.AppendLine("Options: " + strOptions);
-						sb.AppendLine("Damage: " + actionPacket.GetFloat());
-						sb.AppendLine("Wound: " + actionPacket.GetFloat());
-						sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
-
-						if (actionPacket.NextIs(Shared.PacketElementType.Int))
-							actionPacket.GetInt(); // [210100, NA280 (2018-06-14)]
-
-						sb.AppendLine("X-Diff: " + actionPacket.GetFloat());
-						sb.AppendLine("Y-Diff: " + actionPacket.GetFloat());
-						if (actionPacket.NextIs(Shared.PacketElementType.Float))
-						{
-							sb.AppendLine("New X: " + actionPacket.GetFloat());
-							sb.AppendLine("New Y: " + actionPacket.GetFloat());
-
-							// [190200, NA203 (22.04.2015)]
-							if (actionPacket.Peek() == Shared.PacketElementType.Int)
-							{
-								actionPacket.PutInt(0);
-							}
-						}
-
-						// MultiHit Target Option
-						if (actionPacket.NextIs(Shared.PacketElementType.Int))
-						{
-							sb.AppendLine("MultiHitCount: " + actionPacket.GetInt());
-							sb.AppendLine("MultiHitInterval: " + actionPacket.GetInt());
-							sb.AppendLine("MultiHitUnk: " + actionPacket.GetInt());
-							sb.AppendLine("MultiHitDivisionSeed: " + actionPacket.GetInt());
-						}
-
-						sb.AppendLine("EffectFlags: " + actionPacket.GetByte());
-						sb.AppendLine("Delay: " + actionPacket.GetInt());
-						sb.AppendLine("Attacker: " + actionPacket.GetLong().ToString("X16"));
+						var attackerEntityId = actionPacket.GetLong();
+						actionPacket.GetInt();
+						actionPacket.GetByte();
+						actionPacket.GetByte();
+						actionPacket.GetInt();
+						var x = actionPacket.GetInt();
+						var y = actionPacket.GetInt();
 					}
+
+					var options = new List<uint>();
+					var topt = actionPacket.GetInt();
+					for (uint foo2 = 1; foo2 < 0x80000000;)
+					{
+						if ((topt & foo2) != 0)
+							options.Add(foo2);
+						foo2 <<= 1;
+					}
+					var strOptions = string.Join(", ", options.Select(a =>
+					{
+						var en = (TargetOptions)a;
+						return "0x" + a.ToString("X2") + (en.ToString() != a.ToString() ? "(" + en + ")" : "");
+					}));
+
+					sb.AppendLine("Options: " + strOptions);
+					sb.AppendLine("Damage: " + actionPacket.GetFloat());
+					sb.AppendLine("Wound: " + actionPacket.GetFloat());
+					sb.AppendLine("Mana Damage?: " + actionPacket.GetInt());
+
+					if (actionPacket.NextIs(PacketElementType.Int))
+						actionPacket.GetInt(); // [210100, NA280 (2018-06-14)]
+
+					sb.AppendLine("X-Diff: " + actionPacket.GetFloat());
+					sb.AppendLine("Y-Diff: " + actionPacket.GetFloat());
+					if (actionPacket.NextIs(PacketElementType.Float))
+					{
+						sb.AppendLine("New X: " + actionPacket.GetFloat());
+						sb.AppendLine("New Y: " + actionPacket.GetFloat());
+
+						// [190200, NA203 (22.04.2015)]
+						if (actionPacket.Peek() == PacketElementType.Int)
+						{
+							actionPacket.GetInt();
+						}
+					}
+
+					// MultiHit Target Option
+					if (actionPacket.NextIs(PacketElementType.Int))
+					{
+						sb.AppendLine("MultiHitCount: " + actionPacket.GetInt());
+						sb.AppendLine("MultiHitInterval: " + actionPacket.GetInt());
+						sb.AppendLine("MultiHitUnk: " + actionPacket.GetInt());
+						sb.AppendLine("MultiHitDivisionSeed: " + actionPacket.GetInt());
+					}
+
+					sb.AppendLine("EffectFlags: " + actionPacket.GetByte());
+					sb.AppendLine("Delay: " + actionPacket.GetInt());
+					sb.AppendLine("Attacker: " + actionPacket.GetLong().ToString("X16"));
 				}
 			}
 
