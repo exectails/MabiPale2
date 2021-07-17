@@ -246,13 +246,6 @@ namespace MabiPale2
 		/// <param name="scroll"></param>
 		private void AddPacketToFormList(PalePacket palePacket, bool scroll)
 		{
-			var name = "?";
-			lock (opNames)
-			{
-				if (opNames.ContainsKey(palePacket.Op))
-					name = opNames[palePacket.Op];
-			}
-
 			var lvi = new ListViewItem((palePacket.Received ? "<" : ">") + palePacket.Op.ToString("X8"));
 			lvi.UseItemStyleForSubItems = false;
 			lvi.BackColor = palePacket.Received ? Color.FromArgb(0x0033bbff) : Color.FromArgb(0x00ff5522);
@@ -260,7 +253,7 @@ namespace MabiPale2
 			lvi.Tag = palePacket;
 
 			lvi.SubItems.Add(palePacket.Id.ToString("X16"));
-			lvi.SubItems.Add(name);
+			lvi.SubItems.Add(GetOpName(palePacket.Op));
 			lvi.SubItems.Add(palePacket.Time > DateTime.MinValue ? palePacket.Time.ToString("hh:mm:ss.fff") : "");
 
 			LstPackets.InvokeIfRequired((MethodInvoker)delegate
@@ -270,6 +263,24 @@ namespace MabiPale2
 				if (scroll)
 					LstPackets.Items[LstPackets.Items.Count - 1].EnsureVisible();
 			});
+		}
+
+		/// <summary>
+		/// Returns the name of the given op based on the currently loaded
+		/// op list.
+		/// </summary>
+		/// <param name="op"></param>
+		/// <returns></returns>
+		private string GetOpName(int op)
+		{
+			var name = "?";
+			lock (opNames)
+			{
+				if (opNames.ContainsKey(op))
+					name = opNames[op];
+			}
+
+			return name;
 		}
 
 		/// <summary>
@@ -375,14 +386,38 @@ namespace MabiPale2
 		/// <param name="e"></param>
 		private void BtnSettings_Click(object sender, EventArgs e)
 		{
+			var prevOps = Settings.Default.OpsFileName;
 			var form = new FrmSettings(log.ToString());
-			var result = form.ShowDialog();
 
+			var result = form.ShowDialog();
 			if (result == DialogResult.Cancel)
 				return;
 
 			UpdateFilters();
 			UpdateOpNames();
+
+			if (prevOps != Settings.Default.OpsFileName)
+			{
+				result = MessageBox.Show("The op list has changed, update packet list?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+				if (result == DialogResult.Yes)
+					RefreshOps();
+			}
+		}
+
+		/// <summary>
+		/// Updates the ops in the packet list based on the current op list.
+		/// </summary>
+		private void RefreshOps()
+		{
+			LstPackets.BeginUpdate();
+
+			foreach (ListViewItem lvi in LstPackets.Items)
+			{
+				var palePacket = (PalePacket)lvi.Tag;
+				lvi.SubItems[2].Text = GetOpName(palePacket.Op);
+			}
+
+			LstPackets.EndUpdate();
 		}
 
 		/// <summary>
@@ -455,8 +490,7 @@ namespace MabiPale2
 							var name = match.Groups["name"].Value;
 							var opStr = match.Groups["op"].Value;
 
-							int op;
-							if (!int.TryParse(opStr, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out op))
+							if (!int.TryParse(opStr, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var op))
 								continue;
 
 							opNames[op] = name;
