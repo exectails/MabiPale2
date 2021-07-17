@@ -55,15 +55,28 @@ namespace MabiPale2.Plugins.DunGen
 			if (form == null || form.IsDisposed || palePacket.Op != Op.DungeonInfo)
 				return;
 
-			palePacket.Packet.GetLong();
-			palePacket.Packet.GetLong();
-			palePacket.Packet.GetByte();
-			var name = palePacket.Packet.GetString();
-			var itemId = palePacket.Packet.GetInt();
-			var seed = palePacket.Packet.GetInt();
-			var floorPlan = palePacket.Packet.GetInt();
+			if (palePacket.Packet.KR72Header)
+			{
+				palePacket.Packet.GetLong();
+				var name = palePacket.Packet.GetString();
+				var itemId = palePacket.Packet.GetInt();
+				var floorPlan = palePacket.Packet.GetInt();
+				palePacket.Packet.GetLong();
 
-			form.SetValuesAndGenerate(name, itemId, floorPlan);
+				form.SetValuesAndGenerate(name, itemId, floorPlan);
+			}
+			else
+			{
+				palePacket.Packet.GetLong();
+				palePacket.Packet.GetLong();
+				palePacket.Packet.GetByte();
+				var name = palePacket.Packet.GetString();
+				var itemId = palePacket.Packet.GetInt();
+				var seed = palePacket.Packet.GetInt();
+				var floorPlan = palePacket.Packet.GetInt();
+
+				form.SetValuesAndGenerate(name, itemId, floorPlan);
+			}
 		}
 	}
 }

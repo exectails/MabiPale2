@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -428,7 +429,8 @@ namespace MabiPale2
 		/// </summary>
 		private void UpdateOpNames()
 		{
-			if (!File.Exists("ops.txt"))
+			var opsFileName = Settings.Default.OpsFileName;
+			if (!File.Exists(opsFileName))
 				return;
 
 			try
@@ -436,8 +438,9 @@ namespace MabiPale2
 				lock (opNames)
 				{
 					opNames.Clear();
+					var regex = new Regex("(?<name>[a-z][a-z0-9_]+).*?=.*?0x(?<op>[a-z0-9]{2,8})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-					using (var sr = new StreamReader("ops.txt"))
+					using (var sr = new StreamReader(opsFileName))
 					{
 						var line = "";
 						while ((line = sr.ReadLine()) != null)
@@ -445,12 +448,12 @@ namespace MabiPale2
 							if (line.TrimStart().StartsWith("//"))
 								continue;
 
-							var split = line.Split('=');
-							if (split.Length < 2)
+							var match = regex.Match(line);
+							if (!match.Success)
 								continue;
 
-							var opStr = split[1].Trim().Replace("0x", "");
-							var name = split[0].Trim();
+							var name = match.Groups["name"].Value;
+							var opStr = match.Groups["op"].Value;
 
 							int op;
 							if (!int.TryParse(opStr, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out op))

@@ -31,6 +31,9 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
 			this.TabsSettings = new System.Windows.Forms.TabControl();
 			this.TabFilters = new System.Windows.Forms.TabPage();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.RadFilterIncludeMode = new System.Windows.Forms.RadioButton();
+			this.RadFilterExcludeMode = new System.Windows.Forms.RadioButton();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.ChkFilterSendEnabled = new System.Windows.Forms.CheckBox();
 			this.TxtFilterSend = new System.Windows.Forms.TextBox();
@@ -44,23 +47,21 @@
 			this.TxtErrorLog = new System.Windows.Forms.TextBox();
 			this.BtnSave = new System.Windows.Forms.Button();
 			this.BtnCancel = new System.Windows.Forms.Button();
-			this.RadFilterExcludeMode = new System.Windows.Forms.RadioButton();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.RadFilterIncludeMode = new System.Windows.Forms.RadioButton();
+			this.CboOpsFile = new System.Windows.Forms.ComboBox();
 			this.TabsSettings.SuspendLayout();
 			this.TabFilters.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.TabOpNames.SuspendLayout();
 			this.TabErrorLog.SuspendLayout();
-			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TabsSettings
 			// 
-			this.TabsSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.TabsSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.TabsSettings.Controls.Add(this.TabFilters);
 			this.TabsSettings.Controls.Add(this.TabOpNames);
 			this.TabsSettings.Controls.Add(this.TabErrorLog);
@@ -84,10 +85,43 @@
 			this.TabFilters.Text = "Filters";
 			this.TabFilters.UseVisualStyleBackColor = true;
 			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.RadFilterIncludeMode);
+			this.groupBox3.Controls.Add(this.RadFilterExcludeMode);
+			this.groupBox3.Location = new System.Drawing.Point(6, 9);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(386, 52);
+			this.groupBox3.TabIndex = 9;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Filter Mode";
+			// 
+			// RadFilterIncludeMode
+			// 
+			this.RadFilterIncludeMode.AutoSize = true;
+			this.RadFilterIncludeMode.Location = new System.Drawing.Point(80, 19);
+			this.RadFilterIncludeMode.Name = "RadFilterIncludeMode";
+			this.RadFilterIncludeMode.Size = new System.Drawing.Size(60, 17);
+			this.RadFilterIncludeMode.TabIndex = 8;
+			this.RadFilterIncludeMode.Text = "Include";
+			this.RadFilterIncludeMode.UseVisualStyleBackColor = true;
+			// 
+			// RadFilterExcludeMode
+			// 
+			this.RadFilterExcludeMode.AutoSize = true;
+			this.RadFilterExcludeMode.Checked = true;
+			this.RadFilterExcludeMode.Location = new System.Drawing.Point(11, 19);
+			this.RadFilterExcludeMode.Name = "RadFilterExcludeMode";
+			this.RadFilterExcludeMode.Size = new System.Drawing.Size(63, 17);
+			this.RadFilterExcludeMode.TabIndex = 8;
+			this.RadFilterExcludeMode.TabStop = true;
+			this.RadFilterExcludeMode.Text = "Exclude";
+			this.RadFilterExcludeMode.UseVisualStyleBackColor = true;
+			// 
 			// groupBox2
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox2.Controls.Add(this.ChkFilterSendEnabled);
 			this.groupBox2.Controls.Add(this.TxtFilterSend);
 			this.groupBox2.Location = new System.Drawing.Point(202, 67);
@@ -112,8 +146,8 @@
 			// 
 			// TxtFilterSend
 			// 
-			this.TxtFilterSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)));
+			this.TxtFilterSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.TxtFilterSend.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TxtFilterSend.Location = new System.Drawing.Point(11, 24);
 			this.TxtFilterSend.Multiline = true;
@@ -124,8 +158,8 @@
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)));
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox1.Controls.Add(this.ChkFilterRecvEnabled);
 			this.groupBox1.Controls.Add(this.TxtFilterRecv);
 			this.groupBox1.Location = new System.Drawing.Point(6, 67);
@@ -150,8 +184,8 @@
 			// 
 			// TxtFilterRecv
 			// 
-			this.TxtFilterRecv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)));
+			this.TxtFilterRecv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.TxtFilterRecv.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TxtFilterRecv.Location = new System.Drawing.Point(11, 24);
 			this.TxtFilterRecv.Multiline = true;
@@ -169,10 +203,11 @@
 			this.label1.Size = new System.Drawing.Size(386, 26);
 			this.label1.TabIndex = 1;
 			this.label1.Text = "One op per line. Packets are filtered as they come in, these settings don\'t affec" +
-	"t existing log files, unless filtered explicitly.";
+    "t existing log files, unless filtered explicitly.";
 			// 
 			// TabOpNames
 			// 
+			this.TabOpNames.Controls.Add(this.CboOpsFile);
 			this.TabOpNames.Controls.Add(this.TxtOpNames);
 			this.TabOpNames.Location = new System.Drawing.Point(4, 22);
 			this.TabOpNames.Name = "TabOpNames";
@@ -184,13 +219,15 @@
 			// 
 			// TxtOpNames
 			// 
-			this.TxtOpNames.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TxtOpNames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.TxtOpNames.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.TxtOpNames.Location = new System.Drawing.Point(3, 3);
+			this.TxtOpNames.Location = new System.Drawing.Point(3, 30);
 			this.TxtOpNames.Multiline = true;
 			this.TxtOpNames.Name = "TxtOpNames";
 			this.TxtOpNames.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TxtOpNames.Size = new System.Drawing.Size(393, 243);
+			this.TxtOpNames.Size = new System.Drawing.Size(393, 216);
 			this.TxtOpNames.TabIndex = 0;
 			// 
 			// TabErrorLog
@@ -239,38 +276,15 @@
 			this.BtnCancel.UseVisualStyleBackColor = true;
 			this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
 			// 
-			// RadFilterExcludeMode
+			// CboOpsFile
 			// 
-			this.RadFilterExcludeMode.AutoSize = true;
-			this.RadFilterExcludeMode.Checked = true;
-			this.RadFilterExcludeMode.Location = new System.Drawing.Point(11, 19);
-			this.RadFilterExcludeMode.Name = "RadFilterExcludeMode";
-			this.RadFilterExcludeMode.Size = new System.Drawing.Size(63, 17);
-			this.RadFilterExcludeMode.TabIndex = 8;
-			this.RadFilterExcludeMode.TabStop = true;
-			this.RadFilterExcludeMode.Text = "Exclude";
-			this.RadFilterExcludeMode.UseVisualStyleBackColor = true;
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.RadFilterIncludeMode);
-			this.groupBox3.Controls.Add(this.RadFilterExcludeMode);
-			this.groupBox3.Location = new System.Drawing.Point(6, 9);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(386, 52);
-			this.groupBox3.TabIndex = 9;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Filter Mode";
-			// 
-			// RadFilterIncludeMode
-			// 
-			this.RadFilterIncludeMode.AutoSize = true;
-			this.RadFilterIncludeMode.Location = new System.Drawing.Point(80, 19);
-			this.RadFilterIncludeMode.Name = "RadFilterIncludeMode";
-			this.RadFilterIncludeMode.Size = new System.Drawing.Size(60, 17);
-			this.RadFilterIncludeMode.TabIndex = 8;
-			this.RadFilterIncludeMode.Text = "Include";
-			this.RadFilterIncludeMode.UseVisualStyleBackColor = true;
+			this.CboOpsFile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.CboOpsFile.FormattingEnabled = true;
+			this.CboOpsFile.Location = new System.Drawing.Point(3, 3);
+			this.CboOpsFile.Name = "CboOpsFile";
+			this.CboOpsFile.Size = new System.Drawing.Size(393, 21);
+			this.CboOpsFile.TabIndex = 1;
+			this.CboOpsFile.SelectedIndexChanged += new System.EventHandler(this.CboOpsFile_SelectedIndexChanged);
 			// 
 			// FrmSettings
 			// 
@@ -294,6 +308,8 @@
 			this.Load += new System.EventHandler(this.FrmSettings_Load);
 			this.TabsSettings.ResumeLayout(false);
 			this.TabFilters.ResumeLayout(false);
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox3.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
@@ -302,8 +318,6 @@
 			this.TabOpNames.PerformLayout();
 			this.TabErrorLog.ResumeLayout(false);
 			this.TabErrorLog.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -328,5 +342,6 @@
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.RadioButton RadFilterIncludeMode;
 		private System.Windows.Forms.RadioButton RadFilterExcludeMode;
+		private System.Windows.Forms.ComboBox CboOpsFile;
 	}
 }
