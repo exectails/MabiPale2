@@ -396,7 +396,7 @@ namespace MabiPale2
 			UpdateFilters();
 			UpdateOpNames();
 
-			if (prevOps != Settings.Default.OpsFileName)
+			if (prevOps != Settings.Default.OpsFileName && LstPackets.Items.Count != 0)
 			{
 				result = MessageBox.Show("The op list has changed, update packet list?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 				if (result == DialogResult.Yes)
