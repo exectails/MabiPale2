@@ -224,6 +224,13 @@ namespace MabiPale2.Plugins.EntityLogger
 			creature.MateName = packet.GetString();
 			creature.Destiny = packet.GetByte();
 
+			// [250200, NA371 (2021-07-16)] ?
+			if (packet.NextAre(PacketElementType.Short, PacketElementType.Int))
+			{
+				packet.GetShort();
+				packet.GetInt();
+			}
+
 			var itemCount = packet.GetInt();
 			for (int i = 0; i < itemCount; ++i)
 			{
