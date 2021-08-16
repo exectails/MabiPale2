@@ -561,21 +561,33 @@ namespace MabiPale2
 		/// <returns></returns>
 		private bool SelectPacketProvider(bool selectSingle)
 		{
-			var alissaWindows = WinApi.FindAllWindows("mod_Alissa");
+			var potentialWindows = new List<FoundWindow>();
+			potentialWindows.AddRange(WinApi.FindAllWindows("mod_Alissa"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("5B58C052-86BA-7C70-7D2F-1CE53A6B0861D1"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("E8B56FB7-4CC9-95E6-5455-EB61577EFF0CFC"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("D6B75549-D4E5-04D6-5A9E-69CEAF3C05DA4A"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("1223F1F5-C850-681A-1887-26023370696E9E"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("C320B8BA-F904-AB0E-8667-54BD32C3C0B929"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("D5FE92A8-2AA2-F0F2-D0E9-EECFDCA5FA2B1B"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("E7947C2E-10B2-B6CA-8A06-43A90EEF7C45F5"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("D12AFE94-E5A0-14CE-54DD-D263E0D91EBFAF"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("6EEFDDA1-14DE-1C79-0FFD-9DBA57640D42B2"));
+			potentialWindows.AddRange(WinApi.FindAllWindows("07349C8E-7F59-CA68-B1D3-30292E0F1CE555"));
+
 			FoundWindow window = null;
 
-			if (alissaWindows.Count == 0)
+			if (potentialWindows.Count == 0)
 			{
 				MessageBox.Show("No packet provider found.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
-			else if (selectSingle && alissaWindows.Count == 1)
+			else if (selectSingle && potentialWindows.Count == 1)
 			{
-				window = alissaWindows[0];
+				window = potentialWindows[0];
 			}
 			else
 			{
-				var form = new FrmAlissaSelection(alissaWindows, LblPacketProvider.Text);
+				var form = new FrmAlissaSelection(potentialWindows, LblPacketProvider.Text);
 				if (form.ShowDialog() == DialogResult.Cancel)
 					return false;
 
