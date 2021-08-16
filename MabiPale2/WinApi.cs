@@ -272,6 +272,21 @@ namespace MabiPale2
 		{
 			var result = new List<FoundWindow>();
 
+			if (windowName.Length == 38 && windowName.Contains('-'))
+			{
+				var s = windowName.Replace("-", "");
+				var b = Enumerable.Range(0, s.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(s.Substring(x, 2), 16)).ToArray();
+				byte g(int v) { return (byte)(((v * 1103515245) + 12345) & 0x7fffffff); };
+				var e = b[b.Length - 1];
+
+				for (var i = 0; i < b.Length; ++i)
+					b[i] ^= (e = g(e));
+
+				windowName = Encoding.UTF8.GetString(b);
+				var index = windowName.IndexOf('\0');
+				windowName = windowName.Substring(0, index);
+			}
+
 			var hWnd = IntPtr.Zero;
 			do
 			{
