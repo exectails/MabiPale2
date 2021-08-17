@@ -466,7 +466,7 @@
 			this.Menu = this.MainMenu;
 			this.Name = "FrmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "MabiPale2";
+			this.Text = "Mabinogi Pale 2";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
 			this.Load += new System.EventHandler(this.FrmMain_Load);
 			this.Shown += new System.EventHandler(this.FrmMain_Shown);

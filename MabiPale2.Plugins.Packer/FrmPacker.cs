@@ -1,18 +1,18 @@
-﻿using MabiPale2.Plugins.Pake.Properties;
+﻿using MabiPale2.Plugins.Packer.Properties;
 using MabiPale2.Shared;
 using System;
 using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MabiPale2.Plugins.Pake
+namespace MabiPale2.Plugins.Packer
 {
-	public partial class FrmPake : Form
+	public partial class FrmPacker : Form
 	{
 		private Main _plugin;
 		private IPluginManager _manager;
 
-		public FrmPake(Main plugin, IPluginManager manager)
+		public FrmPacker(Main plugin, IPluginManager manager)
 		{
 			this.InitializeComponent();
 			_plugin = plugin;
@@ -187,7 +187,7 @@ namespace MabiPale2.Plugins.Pake
 			this.TxtId.Text = "0x" + ((long)_plugin.MyEntityId).ToString("X16");
 		}
 
-		private void FrmPake_Load(object sender, EventArgs e)
+		private void FrmPacker_Load(object sender, EventArgs e)
 		{
 			if (Settings.Default.X != -1 && Settings.Default.Y != -1)
 			{
@@ -199,7 +199,7 @@ namespace MabiPale2.Plugins.Pake
 			this.Height = Settings.Default.Height;
 		}
 
-		private void FrmPake_FormClosing(object sender, FormClosingEventArgs e)
+		private void FrmPacker_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (this.WindowState != FormWindowState.Minimized)
 			{

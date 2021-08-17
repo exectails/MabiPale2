@@ -7,8 +7,8 @@
     <ProjectGuid>{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MabiPale2.Plugins.Pake</RootNamespace>
-    <AssemblyName>Pake</AssemblyName>
+    <RootNamespace>MabiPale2.Plugins.Packer</RootNamespace>
+    <AssemblyName>Packer</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmPake.cs">
+    <Compile Include="FrmPacker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPake.Designer.cs">
-      <DependentUpon>FrmPake.cs</DependentUpon>
+    <Compile Include="FrmPacker.Designer.cs">
+      <DependentUpon>FrmPacker.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,8 +66,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FrmPake.resx">
-      <DependentUpon>FrmPake.cs</DependentUpon>
+    <EmbeddedResource Include="FrmPacker.resx">
+      <DependentUpon>FrmPacker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

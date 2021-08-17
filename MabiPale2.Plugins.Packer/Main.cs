@@ -1,15 +1,15 @@
 ﻿using Aura.Mabi.Const;
 using Aura.Mabi.Network;
-using MabiPale2.Plugins.Pake.Properties;
+using MabiPale2.Plugins.Packer.Properties;
 using MabiPale2.Shared;
 using System;
 using System.Windows.Forms;
 
-namespace MabiPale2.Plugins.Pake
+namespace MabiPale2.Plugins.Packer
 {
 	public class Main : Plugin
 	{
-		private FrmPake form;
+		private FrmPacker form;
 
 		internal long? MyEntityId;
 
@@ -29,7 +29,7 @@ namespace MabiPale2.Plugins.Pake
 			manager.AddToToolbar(Resources.application_edit, Name, OnClick);
 
 			manager.AddToListContextMenu("-", null).Enabled = false;
-			manager.AddToListContextMenu("Copy to Pake", OnCopyClick);
+			manager.AddToListContextMenu("Copy to Packer", OnCopyClick);
 			manager.AddToListContextMenu("Replay", OnReplayClick);
 			manager.AddToListContextMenu("Replay with my id", OnReplayMyIdClick);
 
@@ -56,7 +56,7 @@ namespace MabiPale2.Plugins.Pake
 		{
 			if (form == null || form.IsDisposed)
 			{
-				form = new FrmPake(this, manager);
+				form = new FrmPacker(this, manager);
 				manager.OpenCentered(form);
 			}
 			else

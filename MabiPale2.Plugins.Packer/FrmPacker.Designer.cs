@@ -1,6 +1,6 @@
-﻿namespace MabiPale2.Plugins.Pake
+﻿namespace MabiPale2.Plugins.Packer
 {
-	partial class FrmPake
+	partial class FrmPacker
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPake));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPacker));
 			this.TxtOp = new System.Windows.Forms.TextBox();
 			this.TxtId = new System.Windows.Forms.TextBox();
 			this.TxtData = new System.Windows.Forms.TextBox();
@@ -53,8 +53,8 @@
 			// 
 			// TxtId
 			// 
-			this.TxtId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.TxtId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TxtId.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TxtId.Location = new System.Drawing.Point(87, 25);
 			this.TxtId.Name = "TxtId";
@@ -63,9 +63,9 @@
 			// 
 			// TxtData
 			// 
-			this.TxtData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.TxtData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TxtData.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.TxtData.Location = new System.Drawing.Point(12, 54);
 			this.TxtData.Multiline = true;
@@ -169,11 +169,11 @@
 			this.Controls.Add(this.TxtId);
 			this.Controls.Add(this.TxtOp);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "FrmPake";
-			this.Text = "Pake";
+			this.Name = "FrmPacker";
+			this.Text = "Packer";
 			this.TopMost = true;
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPake_FormClosing);
-			this.Load += new System.EventHandler(this.FrmPake_Load);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPacker_FormClosing);
+			this.Load += new System.EventHandler(this.FrmPacker_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

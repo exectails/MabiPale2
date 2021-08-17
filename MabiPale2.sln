@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.PacketAna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.DunGen", "MabiPale2.Plugins.DunGen\MabiPale2.Plugins.DunGen.csproj", "{EC521F5D-6C05-4AF4-AFA3-660B5BAB1F9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.Pake", "MabiPale2.Plugins.Pake\MabiPale2.Plugins.Pake.csproj", "{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MabiPale2.Plugins.Packer", "MabiPale2.Plugins.Packer\MabiPale2.Plugins.Packer.csproj", "{2C090459-97DD-48DB-A9F4-667CA6FFA0E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
