@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -79,12 +80,9 @@ namespace MabiPale2.Shared
 			this.Id = IPAddress.NetworkToHostOrder(BitConverter.ToInt64(_buffer, _ptr + sizeof(int)));
 			_ptr += 12;
 
-			// If the next byte is 0 and the buffer is longer than 15 bytes,
-			// we're most likely looking at a KR72 packet, where the length
-			// and the element count were an int and a short respectively.
-			// A var int will never start with 0 if there's a packet body,
-			// and an empty packet would be exactly 15 bytes long.
-			if (_buffer[_ptr] == 0 && length > 15)
+			//if (_buffer[_ptr] == 0 && length > 15)
+			var protocolVersion = GetProtocolVersion(_buffer, offset);
+			if (protocolVersion < 200)
 			{
 				var packetLength = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(_buffer, _ptr));
 
@@ -93,7 +91,12 @@ namespace MabiPale2.Shared
 				_ptr += 6;
 
 				this.KR72Header = true;
-				UseKR72Header = true;
+
+				if (!UseKR72Header)
+				{
+					UseKR72Header = true;
+					Trace.TraceError("Switching to protocol version {0}, based on this packet: {1}", protocolVersion, BitConverter.ToString(buffer, offset));
+				}
 			}
 			else
 			{
@@ -104,6 +107,55 @@ namespace MabiPale2.Shared
 			_ptr++; // 0x00
 
 			_bodyStart = _ptr;
+		}
+
+		/// <summary>
+		/// Returns the protocol version for the packet in the buffer.
+		/// </summary>
+		/// <remarks>
+		/// The result of this method is a best guess and is not guaranteed
+		/// to be correct.
+		/// </remarks>
+		/// <param name="buffer"></param>
+		/// <param name="offset"></param>
+		/// <returns></returns>
+		private static int GetProtocolVersion(byte[] buffer, int offset)
+		{
+			var length = buffer.Length;
+
+			// Determining the protocol version based on the packet data is
+			// tricky, since the checksum, that might not have been cut off
+			// by the packet provider, makes versions 100 and 200 the same
+			// length. However, in such a case, the checksum would, usually,
+			// not be 0, even for an empty packet.
+
+			// v100:  00-00-00-01 00-01-00-00-00-00-00-02 00-00-00-00 00-00 00 (int, long, int, short, byte)
+			// v200:  00-00-00-01 00-01-00-00-00-00-00-02 00 00 00 XX-XX-XX-XX (int, long, 3x byte, checksum)
+			// v1100: 00-00-00-01 00-01-00-00-00-00-00-02 00 00 00             (int, long, 3x byte)
+
+			// Version 100 packets are always at least 19 byte long, due to
+			// using an integer and a short for the body length and element
+			// count. If it's shorter, it must be a newer version.
+			if (length < 19)
+				return 1100;
+
+			// If the 13th byte, the first byte after the id, and the 19th
+			// byte are 0, there's a high likelihood that we're looking at
+			// a v100 packet, because in v200+, the 13th byte would only be
+			// 0 if the packet is empty, since the variable integers used
+			// in v200+ never start with 0. In the case of an empty packet,
+			// the 18th byte would be the last byte of the checksum, which
+			// is unlikely to be zero. In v100, the 13th byte would basically
+			// always be 0, because there are no packets that are larger than
+			// 0xFFFFFF (largest value storable in 3 bytes).
+			// This will still cause a false positive if the checksum ends
+			// on 0.
+			if (buffer[12] == 0 && buffer[18] == 0)
+				return 100;
+
+			// If the above two cases didn't trigger, it's probably a v200+
+			// packet.
+			return 200;
 		}
 
 		/// <summary>
