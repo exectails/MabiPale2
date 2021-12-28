@@ -76,6 +76,18 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 						palePacket.Packet.GetInt();
 					}
 
+					// [240100, NA346 (2020-07-17)] ?
+					if (palePacket.Packet.NextIs(Shared.PacketElementType.Int))
+					{
+						palePacket.Packet.GetInt();
+					}
+
+					// [250200, NA378 (2021-11-04)] ?
+					if (palePacket.Packet.NextIs(Shared.PacketElementType.String))
+					{
+						palePacket.Packet.GetString();
+					}
+
 					tabs[name].Add(new ShopItem() { Info = itemInfo, OptionInfo = itemOptionInfo, MetaData1 = metaData1 });
 				}
 			}
