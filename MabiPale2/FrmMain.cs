@@ -900,7 +900,7 @@ namespace MabiPale2
 					case PacketElementType.Short: sb.AppendFormat("gp.PutShort({0});" + Environment.NewLine, selected.Packet.GetShort()); break;
 					case PacketElementType.Int: sb.AppendFormat("gp.PutInt({0});" + Environment.NewLine, selected.Packet.GetInt()); break;
 					case PacketElementType.Long: sb.AppendFormat("gp.PutLong({0});" + Environment.NewLine, selected.Packet.GetLong()); break;
-					case PacketElementType.Float: sb.AppendFormat("gp.PutFloat({0});" + Environment.NewLine, selected.Packet.GetFloat()); break;
+					case PacketElementType.Float: sb.AppendFormat(CultureInfo.InvariantCulture, "gp.PutFloat({0}f);" + Environment.NewLine, selected.Packet.GetFloat()); break;
 					case PacketElementType.String: sb.AppendFormat("gp.PutString(\"{0}\");" + Environment.NewLine, selected.Packet.GetString()); break;
 					case PacketElementType.Bin:
 						var bin = selected.Packet.GetBin();
