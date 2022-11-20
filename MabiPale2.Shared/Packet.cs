@@ -501,7 +501,7 @@ namespace MabiPale2.Shared
 				throw new ArgumentException("Expected String, got " + this.Peek() + ".");
 
 			_ptr += 1;
-			var len = IPAddress.NetworkToHostOrder(BitConverter.ToInt16(_buffer, _ptr));
+			var len = (int)(ushort)IPAddress.NetworkToHostOrder(BitConverter.ToInt16(_buffer, _ptr));
 			_ptr += 2;
 
 			var val = Encoding.UTF8.GetString(_buffer, _ptr, len - 1);
