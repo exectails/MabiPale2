@@ -15,7 +15,7 @@ namespace MabiPale2.Plugins.Packer
 
 		public override string Name
 		{
-			get { return "Pake"; }
+			get { return "Packer"; }
 		}
 
 		public Main(IPluginManager pluginManager)

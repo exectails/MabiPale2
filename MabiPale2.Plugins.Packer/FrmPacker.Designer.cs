@@ -153,7 +153,7 @@
 			this.BtnClear.UseVisualStyleBackColor = true;
 			this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
 			// 
-			// FrmPake
+			// FrmPacker
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
