@@ -102,6 +102,14 @@ namespace MabiPale2.Shared
 			{
 				_bodyLen = this.ReadVarInt(_buffer, ref _ptr);
 				_elements = this.ReadVarInt(_buffer, ref _ptr);
+
+				this.KR72Header = false;
+
+				if (UseKR72Header)
+				{
+					UseKR72Header = false;
+					Trace.TraceError("Switching to protocol version {0}, based on this packet: {1}", protocolVersion, BitConverter.ToString(buffer, offset));
+				}
 			}
 
 			_ptr++; // 0x00
@@ -144,7 +152,7 @@ namespace MabiPale2.Shared
 			// a v100 packet, because in v200+, the 13th byte would only be
 			// 0 if the packet is empty, since the variable integers used
 			// in v200+ never start with 0. In the case of an empty packet,
-			// the 18th byte would be the last byte of the checksum, which
+			// the 19th byte would be the last byte of the checksum, which
 			// is unlikely to be zero. In v100, the 13th byte would basically
 			// always be 0, because there are no packets that are larger than
 			// 0xFFFFFF (largest value storable in 3 bytes).
