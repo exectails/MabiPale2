@@ -122,9 +122,20 @@ namespace MabiPale2.Plugins.PacketAnalyzer.Packets
 						actionPacket.GetInt();
 						actionPacket.GetByte();
 						actionPacket.GetByte();
-						actionPacket.GetInt();
-						var x = actionPacket.GetInt();
-						var y = actionPacket.GetInt();
+						//actionPacket.GetInt();
+						//var x = actionPacket.GetInt();
+						//var y = actionPacket.GetInt();
+						if (actionPacket.NextAre(PacketElementType.Int, PacketElementType.Int, PacketElementType.Int, PacketElementType.Int))
+						{
+							actionPacket.GetInt();
+							actionPacket.GetInt();
+							actionPacket.GetInt();
+						}
+						else
+						{
+							actionPacket.GetInt();
+							actionPacket.GetInt();
+						}
 					}
 
 					var options = new List<uint>();
