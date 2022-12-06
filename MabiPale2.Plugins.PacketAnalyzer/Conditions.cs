@@ -1,5 +1,8 @@
-﻿namespace MabiPale2.Plugins.PacketAnalyzer
+﻿using System;
+
+namespace MabiPale2.Plugins.PacketAnalyzer
 {
+	[Flags]
 	public enum ConditionsA : ulong
 	{
 		Poisoned = 0x0000000000000001,
@@ -69,6 +72,7 @@
 		All = 0xFFFFFFFFFFFFFFFF,
 	}
 
+	[Flags]
 	public enum ConditionsB : ulong
 	{
 		Transparent = 0x0000000000000001,
@@ -138,6 +142,7 @@
 		All = 0xFFFFFFFFFFFFFFFF,
 	}
 
+	[Flags]
 	public enum ConditionsC : ulong
 	{
 		CombatExpBoost = 0x0000000000000001,
@@ -207,6 +212,7 @@
 		All = 0xFFFFFFFFFFFFFFFF,
 	}
 
+	[Flags]
 	public enum ConditionsD : ulong
 	{
 		MusicOfHaste = 0x0000000000000001,
@@ -275,6 +281,7 @@
 		All = 0xFFFFFFFFFFFFFFFF,
 	}
 
+	[Flags]
 	public enum ConditionsE : ulong
 	{
 		SlientVoice = 0x0000000000000001,
@@ -333,6 +340,7 @@
 		All = 0xFFFFFFFFFFFFFFFF,
 	}
 
+	[Flags]
 	public enum ConditionsF : ulong
 	{
 		IgnoreCommercePenalty = 0x0000000000000001,
@@ -402,6 +410,7 @@
 		All = 0xFFFFFFFFFFFFFFFF,
 	}
 
+	[Flags]
 	public enum ConditionsG : ulong
 	{
 		OrgelPlaying = 0x0000000000000001, // Play Music Box
